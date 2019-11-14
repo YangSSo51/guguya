@@ -5,22 +5,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LoginProcess</title>
 </head>
 <body>
 	<%
+		//form에서 파라미터 가져와서 넘겨줌
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String msg = "로그인에 실패하였습니다.";
 		boolean result = account.login(id,pw);
 		
+		//성공 여부에 따라 메세지 출력
 		if(result){
 			msg="로그인에 성공했습니다.";
-			session.setAttribute("idKey",id);
+			session.setAttribute("idKey",id);	//성공하면 세션에 아이디 저장
 		}
 	%>
 <script>
-	alert("<%=msg%>");
+	<!--메세지 출력-->
+	alert("<%=msg%>");	
 	document.location.href="login.jsp"
 </script>
 </body>

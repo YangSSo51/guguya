@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Signup</title>
 <style>
 	#hidden{
 		display:none;
@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="../navbar.jsp"%>
+<%@ include file="../navbar.jsp"%>
 <div class="container">
 <form name="signupForm" method="POST" action="signupProcess.jsp">
 	<h2 class="text-center">회원가입</h2>

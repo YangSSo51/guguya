@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Logout</title>
 </head>
 <body>
 	<%
+		//세션에서 아이디정보 삭제
 		session.removeAttribute("idKey");
 		session.invalidate();
 		response.sendRedirect("login.jsp");

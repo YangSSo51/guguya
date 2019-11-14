@@ -1,11 +1,12 @@
 package guguya;
 import java.io.Serializable;
 
+//사용자 객체
 public class userBean implements java.io.Serializable{
 	private String id;	//아이디
 	private String pw;	//비밀번호
 	private String email;	//이메일
-	private String auth;	//권한-관리자,개인,기업
+	private String auth;	//권한-관리자0,기업1,개인2
 
 	public userBean() {
 	}
