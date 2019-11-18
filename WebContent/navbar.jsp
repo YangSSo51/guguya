@@ -43,9 +43,9 @@
     </ul>
   </div>
   <div class="right-nav">
-		<a href="user/login.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">로그인</button>
+		<a href="http://localhost:8080/guguya/user/login.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">로그인</button>
 		</a>	  
-		<a href="user/signup.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">회원가입</button>
+		<a href="http://localhost:8080/guguya/user/signup.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">회원가입</button>
 		</a>
   </div>
 </nav>
