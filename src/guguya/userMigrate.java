@@ -1,37 +1,22 @@
 package guguya;
 import java.sql.*;
 import java.util.ArrayList;
+import guguya.dbCon;
 
 //사용자 관련 클래스
 public class userMigrate {
-
-	//DB 연결
-	public Connection dbCon() {
-		Connection con = null; // db connection
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String url="jdbc:mysql://localhost:3306/guguya";	
-			String user="root";		//사용자 이름
-			String password = "0501";	//사용자 비밀번호
-			con = DriverManager.getConnection(url,user,password);
-			System.out.println("db접속 성공");
-		} catch (Exception e) {
-			System.out.println("db접속 실패");
-			e.printStackTrace();
-		}
-		return con;
-	}
-	 
+	Connection con = null;
+	dbCon dbcon = new dbCon();
+	
 	//회원가입해서 userBean형식으로 리턴해줌
 	//user객체를 사용하는 것이 더 쉬움
 	public boolean signup(userBean bean) throws ClassNotFoundException, SQLException {
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		boolean flag = false;
 		try {
-			con = dbCon();
+			con = (Connection)dbcon;
 			sql = "insert user(id,pw,email,auth)"+ "values(?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getId());
@@ -49,13 +34,12 @@ public class userMigrate {
 	//id,pw입력받아서 로그인
 	//flag값으로 성공여부 전달
 	public boolean login(String id,String pw) throws ClassNotFoundException, SQLException {
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		boolean flag = false;
 		try {
-			con = dbCon();
+			con = (Connection)dbcon;
 			//아이디 비밀버호가 일치하는 아이디를 찾음
 			sql = "select id from user where id=? and pw=?";
 			pstmt = con.prepareStatement(sql);
@@ -71,13 +55,12 @@ public class userMigrate {
 	}
 	//회원 id로 user_no가져오기
 	public int getUserNo(String id) throws SQLException {
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql=null;
 		int user_no=1;
 		try {
-			con = dbCon();
+			con = (Connection)dbcon;
 			sql = "select * from user where id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,id);
@@ -94,13 +77,12 @@ public class userMigrate {
 
 	//개인 사용자이면 individual table에 기본정보 등록
 	public boolean insertIndividual(int user_no)  throws ClassNotFoundException, SQLException{
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		boolean flag = false;
 		try {
-			con = dbCon();
+			con = (Connection)dbcon;
 			sql = "insert individual(user_no)"+ "values(?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, user_no);
@@ -112,12 +94,12 @@ public class userMigrate {
 	//기존 회원정보 조회
 	public ArrayList<individualBean> individualList(int user_no) throws ClassNotFoundException, SQLException {
 		ArrayList<individualBean> list = new ArrayList<individualBean>();
-		Connection con =null;
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 			try {
-				con = dbCon();
+				con = (Connection)dbcon;
 				sql = "select * from individual where user_no=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1,user_no);
@@ -138,12 +120,12 @@ public class userMigrate {
 	//개인회원의 정보 수정
 	//insertIndividual에서 이미 만들어둔 정보에 접근해서 업데이트해줌
 	public boolean updateIndividual(individualBean bean) { //individual table
-		Connection con = null;
+
 		PreparedStatement pstmt = null;
 		String sql = null;
 		boolean flag = false;
 		try {
-			con = dbCon();
+			con = (Connection)dbcon;
 			sql = "update individual set name=?,age=? where user_no=?";
 			pstmt = con.prepareStatement(sql);
 			//현재 user_no를 받아와서 넣어줘야함
@@ -162,12 +144,12 @@ public class userMigrate {
 	//userBean의 리스트형태로 보내줌
 	public ArrayList<userBean> accountList() throws ClassNotFoundException, SQLException {
 		ArrayList<userBean> list = new ArrayList<userBean>();
-		Connection con =null;
+	
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 			try {
-				con = dbCon();
+				con = (Connection)dbcon;
 				sql = "select * from user";
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();

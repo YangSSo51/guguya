@@ -10,7 +10,6 @@ public class individualBean implements java.io.Serializable{
 	public individualBean() {
 	}
 	
-	
 	public String getName() {
 		return name;
 	}

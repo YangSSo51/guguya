@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.Date" %>
+<jsp:useBean id="upload" class="guguya.projectMigrate"></jsp:useBean>
+<jsp:useBean id="bean" class="guguya.projectBean"></jsp:useBean>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<jsp:setProperty property="*" name="bean"/>
+	<%
+	    String id = (String)session.getAttribute("idKey"); // 현재 로그인한 회원의 id 가져오기
+		Date date = new Date();
+		bean.setWrite_time("현재 시간");
+		
+		
+		// projectUpload 함수를 실행했을 때의 결과값을 확인
+		
+		boolean result = upload.projectUpload(bean);
+		String msg = "등록을 실패하였습니다.";
+		
+		//성공 여부에 따라 메세지 출력
+		if(result){
+			msg="등록하였습니다.";
+		}
+	%>
+<script>
+	//메세지 출력
+	alert("<%=msg%>");
+</script>
+	<% response.sendRedirect("login.jsp"); %>
+</body>
+</html>
