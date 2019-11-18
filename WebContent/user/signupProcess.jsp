@@ -11,6 +11,7 @@
 <body>
 	<jsp:setProperty property="*" name="bean"/>
 	<%
+		request.setCharacterEncoding("utf-8");
 		//signup함수를 실행했을 때의 결과값을 확인
 		boolean result = account.signup(bean);
 		String msg="회원가입에 실패하였습니다.";

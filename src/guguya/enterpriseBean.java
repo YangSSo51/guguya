@@ -2,14 +2,14 @@ package guguya;
 import java.io.Serializable;
 
 //사용자 객체
-public class individualBean implements java.io.Serializable{
+public class enterpriseBean implements java.io.Serializable{
 	private String name;
 	private String pw;
-	private int age;
+	private String address;
+	private String business_no;
 	private int user;
 	
-	public individualBean() {
-		System.out.println(age);
+	public enterpriseBean() {
 	}
 	
 	
@@ -27,11 +27,18 @@ public class individualBean implements java.io.Serializable{
 		this.pw = pw;
 	}
 	
-	public int getAge() {
-		return age;
+	public String getAddress() {
+		return address;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	public String getBusiness_no() {
+		return business_no;
+	}
+	public void setBusiness_no(String business_no) {
+		this.business_no = business_no;
 	}
 	
 	public int getUser() {

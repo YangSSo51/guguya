@@ -12,6 +12,12 @@
 </style>
 </head>
 <body>
+	<%
+		//세션에서 아이디정보 삭제
+		session.removeAttribute("idKey");
+		session.invalidate();
+	%>
+
 <%@ include file="../navbar.jsp"%>
 <div class="container">
 <form name="signupForm" method="POST" action="signupProcess.jsp">
