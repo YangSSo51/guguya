@@ -122,10 +122,17 @@ public class userMigrate {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1,user_no);
 				rs = pstmt.executeQuery();
+				individualBean bean = new individualBean();
 				while(rs.next()) {
-					individualBean bean = new individualBean();
 					bean.setName(rs.getString("name"));
 					bean.setAge(rs.getInt("age"));
+				}
+				sql = "select * from user where user_no=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1,user_no);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					bean.setPw(rs.getString("pw"));
 					list.add(bean);
 				}
 			}catch(Exception e) {
@@ -150,11 +157,24 @@ public class userMigrate {
 			pstmt.setString(1, bean.getName());
 			pstmt.setInt(2,bean.getAge());
 			pstmt.setInt(3,bean.getUser());
-
 			if(pstmt.executeUpdate()==1) flag=true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+		}
+		try {
+			con=dbCon();
+			sql = "update user set pw=? where user_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getPw());
+			pstmt.setInt(2,bean.getUser());
+
+			if(pstmt.executeUpdate()==1) flag=true;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			
 		}
 		return flag;
 	}

@@ -4,6 +4,7 @@ import java.io.Serializable;
 //사용자 객체
 public class individualBean implements java.io.Serializable{
 	private String name;
+	private String pw;
 	private int age;
 	private int user;
 	
@@ -18,6 +19,13 @@ public class individualBean implements java.io.Serializable{
 		this.name = name;
 	}
 
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+	
 	public int getAge() {
 		return age;
 	}

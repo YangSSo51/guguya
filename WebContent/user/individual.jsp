@@ -35,6 +35,13 @@
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">이름</label>
     <div class="col-sm-4">
+      <input type="text" class="form-control" name="pw" value="<%=bean.getPw()%>">
+    </div>
+  </div>
+  <div class="form-group row">
+        <div class="col-sm-3"></div>
+    <label for="inputPassword" class="col-sm-1 col-form-label">이름</label>
+    <div class="col-sm-4">
       <input type="text" class="form-control" name="name" value="<%=bean.getName()%>">
     </div>
   </div>
