@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <jsp:useBean id="account" class="guguya.userMigrate"></jsp:useBean>
-<jsp:useBean id="bean" class="guguya.individualBean"></jsp:useBean>
+<jsp:useBean id="bean" class="guguya.enterpriseBean"></jsp:useBean>
 
 <!DOCTYPE html>
 <html>
@@ -13,9 +13,9 @@
 <body>
 	<jsp:setProperty property="*" name="bean"/>
 	<%
-	request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
 		//signup함수를 실행했을 때의 결과값을 확인
-		boolean result = account.updateIndividual(bean);
+		boolean result = account.updateEnterprise(bean);
 		String msg="정보 수정에 실패하였습니다.";
 		//성공 여부에 따라 메세지 출력
 		if(result){

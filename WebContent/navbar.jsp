@@ -13,12 +13,19 @@
 	.right-nav{
 		float:right;
 	}
+	.logo{
+		width:150px;
+		margin-bottom:30px;
+	}
 </style>
 </head>
 <body>
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:white!important; margin:20px;">
-  <a class="navbar-brand" href="#">Home</a>
+  <!-- 운영할때 경로 바꿔줘야함 -->
+  <a class="navbar-brand" href="http://localhost:8080/guguya/home.jsp"><img class="logo" src="/guguya/logo.png" width="150px"></a>
+
+  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -36,8 +43,11 @@
     </ul>
   </div>
   <div class="right-nav">
-	  <button type="button" id="hidden" class="btn btn-light" style="background-color:#A1A6A0">로그인</button>
-	  <button type="button" id="hidden"  class="btn btn-light" style="background-color:#82C5E8">회원가입</button>
+  <!-- 나중에 경로 수정해줘야함 -->
+		<a href="http://localhost:8080/guguya/user/login.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">로그인</button>
+		</a>	  
+		<a href="http://localhost:8080/guguya/user/signup.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">회원가입</button>
+		</a>
   </div>
 </nav>
 </div>
