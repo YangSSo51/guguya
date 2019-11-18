@@ -1,0 +1,34 @@
+package guguya;
+import java.io.Serializable;
+
+//사용자 객체
+public class individualBean implements java.io.Serializable{
+	private String name;
+	private int age;
+	private int user;
+	
+	public individualBean() {
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
+	public int getUser() {
+		return user;
+	}
+	public void setUser(int user) {
+		this.user = user;
+	}
+}

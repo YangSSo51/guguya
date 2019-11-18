@@ -21,7 +21,7 @@
       <div class="col-sm-3"></div>
     <label for="inputId" class="col-sm-1 col-form-label">아이디</label>
     <div class="col-sm-4">
-      <input type="password" class="form-control" name="id" placeholder="ID">
+      <input type="text" class="form-control" name="id" placeholder="ID">
     </div>
   </div>
   <div class="form-group row">
@@ -47,13 +47,13 @@
 	<div class="form-check">
 	  <input class="form-check-input" type="radio" name="auth" value="1" checked>
 	  <label class="form-check-label" for="exampleRadios1">
-	    기업
+	   개인
 	  </label>
 	</div>
 	<div class="form-check">
 	  <input class="form-check-input" type="radio" name="auth" value="2">
 	  <label class="form-check-label" for="exampleRadios2">
-	  개인
+	  기업
 	  </label>
 	</div>
 	</div>

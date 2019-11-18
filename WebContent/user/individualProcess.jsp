@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <jsp:useBean id="account" class="guguya.userMigrate"></jsp:useBean>
-<jsp:useBean id="bean" class="guguya.userBean"></jsp:useBean>
+<jsp:useBean id="bean" class="guguya.individualBean"></jsp:useBean>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,19 +14,11 @@
 	<jsp:setProperty property="*" name="bean"/>
 	<%
 		//signup함수를 실행했을 때의 결과값을 확인
-		boolean result = account.signup(bean);
-		String msg="회원가입에 실패하였습니다.";
+		boolean result = account.updateIndividual(bean);
+		String msg="정보 수정에 실패하였습니다.";
 		//성공 여부에 따라 메세지 출력
 		if(result){
-			msg="회원가입에 성공하였습니다.";
-			if(Integer.parseInt(request.getParameter("auth"))==1){	//개인으로 회원가입한 경우
-				int user_no = account.getUserNo(request.getParameter("id"));
-				account.insertIndividual(user_no);
-				out.println("개인");
-
-			}else{
-				out.println("기업");
-			}
+			msg="정보 수정에 성공하였습니다.";
 		}
 	%>
 <script>

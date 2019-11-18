@@ -10,7 +10,7 @@ public class userMigrate {
 		Connection con = null; // db connection
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url="jdbc:mysql://localhost:3306/test";	
+			String url="jdbc:mysql://localhost:3306/guguya";	
 			String user="root";		//사용자 이름
 			String password = "0501";	//사용자 비밀번호
 			con = DriverManager.getConnection(url,user,password);
@@ -22,8 +22,32 @@ public class userMigrate {
 		return con;
 	}
 	 
-
-	//로그인
+	//회원가입해서 userBean형식으로 리턴해줌
+	//user객체를 사용하는 것이 더 쉬움
+	public boolean signup(userBean bean) throws ClassNotFoundException, SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = dbCon();
+			sql = "insert user(id,pw,email,auth)"+ "values(?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getId());
+			pstmt.setString(2, bean.getPw());
+			pstmt.setString(3, bean.getEmail());
+			pstmt.setString(4, bean.getAuth());
+			if(pstmt.executeUpdate()==1) flag=true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+		}
+		return flag;
+	}
+	
+	//id,pw입력받아서 로그인
+	//flag값으로 성공여부 전달
 	public boolean login(String id,String pw) throws ClassNotFoundException, SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -45,10 +69,31 @@ public class userMigrate {
 		}
 		return flag;
 	}
+	//회원 id로 user_no가져오기
+	public int getUserNo(String id) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql=null;
+		int user_no=1;
+		try {
+			con = dbCon();
+			sql = "select * from user where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				user_no=rs.getInt("user_no");
+			}
+			return user_no;
+		}finally {
+			
+		}
+	}
 	
-	//회원가입
-	//user객체를 사용하는 것이 더 쉬움
-	public boolean signup(userBean bean) throws ClassNotFoundException, SQLException {
+
+	//개인 사용자이면 individual table에 기본정보 등록
+	public boolean insertIndividual(int user_no)  throws ClassNotFoundException, SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -56,16 +101,60 @@ public class userMigrate {
 		boolean flag = false;
 		try {
 			con = dbCon();
-			sql = "insert user(id,pw,email,auth)"+ "values(?,?,?,?)";
+			sql = "insert individual(user_no)"+ "values(?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, bean.getId());
-			pstmt.setString(2, bean.getPw());
-			pstmt.setString(3, bean.getEmail());
-			pstmt.setString(4, bean.getAuth());
+			pstmt.setInt(1, user_no);
 			if(pstmt.executeUpdate()==1) flag=true;
-		}catch(Exception e) {
-			e.printStackTrace();
 		}finally {
+		}
+		return flag;
+	}
+	//기존 회원정보 조회
+	public ArrayList<individualBean> individualList(int user_no) throws ClassNotFoundException, SQLException {
+		ArrayList<individualBean> list = new ArrayList<individualBean>();
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+			try {
+				con = dbCon();
+				sql = "select * from individual where user_no=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1,user_no);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					individualBean bean = new individualBean();
+					bean.setName(rs.getString("name"));
+					bean.setAge(rs.getInt("age"));
+					list.add(bean);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				
+			}
+		return list;
+	}
+	//개인회원의 정보 수정
+	//insertIndividual에서 이미 만들어둔 정보에 접근해서 업데이트해줌
+	public boolean updateIndividual(individualBean bean) { //individual table
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = dbCon();
+			sql = "update individual set name=?,age=? where user_no=?";
+			pstmt = con.prepareStatement(sql);
+			//현재 user_no를 받아와서 넣어줘야함
+			pstmt.setString(1, bean.getName());
+			pstmt.setInt(2,bean.getAge());
+			pstmt.setInt(3,bean.getUser());
+
+			if(pstmt.executeUpdate()==1) flag=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 		}
 		return flag;
 	}
@@ -97,4 +186,5 @@ public class userMigrate {
 			}
 		return list;
 	}
+		
 }

@@ -24,6 +24,8 @@
 		<h4><%=id %>님 환영합니다</h4>
 		<a href="logout.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">로그아웃</button>
 		</a>
+		<a href="individual.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">정보 수정하기</button>
+		</a>
 	</div>
 <% 
 	}
