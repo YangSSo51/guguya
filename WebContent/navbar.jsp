@@ -44,9 +44,9 @@
   </div>
   <div class="right-nav">
   <!-- 나중에 경로 수정해줘야함 -->
-		<a href="http://localhost:8080/guguya/user/login.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">로그인</button>
+		<a href="http://localhost:8080/guguya/user/login.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">로그인</button>
 		</a>	  
-		<a href="http://localhost:8080/guguya/user/signup.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">회원가입</button>
+		<a href="http://localhost:8080/guguya/user/signup.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">회원가입</button>
 		</a>
   </div>
 </nav>

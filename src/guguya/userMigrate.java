@@ -10,7 +10,7 @@ public class userMigrate {
 		Connection con = null; // db connection
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url="jdbc:mysql://localhost:3306/guguya";	
+			String url="jdbc:mysql://localhost:3306/guguya?useUnicode=true&characterEncoding=utf-8";	
 			String user="root";		//사용자 이름
 			String password = "0501";	//사용자 비밀번호
 			con = DriverManager.getConnection(url,user,password);
@@ -91,6 +91,28 @@ public class userMigrate {
 	}
 	
 
+	//회원 id로 권한 확인
+	public int getAuth(String id) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql=null;
+		int auth=1;
+		try {
+			con = dbCon();
+			sql = "select * from user where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				auth=rs.getInt("auth");
+			}
+			return auth;
+		}finally {
+			
+		}
+	}
+	
 	//개인 사용자이면 individual table에 기본정보 등록
 	public boolean insertIndividual(int user_no)  throws ClassNotFoundException, SQLException{
 		Connection con = null;

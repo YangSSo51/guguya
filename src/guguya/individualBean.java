@@ -9,6 +9,7 @@ public class individualBean implements java.io.Serializable{
 	private int user;
 	
 	public individualBean() {
+		System.out.println(age);
 	}
 	
 	

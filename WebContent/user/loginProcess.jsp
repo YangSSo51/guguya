@@ -9,6 +9,7 @@
 </head>
 <body>
 	<%
+	request.setCharacterEncoding("utf-8");
 		//form에서 파라미터 가져와서 넘겨줌
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
