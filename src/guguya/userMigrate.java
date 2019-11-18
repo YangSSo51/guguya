@@ -5,11 +5,9 @@ import guguya.dbCon;
 
 //사용자 관련 클래스
 public class userMigrate {
-<<<<<<< HEAD
 	Connection con = null;
 	dbCon dbcon = new dbCon();
 	
-=======
 
 	//DB 연결
 	public Connection dbCon() {
@@ -28,7 +26,6 @@ public class userMigrate {
 		return con;
 	}
 	 
->>>>>>> ab2c7d4c353116c25740048ff7d81564a02da95a
 	//회원가입해서 userBean형식으로 리턴해줌
 	//user객체를 사용하는 것이 더 쉬움
 	public boolean signup(userBean bean) throws ClassNotFoundException, SQLException {
