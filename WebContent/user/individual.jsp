@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String id = (String)session.getAttribute("idKey"); %>
-<jsp:useBean id="account" class="guguya.userMigrate"></jsp:useBean>
 <%@page import="java.util.ArrayList" %>
 <%@page import="guguya.*" %>
 <!DOCTYPE html>
@@ -24,7 +22,7 @@
 	
 	//individualBean의 리스트형태로 회원정보를 가져옴
 	ArrayList<individualBean> list = mgr.individualList(mgr.getUserNo(id));
-		for(individualBean bean:list){
+		for(individualBean ibean:list){
 	%>
 <!-- pw는 테이블이 달라서 수정이 불가능한 상태 -->
 <form name="signupForm" method="POST" action="individualProcess.jsp">
@@ -35,21 +33,21 @@
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">이름</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="pw" value="<%=bean.getPw()%>">
+      <input type="text" class="form-control" name="pw" value="<%=ibean.getPw()%>">
     </div>
   </div>
   <div class="form-group row">
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">이름</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="name" value="<%=bean.getName()%>">
+      <input type="text" class="form-control" name="name" value="<%=ibean.getName()%>">
     </div>
   </div>
     <div class="form-group row">
        <div class="col-sm-3"></div>
     <label for="inputEmail" class="col-sm-1 col-form-label">나이</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="age" value="<%=bean.getAge()%>">
+      <input type="text" class="form-control" name="age" value="<%=ibean.getAge()%>">
     </div>
   </div>
 	<br>

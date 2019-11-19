@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String id = (String)session.getAttribute("idKey"); %>
 <!-- 세션의 경우 jsp내부에서는 동작이 안되므로 주의할것 -->
 <%@page import="java.util.ArrayList" %>
-<%@page import="guguya.*" %>
+<%@page import="guguya.userMigrate" %>
+<%@page import="guguya.userBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,18 +27,18 @@
 	
 	//userBean의 리스트형태로 회원정보를 가져옴
 	ArrayList<userBean> list = mgr.accountList();
-		for(userBean bean:list){	//for문
+		for(userBean bean2:list){	//for문
 	%>
 		<tr>
-			<td><%=bean.getId() %></td>
-			<td><%=bean.getEmail() %></td>
+			<td><%=bean2.getId() %></td>
+			<td><%=bean2.getEmail() %></td>
 		<%
-		if(Integer.parseInt(bean.getAuth())==1){
+		if(Integer.parseInt(bean2.getAuth())==1){
 		%>
 			<td>개인</td>
 		<%
 		}
-		else if(Integer.parseInt(bean.getAuth())==2){
+		else if(Integer.parseInt(bean2.getAuth())==2){
 		%>
 			<td>기업</td>
 		<% 
@@ -50,7 +50,7 @@
 		}
 		%>
 		<td>
-		<a href="http://localhost:8080/guguya/user/deleteProcess.jsp?id=<%=bean.getId() %>"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">삭제</button></a>
+		<a href="http://localhost:8080/guguya/user/deleteProcess.jsp?id=<%=bean2.getId() %>"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">삭제</button></a>
 		</td>
 		</tr>
 		<%

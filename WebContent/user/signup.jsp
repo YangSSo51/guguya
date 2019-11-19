@@ -29,7 +29,7 @@
 	<%
 		//세션에서 아이디정보 삭제
 		session.removeAttribute("idKey");
-		session.invalidate();
+		//session.invalidate();
 	%>
 
 <%@ include file="../navbar.jsp"%>

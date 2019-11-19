@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String id = (String)session.getAttribute("idKey"); %>
-<jsp:useBean id="account" class="guguya.userMigrate"></jsp:useBean>
 <%@page import="java.util.ArrayList" %>
 <%@page import="guguya.*" %>
 <!DOCTYPE html>
@@ -24,7 +22,7 @@
 	
 	//individualBean의 리스트형태로 회원정보를 가져옴
 	ArrayList<enterpriseBean> list = mgr.enterpriseList(mgr.getUserNo(id));
-		for(enterpriseBean bean:list){
+		for(enterpriseBean ebean:list){
 	%>
 <!-- pw는 테이블이 달라서 수정이 불가능한 상태 -->
 <form name="enterpriseForm" method="POST" action="enterpriseProcess.jsp">
@@ -35,28 +33,28 @@
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">이름</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="pw" value="<%=bean.getPw()%>">
+      <input type="text" class="form-control" name="pw" value="<%=ebean.getPw()%>">
     </div>
   </div>
   <div class="form-group row">
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">이름</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="name" value="<%=bean.getName()%>">
+      <input type="text" class="form-control" name="name" value="<%=ebean.getName()%>">
     </div>
   </div>
     <div class="form-group row">
        <div class="col-sm-3"></div>
     <label for="text" class="col-sm-1 col-form-label">주소</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="address" value="<%=bean.getAddress()%>">
+      <input type="text" class="form-control" name="address" value="<%=ebean.getAddress()%>">
     </div>
   </div>
    <div class="form-group row">
        <div class="col-sm-3"></div>
     <label for="text" class="col-sm-1 col-form-label">사업자번호</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="business_no" value="<%=bean.getBusiness_no()%>">
+      <input type="text" class="form-control" name="business_no" value="<%=ebean.getBusiness_no()%>">
     </div>
   </div>
 	<br>
