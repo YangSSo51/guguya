@@ -12,9 +12,13 @@
 </head>
 <body>
 <div class="container">
-
-<table class="text-center">
+<table style="width:100%">
 <%@ include file="../navbar.jsp"%>
+	<tr>
+		<th>아이디</th>
+		<th>이메일</th>
+		<th>권한</th>
+	</tr>
 <%
 	String str = "root";
 	//root일때만 수행-이 부분은 권한으로 변경해야함
@@ -23,18 +27,38 @@
 	
 	//userBean의 리스트형태로 회원정보를 가져옴
 	ArrayList<userBean> list = mgr.accountList();
-		for(userBean bean:list){
+		for(userBean bean:list){	//for문
 	%>
 		<tr>
 			<td><%=bean.getId() %></td>
-			<td><%=bean.getPw() %></td>
 			<td><%=bean.getEmail() %></td>
-			<td><%=bean.getAuth() %></td>
-		</tr>
-		</table>
-		
-	<%
+		<%
+		if(Integer.parseInt(bean.getAuth())==1){
+		%>
+			<td>개인</td>
+		<%
 		}
+		else if(Integer.parseInt(bean.getAuth())==2){
+		%>
+			<td>기업</td>
+		<% 
+		}
+		else{
+		%>
+			<td>관리자</td>
+		<% 
+		}
+		%>
+		<td>
+		<a href="http://localhost:8080/guguya/user/deleteProcess.jsp?id=<%=bean.getId() %>"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">삭제</button></a>
+		</td>
+		</tr>
+		<%
+		}//for문
+		%>
+</table>
+	
+	<%	//if문
 	}else{
 	
 %>
