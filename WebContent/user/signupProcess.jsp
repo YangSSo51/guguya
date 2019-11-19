@@ -17,10 +17,12 @@
 		String msg="회원가입에 실패하였습니다.";
 		//성공 여부에 따라 메세지 출력
 		if(result){
+			int user_no = account.getUserNo(request.getParameter("id"));
 			msg="회원가입에 성공하였습니다.";
 			if(Integer.parseInt(request.getParameter("auth"))==1){	//개인으로 회원가입한 경우
-				int user_no = account.getUserNo(request.getParameter("id"));
 				account.insertIndividual(user_no);
+			}else{
+				account.insertEnterprise(user_no);		//기업으로 회원가입하는 경우
 			}
 		}
 	%>

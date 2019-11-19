@@ -32,6 +32,26 @@ public class userMigrate {
 		return flag;
 	}
 	
+	//아이디 중복 확인
+	public boolean idCheck(String id) throws ClassNotFoundException, SQLException {
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		boolean flag = false;
+		try {
+			con = dbcon.getConnection();
+			sql = "select id from user where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs = pstmt.executeQuery();
+			flag = rs.next();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+		}
+		return flag;
+	}
+	
 	//id,pw입력받아서 로그인
 	//flag값으로 성공여부 전달
 	public boolean login(String id,String pw) throws ClassNotFoundException, SQLException {
