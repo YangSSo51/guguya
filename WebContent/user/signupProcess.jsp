@@ -29,9 +29,9 @@
 		}
 	%>
 <script>
-	//메세지 출력
-	alert("<%=msg%>");
+	<!--메세지 출력-->
+	alert("<%=msg%>");	
+	document.location.href="login.jsp"
 </script>
-	<% response.sendRedirect("login.jsp"); %>
 </body>
 </html>

@@ -31,8 +31,13 @@
 		%>
 		
 		<%
-			if(auth==1){
-				%>
+				if(auth==0){
+			%>
+			<a href="userList.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">사용자정보 열람하기</button></a>	
+			<%
+				}
+				else if(auth==1){
+			%>
 			<a href="individual.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">정보 수정하기</button></a>
 			<%
 				}else{

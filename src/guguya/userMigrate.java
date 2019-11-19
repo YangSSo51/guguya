@@ -15,7 +15,9 @@ public class userMigrate {
 		String sql = null;
 		boolean flag = false;
 		try {
+
 			con = dbcon.getConnection();
+
 			sql = "insert user(id,pw,email,auth)"+ "values(?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getId());
@@ -286,7 +288,6 @@ public class userMigrate {
 				while(rs.next()) {
 					userBean bean = new userBean();
 					bean.setId(rs.getString("id"));
-					bean.setPw(rs.getString("pw"));
 					bean.setEmail(rs.getString("email"));
 					bean.setAuth(rs.getString("auth"));
 					list.add(bean);
@@ -297,6 +298,25 @@ public class userMigrate {
 				
 			}
 		return list;
+	}
+	
+	//회원 삭제
+	public boolean deleteUser(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = dbcon.getConnection();
+			sql = "delete from user where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			if(pstmt.executeUpdate()==1) flag=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return flag;
 	}
 		
 }
