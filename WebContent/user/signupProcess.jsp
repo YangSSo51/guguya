@@ -21,10 +21,6 @@
 			if(Integer.parseInt(request.getParameter("auth"))==1){	//개인으로 회원가입한 경우
 				int user_no = account.getUserNo(request.getParameter("id"));
 				account.insertIndividual(user_no);
-				out.println("개인");
-
-			}else{
-				out.println("기업");
 			}
 		}
 	%>
