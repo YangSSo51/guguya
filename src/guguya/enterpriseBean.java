@@ -12,7 +12,6 @@ public class enterpriseBean implements java.io.Serializable{
 	public enterpriseBean() {
 	}
 	
-	
 	public String getName() {
 		return name;
 	}
