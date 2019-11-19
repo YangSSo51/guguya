@@ -2,7 +2,8 @@ package guguya;
 import java.sql.*;
 
 public class dbCon {
-	public Connection dbCon(){
+
+	public static Connection getConnection() {
 		Connection con = null; // db connection
 		try {	
 			String url="jdbc:mysql://localhost:3306/guguya";	
@@ -12,10 +13,12 @@ public class dbCon {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(url,user,password);
 			System.out.println("db접속 성공");
+			
+			return con;
 		} catch (Exception e) {
 			System.out.println("db접속 실패");
 			e.printStackTrace();
 		}
-		return con;
+		return null;
 	}
 }
