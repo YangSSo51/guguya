@@ -45,7 +45,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">기업 </a>
+        <a class="nav-link" href="http://localhost:8080/guguya/project/projects.jsp">기업 </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">개인</a>

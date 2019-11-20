@@ -29,7 +29,7 @@
 
 	    user_no = account.getUserNo(id); // id에 따른 user_no 받아오기
 		en_no = upload.getEnno(user_no);
-	    System.out.println("en : " + en_no);
+
 	    Date date = new Date();
 		write_time = date.toString();
 	%>
@@ -39,11 +39,6 @@
 		if(en_no > 0){ // 반환 값이 제대로 들어옴
 			bean.setEn_no(en_no); // 현재 user의 en_no 값을 넣기
 			bean.setWrite_time(write_time);
-
-			System.out.println(bean.getProj_name());
-			System.out.println(bean.getProj_desc());
-			System.out.println(bean.getEn_no());
-			System.out.println(bean.getWrite_time());
 		}
 		else{ // 반환 값이 없으면
 			System.out.println("권한이 없습니다.");
@@ -53,17 +48,15 @@
 		// projectUpload 함수를 실행했을 때의 결과값을 확인	
 		boolean result = upload.projectUpload(bean);
 	
-		
 		//성공 여부에 따라 메세지 출력
 		if(result){
 			msg="등록하였습니다.";	
-			response.sendRedirect("/guguya/project/projectUpload.jsp");
 		}
 	%>
 <script>
 	//메세지 출력
-	alert("<%=msg%>");
+	alert("<%=msg%>");	
+	document.location.href="/guguya/home.jsp";
 </script>
-
 </body>
 </html>

@@ -38,7 +38,7 @@ public class projectMigrate {
 		return flag;
 	}
 	
-	//user_no으로 en_no가져오기 (보류)
+	//user_no으로 en_no가져오기 
 	public int getEnno(int user_no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -57,5 +57,54 @@ public class projectMigrate {
 		}finally {
 			con.close();
 		}
-	}	
+	}
+	
+	// en_no으로 enterprise name 가져오기 
+	public String getEnterpiseName(int en_no) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql=null;
+		String name = null;
+		try {
+			con = dbcon.getConnection();
+			sql = "select name from enterprise where en_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,en_no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				name = rs.getString("name");
+			}
+		}finally {
+			con.close();
+		}
+		return name;	
+	}
+		
+	
+	//프로젝트 리스트 조회
+	public ArrayList<projectBean> projectList() throws ClassNotFoundException, SQLException {
+		ArrayList<projectBean> list = new ArrayList<projectBean>();
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+			try {
+				con = dbcon.getConnection();
+				sql = "select * from project";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					projectBean bean = new projectBean();
+					bean.setProj_name(rs.getString("proj_name"));
+					bean.setEn_no(rs.getInt("en_no"));
+					bean.setWrite_time(rs.getString("write_time"));
+					list.add(bean);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				con.close();
+			}
+		return list;
+	}
 }
