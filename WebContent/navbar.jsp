@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String id = (String)session.getAttribute("idKey"); %>
+<jsp:useBean id="account" class="guguya.userMigrate"></jsp:useBean>
+<jsp:useBean id="bean" class="guguya.userBean"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,11 +56,43 @@
     </ul>
   </div>
   <div class="right-nav">
-  <!-- 나중에 경로 수정해줘야함 -->
-		<a href="http://localhost:8080/guguya/user/login.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">로그인</button>
-		</a>	  
-		<a href="http://localhost:8080/guguya/user/signup.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">회원가입</button>
-		</a>
+  <%
+	//로그인 한 경우(세션으로 확인)
+	if(id!=null){
+   %>   
+	<a href="http://localhost:8080/guguya/user/logout.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">로그아웃</button></a>
+	
+		<%
+			int auth = account.getAuth(id);
+		%>
+		
+		<%
+				if(auth==0){
+			%>
+			<a href="http://localhost:8080/guguya/user/userList.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">사용자정보 열람하기</button></a>	
+			<%
+				}
+				else if(auth==1){
+			%>
+			<a href="http://localhost:8080/guguya/user/individual.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">정보 수정하기</button></a>
+			<%
+				}else{
+			%>
+			<a href="http://localhost:8080/guguya/user/enterprise.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">정보 수정하기</button></a>
+		<%
+				}
+		%>
+	<%
+	}
+	else{
+	%>
+	<!-- 나중에 경로 수정해줘야함 -->
+	<a href="http://localhost:8080/guguya/user/login.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">로그인</button></a>	  
+	<a href="http://localhost:8080/guguya/user/signup.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">회원가입</button></a>
+	<% 
+	}
+	%>
+
   </div>
 </nav>
 </div>

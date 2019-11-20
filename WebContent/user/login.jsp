@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String id = (String)session.getAttribute("idKey"); %>
-<jsp:useBean id="account" class="guguya.userMigrate"></jsp:useBean>
-<jsp:useBean id="bean" class="guguya.userBean"></jsp:useBean>
 <!--세션 가져와서 사용 -->
 <!DOCTYPE html>
 <html>

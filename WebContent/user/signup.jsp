@@ -10,12 +10,26 @@
 		display:none;
 	}
 </style>
+<script type="text/javascript">
+	function idCheck(id){
+		if(id==""){
+			alert("아이디를 입력하세요");
+			document.signupForm.id.focus();
+			return;
+		}
+		var x=(window.screen.width-300)/2;
+		var y=(window.screen.height-150)/2;
+		url="idCheck.jsp?id="+id;
+		window.open(url,"idCheck","width=300,height=150,left="+x+",top="+y)
+	}
+	
+</script>
 </head>
 <body>
 	<%
 		//세션에서 아이디정보 삭제
 		session.removeAttribute("idKey");
-		session.invalidate();
+		//session.invalidate();
 	%>
 
 <%@ include file="../navbar.jsp"%>
@@ -26,8 +40,11 @@
   <div class="form-group row">
       <div class="col-sm-3"></div>
     <label for="inputId" class="col-sm-1 col-form-label">아이디</label>
-    <div class="col-sm-4">
+    <div class="col-sm-2">
       <input type="text" class="form-control" name="id" placeholder="ID">
+    </div>
+    <div class="col-sm-4">
+    	<button type="button" class="btn btn-light" style="background-color:#FFC000" onClick="idCheck(this.form.id.value)">id중복 확인</button>
     </div>
   </div>
   <div class="form-group row">
