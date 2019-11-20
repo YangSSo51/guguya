@@ -28,6 +28,7 @@ public class userMigrate {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
+			con.close();
 		}
 		return flag;
 	}
@@ -51,6 +52,7 @@ public class userMigrate {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
+			con.close();
 		}
 		return flag;
 	}
@@ -71,7 +73,7 @@ public class userMigrate {
 			}
 			return user_no;
 		}finally {
-			
+			con.close();
 		}
 	}
 	
