@@ -1,6 +1,7 @@
 package guguya;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import guguya.dbCon;
@@ -22,13 +23,15 @@ public class projectMigrate {
 			con = dbcon.getConnection();
 			sql = "insert project(proj_name, proj_desc, en_no, write_time) values(?,?,?,?)";
 			
+			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date date = new Date();
+			String time = fm.format(date);
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getProj_name());
 			pstmt.setString(2, bean.getProj_desc());
 			pstmt.setInt(3, bean.getEn_no());
-			pstmt.setString(4, date.toString());
+			pstmt.setString(4, time);
 			if(pstmt.executeUpdate()==1) flag=true;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -95,6 +98,7 @@ public class projectMigrate {
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
 					projectBean bean = new projectBean();
+					bean.setProj_no(rs.getInt("proj_no"));
 					bean.setProj_name(rs.getString("proj_name"));
 					bean.setEn_no(rs.getInt("en_no"));
 					bean.setWrite_time(rs.getString("write_time"));
@@ -107,4 +111,27 @@ public class projectMigrate {
 			}
 		return list;
 	}
+	
+	// project 상세 정보
+	public projectBean getProject(int id) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql=null;
+		projectBean bean = new projectBean();
+		try {
+			con = dbcon.getConnection();
+			sql = "select * from project where proj_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				bean.setProj_name(rs.getString("proj_name"));
+				bean.setProj_desc(rs.getString("proj_desc"));
+				bean.setWrite_time(rs.getString("write_time"));
+			}
+		}finally {
+			con.close();
+		}
+		return bean;	
+	}	
 }

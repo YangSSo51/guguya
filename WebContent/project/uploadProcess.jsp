@@ -19,14 +19,17 @@
 		String write_time;
 		String msg = "등록을 실패하였습니다.";
    		String id = (String)session.getAttribute("idKey"); // 현재 로그인한 회원의 id 가져오기
-	
-   		System.out.println(id);
    		
    		if(id == null){
 			msg = "로그인이 필요합니다.";
-			response.sendRedirect("/guguya/user/login.jsp");
+	%>
+	<script> // alert 메세지
+	alert("<%=msg%>");
+	document.location.href="/guguya/user/login.jsp";
+	</script>
+	<% 
 		}	
-
+   		
 	    user_no = account.getUserNo(id); // id에 따른 user_no 받아오기
 		en_no = upload.getEnno(user_no);
 
@@ -41,8 +44,7 @@
 			bean.setWrite_time(write_time);
 		}
 		else{ // 반환 값이 없으면
-			System.out.println("권한이 없습니다.");
-			// response.sendRedirect("/guguya/user/login.jsp");
+			msg="권한이 없습니다.";
 		}
 
 		// projectUpload 함수를 실행했을 때의 결과값을 확인	
@@ -56,7 +58,7 @@
 <script>
 	//메세지 출력
 	alert("<%=msg%>");	
-	document.location.href="/guguya/home.jsp";
+	document.location.href="/guguya/project/projects.jsp";
 </script>
 </body>
 </html>

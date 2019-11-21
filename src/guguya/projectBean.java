@@ -4,6 +4,7 @@ import java.io.Serializable;
 // 프로젝트 객체
 public class projectBean implements java.io.Serializable{ 
 
+	private int proj_no;
 	private int en_no;
 	private String proj_name;
 	private String proj_desc;
@@ -12,7 +13,13 @@ public class projectBean implements java.io.Serializable{
 	
 	public projectBean() {
 	}
-
+	
+	public void setProj_no(int proj_no) {
+		this.proj_no  = proj_no;
+	}
+	public int getProj_no() {
+		return proj_no;
+	}
 	public void setEn_no(int en_no) {
 		this.en_no = en_no;
 	}
