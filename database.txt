@@ -1,3 +1,12 @@
+// user
+create table user(
+    id varchar(100) not null,
+    pw varchar(100) not null,
+    email varchar(100) not null,
+    auth int not null
+)default character set utf8 collate utf8_general_ci;
+
+// 게시글 전체
 create table board(
 	context_number int not null auto_increment,
     userID varchar(100) not null,
@@ -7,13 +16,7 @@ create table board(
     primary key(context_number)
 )default character set utf8 collate utf8_general_ci;
 
-create table user(
-    id varchar(100) not null,
-    pw varchar(100) not null,
-    email varchar(100) not null,
-    auth int not null
-)default character set utf8 collate utf8_general_ci;
-
+// 댓글
 create table comment(
 	context_number int not null,
     userID varchar(100) not null,
