@@ -1,0 +1,22 @@
+create table board(
+	context_number int not null auto_increment,
+    userID varchar(100) not null,
+    title varchar(500) not null,
+    write_time varchar(50),
+    contents varchar(1000),
+    primary key(context_number)
+)default character set utf8 collate utf8_general_ci;
+
+create table user(
+    id varchar(100) not null,
+    pw varchar(100) not null,
+    email varchar(100) not null,
+    auth int not null
+)default character set utf8 collate utf8_general_ci;
+
+create table comment(
+	context_number int not null,
+    userID varchar(100) not null,
+    comment varchar(1000),
+    write_time varchar(50)
+)default character set utf8 collate utf8_general_ci;
