@@ -70,9 +70,9 @@
   </div>
   <br>
   	<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
-	  <button type="submit" class="btn btn-light" style="background-color:#A1A6A0">로그인</button>
-	  <a href="signup.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">회원가입</button>
-	  </a>
+  	<a href="signup.jsp">아직 회원이 아니신가요?</a>
+  	<br>
+	  <button type="submit" class="btn btn-light" style="background-color:#82C5E8">로그인</button>
 	</div>
 </form>
 </div>
