@@ -15,6 +15,7 @@
 <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
 <style>
+
 	body{
 		font-family: 'Do Hyeon', sans-serif;
 	}
@@ -30,7 +31,13 @@
 	.logo{
 		width:150px;
 	}
-</style>
+
+	a:link{color:black;}
+	a:visited{color:black;}
+	a:hover{color:#82C5E8;text-decoration:none;}
+	a:active{color:#82C5E8;}
+
+s</style>
 </head>
 <body>
 <div class="container">

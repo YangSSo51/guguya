@@ -56,7 +56,7 @@
 <script>
 	//메세지 출력
 	alert("<%=msg%>");	
-	document.location.href="/guguya/home.jsp";
+	document.location.href="/guguya/projects.jsp";
 </script>
 </body>
 </html>
