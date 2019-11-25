@@ -48,7 +48,7 @@
         <a class="nav-link" href="http://localhost:8080/guguya/project/projects.jsp">기업 </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">개인</a>
+        <a class="nav-link" href="/guguya/portfolio/portfolio.jsp">개인</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">게시판</a>

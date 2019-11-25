@@ -135,6 +135,7 @@ public class userMigrate {
 		}
 		return flag;
 	}
+	
 	//기존 회원정보 조회
 	public ArrayList<individualBean> individualList(int user_no) throws ClassNotFoundException, SQLException {
 		ArrayList<individualBean> list = new ArrayList<individualBean>();
