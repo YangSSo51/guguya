@@ -23,3 +23,23 @@ create table comment(
     comment varchar(1000),
     write_time varchar(50)
 )default character set utf8 collate utf8_general_ci;
+
+CREATE TABLE project(
+    proj_no int NOT NULL auto_increment,
+    en_no int NOT NULL,
+    proj_desc VARCHAR(500) NOT NULL,
+    proj_file VARCHAR(150) unique,
+    write_time VARCHAR(150),
+    PRIMARY KEY(proj_no),
+    foreign key(en_no) references enterprise(en_no) on delete cascade
+)default character set utf8 collate utf8_general_ci;
+
+CREATE TABLE portfolio(
+    port_no int NOT NULL auto_increment,
+    in_no int NOT NULL,
+    port_desc VARCHAR(500) NOT NULL,
+    port_file VARCHAR(150) unique,
+    write_time VARCHAR(150),
+    PRIMARY KEY(port_no),
+    foreign key(in_no) references individual(in_no) on delete cascade
+)default character set utf8 collate utf8_general_ci;
