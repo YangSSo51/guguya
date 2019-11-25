@@ -30,7 +30,7 @@ CREATE TABLE enterprise(
 
 // 게시글 전체
 create table board(
-	context_number int not null auto_increment,
+    context_number int not null auto_increment,
     userID varchar(100) not null,
     title varchar(500) not null,
     write_time varchar(50),
@@ -40,10 +40,12 @@ create table board(
 
 // 댓글
 create table comment(
-	context_number int not null,
-    userID varchar(100) not null,
+    context_number int not null,
+    comment_number int not null,
+    userID varchar(100),
     comment varchar(1000),
-    write_time varchar(50)
+    write_time varchar(50),
+    foreign key(context_number) references board(context_number) on delete cascade
 )default character set utf8 collate utf8_general_ci;
 
 CREATE TABLE project(
