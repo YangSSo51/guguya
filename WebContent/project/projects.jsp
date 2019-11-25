@@ -46,7 +46,7 @@
 		en_no = pro.getEn_no();	// 작성자의 en_no을 가지고		
 %>
 	<tr>
-		<td><a href="http://localhost:8080/guguya/project/project.jsp?id=<%= pro.getProj_no() %>"><%= pro.getProj_name()%></a></td>
+		<td><a href="/guguya/project/project.jsp?id=<%= pro.getProj_no() %>"><%= pro.getProj_name()%></a></td>
 		<td><%= upload.getEnterpiseName(en_no)%></td>
 		<td><%= pro.getWrite_time()%></td>
 	</tr>

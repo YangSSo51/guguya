@@ -52,7 +52,7 @@
    <%= port.getPort_desc() %><br>
   </div>
   <div class="right-nav">
-  	<a href="http://localhost:8080/guguya/portfolio/portfolioUpload.jsp?id=<%=in_no%>"><button type="button" class="btn btn-light" style="background-color:#82C5E8">포트폴리오 수정하기</button></a>
+  	<a href="/guguya/portfolio/portfolioUpload.jsp?id=<%=in_no%>"><button type="button" class="btn btn-light" style="background-color:#82C5E8">포트폴리오 수정하기</button></a>
 	<% System.out.println("in_no : " + port.getIn_no()); %>
   </div>
 </div>

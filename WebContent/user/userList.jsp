@@ -50,7 +50,7 @@
 		}
 		%>
 		<td>
-		<a href="http://localhost:8080/guguya/user/deleteProcess.jsp?id=<%=bean2.getId() %>"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">삭제</button></a>
+		<a href="/guguya/user/deleteProcess.jsp?id=<%=bean2.getId() %>"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">삭제</button></a>
 		</td>
 		</tr>
 		<%
