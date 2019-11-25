@@ -43,7 +43,7 @@ s</style>
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:white!important; margin:20px;">
   <!-- 운영할때 경로 바꿔줘야함 -->
-  <a class="navbar-brand" href="http://localhost:8080/guguya/home.jsp"><img class="logo" src="/guguya/logo.png" width="150px"></a>
+  <a class="navbar-brand" href="/guguya/home.jsp"><img class="logo" src="/guguya/logo.png" width="150px"></a>
 
   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +52,7 @@ s</style>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:8080/guguya/project/projects.jsp">기업 </a>
+        <a class="nav-link" href="/guguya/project/projects.jsp">기업 </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/guguya/portfolio/portfolio.jsp">개인</a>
@@ -67,7 +67,7 @@ s</style>
 	//로그인 한 경우(세션으로 확인)
 	if(id!=null){
    %>   
-	<a href="http://localhost:8080/guguya/user/logout.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">로그아웃</button></a>
+	<a href="/guguya/user/logout.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">로그아웃</button></a>
 	
 		<%
 			int auth = account.getAuth(id);
@@ -76,16 +76,16 @@ s</style>
 		<%
 				if(auth==0){
 			%>
-			<a href="http://localhost:8080/guguya/user/userList.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">사용자정보 열람하기</button></a>	
+			<a href="/guguya/user/userList.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">사용자정보 열람하기</button></a>	
 			<%
 				}
 				else if(auth==1){
 			%>
-			<a href="http://localhost:8080/guguya/user/individual.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">정보 수정하기</button></a>
+			<a href="/guguya/user/individual.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">정보 수정하기</button></a>
 			<%
 				}else{
 			%>
-			<a href="http://localhost:8080/guguya/user/enterprise.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">정보 수정하기</button></a>
+			<a href="/guguya/user/enterprise.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">정보 수정하기</button></a>
 		<%
 				}
 		%>
@@ -94,8 +94,8 @@ s</style>
 	else{
 	%>
 	<!-- 나중에 경로 수정해줘야함 -->
-	<a href="http://localhost:8080/guguya/user/login.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">로그인</button></a>	  
-	<a href="http://localhost:8080/guguya/user/signup.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">회원가입</button></a>
+	<a href="/guguya/user/login.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">로그인</button></a>	  
+	<a href="/guguya/user/signup.jsp"><button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">회원가입</button></a>
 	<% 
 	}
 	%>
