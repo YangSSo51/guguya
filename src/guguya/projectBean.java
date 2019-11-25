@@ -8,7 +8,7 @@ public class projectBean implements java.io.Serializable{
 	private int en_no;
 	private String proj_name;
 	private String proj_desc;
-	private String file;
+	private String proj_file;
 	private String write_time;
 	
 	public projectBean() {
@@ -38,11 +38,11 @@ public class projectBean implements java.io.Serializable{
 	public String getProj_desc() {
 		return proj_desc;
 	}
-	public void setFile(String file) {
-		this.file = file;
+	public void setFile(String proj_file) {
+		this.proj_file = proj_file;
 	}
 	public String getFile() {
-		return file;
+		return proj_file;
 	}
 	public void setWrite_time(String write_time) {
 		this.write_time = write_time;
