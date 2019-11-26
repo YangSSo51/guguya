@@ -26,6 +26,7 @@ create table comment(
 
 CREATE TABLE project(
     proj_no int NOT NULL auto_increment,
+    proj_name VARCHAR(150) NOT NULL,
     en_no int NOT NULL,
     proj_desc VARCHAR(500) NOT NULL,
     proj_file VARCHAR(150) unique,

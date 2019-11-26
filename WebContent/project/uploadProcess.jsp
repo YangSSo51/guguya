@@ -33,15 +33,12 @@
 	    user_no = account.getUserNo(id); // id에 따른 user_no 받아오기
 		en_no = upload.getEnno(user_no);
 
-	    // Date date = new Date();
-		// write_time = date.toString();
 	%>
 		<jsp:setProperty name="bean" property="proj_name" />
 		<jsp:setProperty name="bean" property="proj_desc"/>
 	<% 
 		if(en_no > 0){ // 반환 값이 제대로 들어옴
 			bean.setEn_no(en_no); // 현재 user의 en_no 값을 넣기
-			// bean.setWrite_time(write_time);
 		}
 		else{ // 반환 값이 없으면
 			msg="권한이 없습니다.";
@@ -59,7 +56,6 @@
 	//메세지 출력
 	alert("<%=msg%>");	
 	document.location.href="/guguya/project/projects.jsp";
-	document.location.href="/guguya/projects.jsp";
 </script>
 </body>
 </html>

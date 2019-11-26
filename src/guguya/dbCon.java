@@ -6,7 +6,7 @@ public class dbCon {
 	public static Connection getConnection() {
 		Connection con = null; // db connection
 		try {	
-			String url="jdbc:mysql://localhost:3306/guguya";	
+			String url="jdbc:mysql://localhost:3306/guguya?useUnicode=true&characterEncoding=utf-8";	
 			String user="root";		//사용자 이름
 			String password = "0709";	//사용자 비밀번호
 			
