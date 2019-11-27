@@ -5,6 +5,8 @@
 <jsp:useBean id="apply" class="guguya.applyBean"/>
 <jsp:useBean id="account" class="guguya.userMigrate"/>
 <jsp:useBean id="port" class="guguya.portfolioMigrate"/>
+<%@ page import="guguya.portfolioBean" %>
+<jsp:useBean id="upload2" class="guguya.portfolioMigrate"></jsp:useBean>
 
 <!DOCTYPE html>
 <html>
@@ -17,15 +19,28 @@
 	String id = (String)session.getAttribute("idKey"); // 현재 로그인한 회원의 id 가져오기
 	int user_no, in_no;
 	String msg = "으에";
-		
+	int user_no2 = account.getUserNo(id); // 현재 로그인한 회원의 id로 user_no 받아옴
+	int in_no2 = upload2.getInno(user_no2); // user_no으로 in_no 가져옴
+	portfolioBean port2 = upload2.getPortfolio(in_no2); // in_no에 해당하는 portfolio 가져옴
+
 	if(id == null){
 		msg = "로그인이 필요합니다.";
-	%>
-	<script> // alert 메세지
-	alert("<%=msg%>");
-	document.location.href="/guguya/user/login.jsp";
-	</script>
-	<%}	
+		%>
+		<script> // alert 메세지
+		alert("<%=msg%>");
+		document.location.href="/guguya/user/login.jsp";
+		</script>
+	<% 
+	}	
+	else if(port2.getWrite_time() == null){
+		msg = "포트폴리오 등록이 필요합니다.";
+		%>
+		<script> // alert 메세지
+		alert("<%=msg%>");
+		document.location.href="/guguya/portfolio/portfolioUpload.jsp";
+		</script>
+		<% 
+	}		
 		
 	String getid = request.getParameter("id");
 	int proj_id = Integer.parseInt(getid); // proj_no 받아오기
