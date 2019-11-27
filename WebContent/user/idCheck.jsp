@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <jsp:useBean id="account" class="guguya.userMigrate"></jsp:useBean>
 <!DOCTYPE html>
 <html>
@@ -25,9 +26,12 @@
 	<%
 		if(result){
 			out.println(id+"는 이미 존재하는 id입니다.");
+			session.setAttribute("idCheck","0");
 		}else{
 			out.println(id+"는 사용가능한 id입니다.");
+			session.setAttribute("idCheck","1");
 		}
+		
 	%>
 	<br>
 	<br>
