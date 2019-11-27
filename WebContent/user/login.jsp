@@ -6,7 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
-<!-- 자바스크립트 추가하기-check -->
+<script    src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+<script    src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
+<script type="text/javascript">
+	function encrypt(){ 
+	       var passphrase="1234";
+	       
+	       var encrypt = CryptoJS.AES.encrypt(pw.toString(),passphrase);
+	       
+    	   document.getElementById("pw").value=encrypt;
+			
+           documentloginForm.submit();
+
+	}
+</script>
 <style>
 	#hidden{
 		display:none;
@@ -65,14 +78,14 @@
       <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">비밀번호</label>
     <div class="col-sm-4">
-      <input type="password" class="form-control" name="pw" placeholder="Password">
+      <input type="password" class="form-control" id="pw" name="pw" placeholder="Password">
     </div>
   </div>
   <br>
   	<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
   	<a href="signup.jsp">아직 회원이 아니신가요?</a>
   	<br>
-	  <button type="submit" class="btn btn-light" style="background-color:#82C5E8">로그인</button>
+	  <button type="submit" class="btn btn-light" style="background-color:#82C5E8" onclick="encrypt()" >로그인</button>
 	</div>
 </form>
 </div>

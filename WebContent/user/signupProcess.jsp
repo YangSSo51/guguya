@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <jsp:useBean id="account" class="guguya.userMigrate"></jsp:useBean>
 <jsp:useBean id="bean" class="guguya.userBean"></jsp:useBean>
 <!DOCTYPE html>

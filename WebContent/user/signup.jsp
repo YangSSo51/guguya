@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean id="func" class="guguya.userMigrate"></jsp:useBean>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,8 @@
 <title>Signup</title>
 <script    src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 <script    src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
-<script type="text/javascript">
+
+<script type="text/javascript">	
    function validate() {
        var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
        var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -18,12 +21,23 @@
        var pwCheck = document.getElementById("pwCheck");
 
        var email = document.getElementById("email");
-
+       
+       /*암호화*/
+       //var crypto=require('crypto');
+       
+       //var key="12345678";
+       //var cipher =crypto.createCipher('aes192',key);
+       //cipher.update(pw,'utf8','base64');
+       //var cipheredOutput = cipher.final('base64');
+       var passphrase="1234";
+       
+       var encrypt = CryptoJS.AES.encrypt(pw.toString(),passphrase);
        // ------------ 이메일 까지 -----------
 
        if(!check(re,id,"아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
            return;
        }
+       
 		
 		/*if(!re.test(id)){
 			alert("아이디는 4~12자의 영문 대소문자와 숫자로만 입력가능합니다");
@@ -38,6 +52,9 @@
            join.checkpw.value = "";
            join.checkpw.focus();
            return;
+       }else{
+    	   //crypto.createHash('sha512').update(pw).digest('base64')
+    	   document.getElementById("pw").value=encrypt;
        }
 
        if(email.value=="") {
@@ -61,6 +78,8 @@
        what.focus();
        //return false;
    }
+
+    
 </script>
 
 
@@ -91,8 +110,7 @@
 		session.removeAttribute("idKey");
 		//session.invalidate();
 	%>
-
-<%@ include file="../navbar.jsp"%>
+<%@ include file="../navbar.jsp" %>
 <div class="container">
 <form name="signupForm" method="POST" action="signupProcess.jsp">
 	<h2 class="text-center">회원가입</h2>
@@ -104,9 +122,10 @@
       <input type="text" class="form-control" id="id" name="id" placeholder="ID">
     </div>
     <div class="col-sm-4">
-    	<button type="button" class="btn btn-light" style="background-color:#FFC000" onClick="idCheck(this.form.id.value)">id중복 확인</button>
+    	<button type="button" class="btn btn-light" style="background-color:#FFC000" id="idcheck" onClick="idCheck(this.form.id.value)">id중복 확인</button>
     </div>
   </div>
+  <h1 id="idCheck">아이디 중복확인 필요</h1>
   <div class="form-group row">
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">비밀번호</label>
@@ -151,8 +170,6 @@
 	<br>
 		<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
 	  <button type="reset" class="btn btn-light" style="background-color:#A1A6A0">초기화</button>
-	  <a href="login.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">로그인</button>
-	  </a>
 	  <button type="button" class="btn btn-light" style="background-color:#82C5E8" onclick="validate();">회원가입</button>
 	</div>
 </form>
