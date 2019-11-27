@@ -34,7 +34,6 @@
 	ArrayList<applyBean> list = mgr.ApplyList(pro_no);	//만들어
 		for(applyBean bean2:list){	//for문
 			projectBean proj = pro.getProject(bean2.getProj_no());
-
 	%>
 		<tr>
 			<td><%=proj.getProj_name() %></td>
