@@ -15,11 +15,28 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
+	String msg;
 	int user_no = account.getUserNo(id); // id와 account는 navbar에 있음
 	int in_no = upload.getInno(user_no); // 받아온 user_no으로 in_no 찾기
 	portfolioBean port = upload.getPortfolio(in_no); // in_no에 해당하는 portfolio 가져옴
-		
+	
+	if(id == null){ // 로그인 확인
+		msg = "로그인이 필요합니다.";
 %>
+
+<script> // alert 메세지
+alert("<%=msg%>");
+document.location.href="/guguya/user/login.jsp";
+</script>
+
+<% }	
+	if(account.getAuth(id) == 2){ // 기업이면 접근 불가
+		msg = "권한이 필요합니다.";  %>
+<script> // alert 메세지
+alert("<%=msg%>");
+document.location.href="/guguya/user/login.jsp";
+</script>
+<% } %>
 
 <div class="container">
 <form name="portfolioForm" method="POST" action="portProcess.jsp">
