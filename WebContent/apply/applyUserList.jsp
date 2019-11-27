@@ -17,31 +17,33 @@
 <table style="width:100%">
 <%@ include file="../navbar.jsp"%>
 	<tr>
-		<th>아이디</th>
-		<th>이메일</th>
-		<th>권한</th>
+		<th>프로젝트명</th>
+		<th>지원자 번호</th>
+		<th>결과</th>
 	</tr>
 <%
 	/* 기업이 자신의 프로젝트에 지원한 지원자 목록을 확인할 수 있는 페이지	*/
 	
-	String str = "root";
-	//root일때만 수행-이 부분은 권한으로 변경해야함
-	if(id.equals("root")){
+
 	applyMigrate mgr = new applyMigrate();
-	
+	//프로젝트 번호 받아옴
+	int pro_no = Integer.parseInt(request.getParameter("id"));
 	// 해당 프로젝트에 지원한 지원자 목록 리스트
-	ArrayList<applyBean> list = mgr.applyList();	//만들어
+	ArrayList<applyBean> list = mgr.ApplyList(pro_no);	//만들어
 		for(applyBean bean2:list){	//for문
 	%>
 		<tr>
-			<td><%=bean2.getApp_no() %></td>
 			<td><%=bean2.getProj_no() %></td>
-			<td><%=bean2.getIn_no() %></td>
+			<td><%=account.getInno(bean2.getIn_no()) %></td><!-- 개인번호로 아이디 가져옴 -->
 			<td><%=bean2.getResult() %></td>
 			
 		<td>
-		<a href="/guguya/user/deleteProcess.jsp?id=<%=bean2.getIn_no() %>">
-		<button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">포트폴리오 보러가기</button></a>
+		<a href="/guguya/portfolio/portfolio.jsp?id=<%=bean2.getIn_no()%>">
+		<button type="button" class="btn btn-light" style="background-color:#82C5E8">포트폴리오 보러가기</button></a>
+		</td>
+		<td>
+		<!--updateResult(int in_no)  --> 
+		<button type="button" class="btn btn-light" onclick="<%=mgr.updateResult(bean2.getIn_no())%>"style="background-color:#82C5E8">합격</button>
 		</td>
 		</tr>
 		<%
@@ -49,18 +51,7 @@
 		%>
 </table>
 	
-	<%	//if문
-	}else{
-	
-%>
-<script>
-	<!--메세지 출력-->
-	alert("권한이 없습니다");	
-	document.location.href="login.jsp"
-</script>
-<%
-	}
-%>
+
 </div>
 
 </body>

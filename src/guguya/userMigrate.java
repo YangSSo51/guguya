@@ -245,6 +245,28 @@ public class userMigrate {
 		}
 		return flag;
 	}
+	/*in_no로 개인 아이디 가져오기*/
+	public String getInno(int in_no) throws ClassNotFoundException, SQLException {	
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String id = null;
+			try {
+				con = dbcon.getConnection();
+				sql = "select * from individual,user where in_no=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, in_no);
+				rs = pstmt.executeQuery();
+				while(rs.next()){
+					id=rs.getString("id");
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				
+			}
+		return id;
+	}
 	
 /* enterpise에 대한 코드
  */

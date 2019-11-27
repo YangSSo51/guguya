@@ -33,7 +33,9 @@
 			<td><%=bean2.getProj_no() %></td>
 			<td><a href="/guguya/project/project.jsp?id=<%=bean2.getProj_no() %>"><%=bean2.getProj_name() %></a></td>
 		<td>
+		<a href="/guguya/apply/applyUserList.jsp?id=<%=bean2.getProj_no() %>">
 		<button type="button" class="btn btn-light" id="hidden" style="background-color:#82C5E8">지원자 보러가기</button>
+		</a>
 		</td>
 		</tr>
 		<%
