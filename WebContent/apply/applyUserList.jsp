@@ -56,7 +56,7 @@
 <script>
 	<!--메세지 출력-->
 	alert("권한이 없습니다");	
-	document.location.href="login.jsp"
+	document.location.href="/guguya/user/login.jsp"
 </script>
 <%
 	}

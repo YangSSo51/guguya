@@ -113,7 +113,7 @@ public class projectMigrate {
 	}
 	
 	// project 상세 정보
-	public projectBean getProject(int id) throws SQLException {
+	public projectBean getProject(int proj_no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql=null;
@@ -122,7 +122,7 @@ public class projectMigrate {
 			con = dbcon.getConnection();
 			sql = "select * from project where proj_no=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1,id);
+			pstmt.setInt(1,proj_no);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				bean.setProj_name(rs.getString("proj_name"));
