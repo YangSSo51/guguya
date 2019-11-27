@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <!-- 세션의 경우 jsp내부에서는 동작이 안되므로 주의할것 -->
 <jsp:useBean id="port" class="guguya.portfolioMigrate"/>
-
+<%@page import="guguya.projectMigrate" %>
+<%@page import="guguya.projectBean" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="guguya.applyMigrate" %>
 <%@page import="guguya.applyBean" %>
@@ -18,7 +19,7 @@
 <%@ include file="../navbar.jsp"%>
 	<tr>
 		<th>프로젝트명</th>
-		<th>지원자 번호</th>
+		<th>지원자 아이디</th>
 		<th>결과</th>
 	</tr>
 <%
@@ -26,14 +27,17 @@
 	
 
 	applyMigrate mgr = new applyMigrate();
+	projectMigrate pro = new projectMigrate();
 	//프로젝트 번호 받아옴
 	int pro_no = Integer.parseInt(request.getParameter("id"));
 	// 해당 프로젝트에 지원한 지원자 목록 리스트
 	ArrayList<applyBean> list = mgr.ApplyList(pro_no);	//만들어
 		for(applyBean bean2:list){	//for문
+			projectBean proj = pro.getProject(bean2.getProj_no());
+
 	%>
 		<tr>
-			<td><%=bean2.getProj_no() %></td>
+			<td><%=proj.getProj_name() %></td>
 			<td><%=account.getInno(bean2.getIn_no()) %></td><!-- 개인번호로 아이디 가져옴 -->
 			<td><%=bean2.getResult() %></td>
 			

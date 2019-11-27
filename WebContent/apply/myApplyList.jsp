@@ -37,7 +37,7 @@
 		}//for문
 	
 %>
-
+</table>
 </div>
 
 </body>
