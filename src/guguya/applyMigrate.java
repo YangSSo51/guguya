@@ -86,5 +86,34 @@ public class applyMigrate {
 			con.close();
 		}
 		return list;
+	}
+	
+	// 지원한 프로젝트 리스트 조회
+	public ArrayList<applyBean> myApplyList(int in_no) throws ClassNotFoundException, SQLException {
+		ArrayList<applyBean> list = new ArrayList<applyBean>();
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		try {
+			con = dbcon.getConnection();
+			sql = "select * from apply where in_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, in_no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				applyBean bean = new applyBean();
+				bean.setApp_no(rs.getInt("app_no"));
+				bean.setProj_no(rs.getInt("proj_no"));
+				bean.setIn_no(rs.getInt("in_no"));
+				bean.setResult(rs.getString("result"));
+				list.add(bean);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			con.close();
+		}
+		return list;
 	}	
 }
