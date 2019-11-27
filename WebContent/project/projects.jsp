@@ -29,6 +29,7 @@
 </script>
 <% 
 }	
+	int auth = account.getAuth(id);
 %>
 	<tr>
 		<th>프로젝트 명</th>
@@ -38,7 +39,6 @@
 <%
 	int user_no, en_no = -1;
 
-	
 	//userBean의 리스트형태로 프로젝트 정보를 가져옴
 	ArrayList<projectBean> list = upload.projectList();
 	for(int i = 0; i < list.size(); i++){	//for문
@@ -53,10 +53,11 @@
 	
 <% } %>
 </table>
+<% if(auth == 2){ // 기업일 때만 보이도록 %>
 <div class="right-nav">
 <a href="projectUpload.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">프로젝트 등록하기</button></a>
 </div>
-
+<% } %>
 </div>
 </body>
 </html>

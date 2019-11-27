@@ -85,20 +85,19 @@ public class portfolioMigrate {
 		return bean;	
 	}
 	
-	//insertIndividual에서 이미 만들어둔 정보에 접근해서 업데이트해줌 (보류)
-	public boolean updateIndividual(individualBean bean) throws SQLException { //individual table
+	// 이미 존재하는 portfolio에 접근해서 업데이트해줌 (보류)
+	public boolean portfolioUpdate(portfolioBean bean) throws SQLException { 
 
 		PreparedStatement pstmt = null;
 		String sql = null;
 		boolean flag = false;
 		try {
 			con = dbcon.getConnection();
-			sql = "update individual set name=?,age=? where user_no=?";
+			sql = "update portfolio set port_desc=? where in_no=?"; // 나중에 file도 넣어야함!
 			pstmt = con.prepareStatement(sql);
 			//현재 user_no를 받아와서 넣어줘야함
-			pstmt.setString(1, bean.getName());
-			pstmt.setInt(2,bean.getAge());
-			pstmt.setInt(3,bean.getUser());
+			pstmt.setString(1, bean.getPort_desc());
+			pstmt.setInt(2,bean.getIn_no());
 			if(pstmt.executeUpdate()==1) flag=true;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -13,10 +13,12 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
+	int auth = account.getAuth(id); // 현재 로그인한 회원의 auth
+	
 	String getid = request.getParameter("id");
 	int proj_id = Integer.parseInt(getid);
 
-	projectBean pro = upload.getProject(proj_id);		
+	projectBean pro = upload.getProject(proj_id); // 선택한 프로젝트 가져오기		
 %>
 <div class="container">
   <div class="form-group row">
@@ -35,5 +37,12 @@
     <%= pro.getProj_desc() %><br>
   </div>
 </div>
+
+<% if(auth == 1){ // 개인일 때만 보이도록 %>
+<div class="right-nav">
+<a href="/guguya/apply/applyProcess.jsp?id=<%=proj_id%>"><button type="button" class="btn btn-light" style="background-color:#82C5E8">지원하기</button></a>
+</div>
+<% } %>
+
 </body>
 </html>

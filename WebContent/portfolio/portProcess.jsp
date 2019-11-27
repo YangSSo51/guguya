@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Date" %>
+<%@ page import="guguya.portfolioBean" %>
 <jsp:useBean id="upload" class="guguya.portfolioMigrate"></jsp:useBean>
 <jsp:useBean id="account" class="guguya.userMigrate"></jsp:useBean>
 <jsp:useBean id="portfolio" class="guguya.portfolioBean"></jsp:useBean>
@@ -30,7 +31,6 @@
 		}	
 	    user_no = account.getUserNo(id); // id에 따른 user_no 받아오기
 		in_no = upload.getInno(user_no); // user_no에 따른 in_no 받아오기
-
 	%>
 		<jsp:setProperty name="portfolio" property="port_desc" />
 	<% 
@@ -41,9 +41,17 @@
 			msg="권한이 없습니다.";
 		}
 
-		// projectUpload 함수를 실행했을 때의 결과값을 확인	
-		boolean result = upload.portfolioUpload(portfolio); // insert
-		// (보류) 수정 시, update가 되어야한다 
+		portfolioBean port = upload.getPortfolio(in_no); // in_no에 따른 포트폴리오 가져오기 없으면 NULL
+		boolean result;
+		
+		// Upload or Update 함수를 실행했을 때의 결과값을 확인	
+		if(port.getWrite_time() != null){ // 기존의 portfolio가 존재하면 (쓴 적 있으면)
+			result = upload.portfolioUpdate(portfolio); // update
+		}
+		else{
+			result = upload.portfolioUpload(portfolio); // insert
+		}
+	
 		
 		//성공 여부에 따라 메세지 출력
 		if(result){

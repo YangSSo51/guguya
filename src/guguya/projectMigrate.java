@@ -134,4 +134,33 @@ public class projectMigrate {
 		}
 		return bean;	
 	}	
+	
+	// 해당 프로젝트에 대한 지원자 리스트 조회
+		public ArrayList<projectBean> myProjectList(int en_no) throws ClassNotFoundException, SQLException {
+			ArrayList<projectBean> list = new ArrayList<projectBean>();
+			Connection con =null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			try {
+				con = dbcon.getConnection();
+				sql = "select * from project where en_no=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, en_no);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					projectBean bean = new projectBean();
+					bean.setProj_no(rs.getInt("proj_no"));
+					bean.setProj_name(rs.getString("proj_name"));
+					bean.setEn_no(rs.getInt("en_no"));
+					bean.setWrite_time(rs.getString("write_time"));
+					list.add(bean);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				con.close();
+			}
+			return list;
+		}	
 }

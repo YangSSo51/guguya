@@ -30,7 +30,7 @@
 </script>
 <% 
 	}	
-	if(port.getPort_desc() == null){
+	if(port.getWrite_time() == null){
 		%>
 		<script> // alert 메세지
 		msg = "포트폴리오 등록이 필요합니다.";

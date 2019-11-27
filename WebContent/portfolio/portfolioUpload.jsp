@@ -15,10 +15,10 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
-	String getid = request.getParameter("id");
-	int in_no = Integer.parseInt(getid);
+	int user_no = account.getUserNo(id); // id와 account는 navbar에 있음
+	int in_no = upload.getInno(user_no); // 받아온 user_no으로 in_no 찾기
 	portfolioBean port = upload.getPortfolio(in_no); // in_no에 해당하는 portfolio 가져옴
-	
+		
 %>
 
 <div class="container">
@@ -29,7 +29,13 @@
       <div class="col-sm-3"></div>
     <label for="inputDesc" class="col-sm-1 col-form-label">포트폴리오 내용</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="port_desc" placeholder="사용 가능한 언어 및 기술,진행한 프로젝트에 대한 설명을 적어주세요" value="<%=port.getPort_desc()%>">
+     <% if(port.getWrite_time() != null) // 작성한 적 없으면
+     { %> 
+     <input type="text" class="form-control" name="port_desc" placeholder="사용 가능한 언어 및 기술,진행한 프로젝트에 대한 설명을 적어주세요" value="<%=port.getPort_desc()%>">
+     <%} 
+     else{ %>
+     <input type="text" class="form-control" name="port_desc" placeholder="사용 가능한 언어 및 기술,진행한 프로젝트에 대한 설명을 적어주세요">
+    <% } %>
     </div>
   </div>
 	<br>
