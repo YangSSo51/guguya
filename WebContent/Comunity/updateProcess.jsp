@@ -22,12 +22,11 @@
 		Date date = new Date();
 		write_time = date.toString();
 	%>
-	<jsp:setProperty name="bean" property="context_number"/>
+	<jsp:setProperty name="bean" property="context_number" />
 	<jsp:setProperty name="bean" property="title" />
 	<jsp:setProperty name="bean" property="contents" />
 	<%
 		bean.setWrite_time(write_time);
-		System.out.println("context_number = "+ bean.getcontext_number());
 		System.out.println("title = "+ bean.gettitle());
 		boolean result = upload.updateContext(bean);
 

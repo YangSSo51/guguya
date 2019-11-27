@@ -24,13 +24,14 @@
 <%
 	projectMigrate mgr = new projectMigrate();
 	int user_no=account.getUserNo(id);
+	int i=1;
 	
 	//userBean의 리스트형태로 회원정보를 가져옴
 	ArrayList<projectBean> list = mgr.myProjectList(project.getEnno(user_no));	//만들어
 		for(projectBean bean2:list){	//for문
 	%>
 		<tr>
-			<td><%=bean2.getProj_no() %></td>
+			<td><%=i%></td>
 			<td><a href="/guguya/project/project.jsp?id=<%=bean2.getProj_no() %>"><%=bean2.getProj_name() %></a></td>
 		<td>
 		<a href="/guguya/apply/applyUserList.jsp?id=<%=bean2.getProj_no() %>">
@@ -39,6 +40,7 @@
 		</td>
 		</tr>
 		<%
+		i++;
 		}//for문
 		%>
 </table>

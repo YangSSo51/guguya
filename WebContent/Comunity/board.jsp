@@ -8,30 +8,22 @@
 <%@ page import="java.util.ArrayList"%>
 
 <jsp:useBean id="upload" class="guguya.boardMigrate"></jsp:useBean>
-<jsp:useBean id="bean" class="guguya.boardBean"></jsp:useBean>
+<jsp:useBean id="bean2" class="guguya.boardBean"></jsp:useBean>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- 뷰포트 -->
-<meta name="viewport" content="width=device-width" initial-scale="1">
+<%@ include file="../navbar.jsp" %>
+
 <title>guguya</title>
 </head>
 <body>
-	<!-- 메뉴 출력 -->
-	<%@ include file="./menu.jsp"%>
-	<%@ include file="./dbconn.jsp"%>
-	<!-- 관리자 페이지 구별 부분 -->
 
 	<!-- 글쓰기 등록 -->
-	<a href="uploadContext.jsp" class="btn btn-primary pull-right">글쓰기</a>
-	<nav>
-		<div></div>
-	</nav>
+	<a href="uploadContext.jsp">
+	<button type="button" class="btn btn-light" style="background-color:#82C5E8">글쓰기</button>
+	</a>
 
 	<!-- 게시글 출력 부분 -->
 	<div class="container">
@@ -40,8 +32,8 @@
 
 			<tr>
 				<th>게시글 번호</th>
-				<th>작성자</th>
 				<th>제목</th>
+				<th>작성자</th>
 				<th>작성날짜</th>
 			</tr>
 
@@ -55,8 +47,8 @@
 
 			<tr>
 				<td><%=one.getcontext_number()%></td>
+				<td><a href="./detail.jsp?context_number=<%=context_number%>"><%=one.gettitle()%></a></td>
 				<td><%=one.getuserid()%></td>
-				<td><a href="./detail.jsp?context_number=<%=context_number%>"><%=one.gettitle()%></td>
 				<td><%=one.getWrite_time()%></td>
 			</tr>
 			<%
@@ -65,12 +57,7 @@
 		</table>
 	</div>
 
-	<!-- 애니매이션 담당 JQUERY -->
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<!-- 부트스트랩 JS  -->
-	<script src="js/bootstrap.js"></script>
-	<%@ include file="./footer.jsp"%>
+
 </body>
 
-<!-- 출처: https://tbbrother.tistory.com/69?category=308532 [밑끝없로그] -->
 </html>
