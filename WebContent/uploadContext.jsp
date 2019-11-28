@@ -7,6 +7,8 @@
 <title>guguya</title>
 </head>
 <body>
+	<%
+		System.out.println("글쓰기 페이지");	%>
 	<div class="container">
 		<form name="title" method="POST" action="uploadProcess.jsp">
 			<h2 class="text-center">게시글 정보 입력</h2>

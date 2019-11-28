@@ -26,14 +26,14 @@
 </head>
 <body>
 	<!-- 메뉴 출력 -->
-	<%@ include file="./menu.jsp"%>
+	<%@ include file="./navbar.jsp"%>
 	<%@ include file="./dbconn.jsp"%>
 
 	<%
 		int context_number = Integer.parseInt(request.getParameter("context_number"));
 		System.out.println("detail- context_number = " + context_number + "\n");
-		boardBean bean = new boardBean();
-		bean = upload.getOneContext(context_number);
+		boardBean boardbean = new boardBean();
+		boardbean = upload.getOneContext(context_number);
 	%>
 
 
@@ -59,7 +59,7 @@
 						<td width="0">&nbsp;</td>
 					</tr>
 					<tr height="1" bgcolor="#dddddd">
-						<td colspan="4" width="407"><%=bean.getcontext_number()%></td>
+						<td colspan="4" width="407"><%=boardbean.getcontext_number()%></td>
 					</tr>
 					<tr>
 						<td width="0">&nbsp;</td>
@@ -68,7 +68,7 @@
 						<td width="0">&nbsp;</td>
 					</tr>
 					<tr height="1" bgcolor="#dddddd">
-						<td colspan="4" width="407"><%=bean.getuserid()%></td>
+						<td colspan="4" width="407"><%=boardbean.getuserid()%></td>
 					</tr>
 					<tr>
 						<td width="0">&nbsp;</td>
@@ -77,7 +77,7 @@
 						<td width="0">&nbsp;</td>
 					</tr>
 					<tr height="1" bgcolor="#dddddd">
-						<td colspan="4" width="407"><%=bean.getWrite_time()%></td>
+						<td colspan="4" width="407"><%=boardbean.getWrite_time()%></td>
 					</tr>
 					<tr>
 						<td width="0">&nbsp;</td>
@@ -86,7 +86,7 @@
 						<td width="0">&nbsp;</td>
 					</tr>
 					<tr height="1" bgcolor="#dddddd">
-						<td colspan="4" width="407"><%=bean.gettitle()%></td>
+						<td colspan="4" width="407"><%=boardbean.gettitle()%></td>
 					</tr>
 					<tr>
 						<td width="0">&nbsp;</td>
@@ -95,7 +95,7 @@
 						<td width="0">&nbsp;</td>
 					</tr>
 					<tr height="1" bgcolor="#dddddd">
-						<td colspan="4" width="407"><%=bean.getcontents()%></td>
+						<td colspan="4" width="407"><%=boardbean.getcontents()%></td>
 					</tr>
 					<tr height="2" bgcolor="#dddddd">
 						<td colspan="4" width="407"></td>
@@ -110,21 +110,28 @@
 							<button type="button"
 								onclick="location.href='./uploadContext.jsp'">글쓰기</button>
 							<button type="button" onclick="location.href='./board.jsp'">목록</button>
-
-							<!-- id 비교부분 넣어야 함  본인이면 수정, 글삭제가 보이게 --> <a type="button"
-							href="./updateContext.jsp?context_number=<%=bean.getcontext_number()%>"
+							<%
+								if (boardbean.getuserid().equals((String)session.getAttribute("userID")) ||
+										session.getAttribute("userID").equals("admin")) {
+							%> <!-- id 비교부분 넣어야 함  본인이면 수정, 글삭제가 보이게 --> <a type="button"
+							href="./updateContext.jsp?context_number=<%=boardbean.getcontext_number()%>"
 							class="btn">수정</a> <a type="button"
-							href="./deleteProcess.jsp?context_number=<%=bean.getcontext_number()%>"
-							class="btn">글삭제</a>
+							href="./deleteProcess.jsp?context_number=<%=boardbean.getcontext_number()%>"
+							class="btn">글삭제</a> <%
+ 	}
+ %>
+						
 						<td width="0">&nbsp;</td>
 					</tr>
 				</table> <!-- 댓글 출력 부분 -->
 				<div class="container">
 					<table style="width: 100%">
 						<tr>
+							<th>댓글번호</th>
 							<th>작성자</th>
 							<th>내용</th>
 							<th>작성날짜</th>
+							<th></th>
 						</tr>
 
 						<%
@@ -133,16 +140,32 @@
 							for (int i = 0; i < list.size(); i++) {
 								commentBean one = list.get(i);
 								comment_number = one.getcontext_number();
-								if (comment_number == bean.getcontext_number()) {
+								if (comment_number == boardbean.getcontext_number()) {
 						%>
 
 						<tr>
+							<td><%=one.getcomment_number() %>
 							<td><%=one.getuserid()%></td>
 							<td><%=one.getcomment()%></td>
 							<td><%=one.getWrite_time()%></td>
+							<%
+								if (one.getuserid().equals(session.getAttribute("userID")) || session.getAttribute("userID").equals("admin")) {
+							%>
+							<td><a
+								href="./deleteCommentProcess.jsp?context_number=<%=context_number%>&comment_number=<%=one.getcomment_number()%>">삭제</a></td>
+							<%
+								} else {
+							%>
+							<td></td>
+							<td></td>
+							<%
+								}
+							%>
 						</tr>
 						<%
 							}
+						%>
+						<%
 							}
 						%>
 					</table>
@@ -154,26 +177,29 @@
 			<td colspan="4" width="407"></td>
 		</tr>
 		<tr>
+	</table>
+	<table>
 		<!-- 댓글 입력 부분 -->
 		<div class="container">
 			<form name="comment" method="POST" action="uploadCommentProcess.jsp">
 				<div class="form-group row">
 					<div class="col-sm-3"></div>
-					<label for="inputName" class="col-sm-1 col-form-label">내용</label>
 					<div class="col-sm-4">
-						<input type="hidden" name="context_number" value=<%=bean.getcontext_number()%>>
-						<!-- 댓글 입력한 사람의 id를 전달하는것으로 수정 -->
-						<input type="hidden" name="userid" value=<%=bean.getuserid()%>> 
-						<input type="textarea" class="form-control" name="comment" placeholder="댓글 내용을 입력하세요">
+						<input type="hidden" name="context_number"
+							value=<%=boardbean.getcontext_number()%>> <input
+							type="hidden" name="userid"
+							value=<%=session.getAttribute("userID")%>> <input
+							type="textarea" class="form-control" name="comment"
+							placeholder="댓글 내용을 입력하세요">
 					</div>
-				<br>
-				<div class="button-group text-center"
-					style="margin-left: auto; margin-right: auto;">
-					<button type="reset" class="btn btn-light"
-						style="background-color: #A1A6A0">초기화</button>
-					<button type="submit" class="btn btn-light"
-						style="background-color: #82C5E8">등록하기</button>
-				</div>
+					<br>
+					<div class="button-group text-center"
+						style="margin-left: auto; margin-right: auto;">
+						<button type="reset" class="btn btn-light"
+							style="background-color: #A1A6A0">초기화</button>
+						<button type="submit" class="btn btn-light"
+							style="background-color: #82C5E8">등록하기</button>
+					</div>
 			</form>
 		</div>
 		</tr>

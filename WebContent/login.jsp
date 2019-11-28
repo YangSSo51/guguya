@@ -13,7 +13,7 @@
 <title>jsp 게시판 웹사이트</title>
 </head>
 <body>
-	<%@ include file="./menu.jsp"%>
+	<%@ include file="./navbar.jsp"%>
 	<!-- 로그인 회원가입 -->
 	<ul class="nav navber-nav">
 		<div class="container">
@@ -31,7 +31,7 @@
 			<div class="jumbotron" style="padding-top: 20px;">
 
 				<!-- 로그인 정보를 숨기면서 전송post -->
-				<form method="post" action="board.jsp">
+				<form method="post" action="loginProcess.jsp">
 					<h3 style="text-align: center;">로그인화면</h3>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="아이디"

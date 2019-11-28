@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat" %>
 
 <jsp:useBean id="upload" class="guguya.boardMigrate"></jsp:useBean>
 <jsp:useBean id="bean" class="guguya.boardBean"></jsp:useBean>
@@ -13,7 +14,6 @@
 <body>
 	<%
 		request.setCharacterEncoding("utf-8");
-		String write_time;
 		String msg = "등록 실패";
 
 		// 바껴야 할 것 : 제목 , 내용, 작성일자
@@ -21,7 +21,7 @@
 
 		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
-		String time = fm.format(date);
+		String write_time = fm.format(date);
 	%>
 	<jsp:setProperty name="bean" property="context_number" />
 	<jsp:setProperty name="bean" property="title" />

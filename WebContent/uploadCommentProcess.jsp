@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat" %>
 <jsp:useBean id="upload" class="guguya.commentMigrate"></jsp:useBean>
 <jsp:useBean id="account" class="guguya.userMigrate"></jsp:useBean>
 <jsp:useBean id="bean" class="guguya.commentBean"></jsp:useBean>
@@ -14,9 +15,7 @@
 	<%
 		request.setCharacterEncoding("utf-8");
 
-		int context_number = -1;
-		String write_time;
-		String msg = "등록 실패";
+		String msg = "댓글 등록 실패";
 		String userid = "kkr";
 		/*
 		(String)session.getAttribute("idKey");
@@ -27,25 +26,24 @@
 			*/
 		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
-		String time = fm.format(date);
+		String write_time = fm.format(date);
 	%>
 	<jsp:setProperty name="bean" property="context_number" />
 	<jsp:setProperty name="bean" property="userid" />
 	<jsp:setProperty name="bean" property="comment" />
 	<%
+		bean.setcomment_number(upload.getLastCommentNumber(bean.getcontext_number()) + 1);
 		bean.setWrite_time(write_time);
 		boolean result = upload.commentUpload(bean);
 
 		if (result) {
-			msg = "등록하였습니다";
-			context_number = bean.getcontext_number();
+			msg = "댓글을 등록하였습니다";
 		}
 	%>
 	<script>
 	//메세지 출력
 	alert("<%=msg%>");	
-	document.location.href="./detail.jsp?context_number=<%=context_number%>
-		";
+	document.location.href="./detail.jsp?context_number=<%=bean.getcontext_number()%>";
 	</script>
 
 </body>
