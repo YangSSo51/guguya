@@ -8,7 +8,24 @@
 </head>
 <body>
 <%@ include file="../navbar.jsp"%>
-
+<% 	String msg=null;
+	if(id == null){
+		msg = "로그인이 필요합니다.";
+		%>
+		<script> // alert 메세지
+		alert("<%=msg%>");
+		document.location.href="/guguya/user/login.jsp";
+		</script>
+	<% 
+	}	
+	else if(account.getAuth(id) == 1){ // 기업이면 접근 불가
+		msg = "권한이 필요합니다.";  %>
+		<script> // alert 메세지
+		alert("<%=msg%>");
+		document.location.href="/guguya/user/login.jsp";
+		</script>
+	<%	}
+%>
 <div class="container">
 <form name="projectForm" method="POST" action="/guguya/project/uploadProcess.jsp">
 	<h2 class="text-center">프로젝트 정보 입력</h2>

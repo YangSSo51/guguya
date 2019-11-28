@@ -1,9 +1,18 @@
 package guguya;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 import guguya.dbCon;
 
-//사용자 관련 클래스
+ 
 public class userMigrate {
 	Connection con = null;
 	dbCon dbcon = new dbCon();
@@ -88,10 +97,11 @@ public class userMigrate {
 				con = dbcon.getConnection();
 				sql = "select * from user where id=?";
 				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
 					bean.setId(rs.getString("id"));
-					bean.setEmail(rs.getString("pw"));
+					bean.setPw(rs.getString("pw"));
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -101,18 +111,26 @@ public class userMigrate {
 		return bean;
 	}
 	
-	public boolean login(String id,String pw) throws ClassNotFoundException, SQLException {
+	public boolean login(String id,String pw) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 		userBean bean=new userBean();
 		boolean flag=false;
+		try {
+			bean=getIdPw(id);
+			
+			String encrypt = bean.getPw();
+			System.out.println("암호문"+encrypt);
 
-		bean=getIdPw(id);
-		
-		String encrypt = bean.getPw();
-        String password = "1234";
-        String decrypt=AES256Util.decrypt(encrypt, password);
-		if(id!=""&&pw.equals(pw)) {
-			flag=true;
+	        String decrypt=AES256Test.decryptAES(encrypt, "abcdefghijklmnopqrstuvxyz0123456");
+			System.out.println("암호문"+decrypt);
+
+			if(id!=""&&pw.equals(decrypt)) {
+				flag=true;
+			}
+			
+		}catch(NumberFormatException e) {
+			
 		}
+
 		return flag;
 	}
 	
