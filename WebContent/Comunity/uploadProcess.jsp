@@ -45,7 +45,7 @@
 	<script>
 	//메세지 출력
 	alert("<%=msg%>");	
-	document.location.href="./welcome.jsp";
+	document.location.href="./board.jsp";
 </script>
 
 </body>

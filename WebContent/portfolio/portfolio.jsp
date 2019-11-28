@@ -47,7 +47,14 @@
 		<% 
 	}		
 %>
+
 <div class="container">
+<a href="/guguya/portfolio/portfolioUpload.jsp?id=<%=in_no%>">
+<button type="button" class="btn btn-light float-right" style="background-color:#82C5E8">포트폴리오 수정하기
+</button>
+</a>
+<br>
+<br>
   <div class="form-group row">
       <div class="col-sm-3"></div>
     <label for="inputDesc" class="col-sm-1 col-form-label">작성날짜</label>
@@ -55,11 +62,10 @@
   </div>
   <div class="form-group row">
       <div class="col-sm-3"></div>
-    <label for="inputName" class="col-sm-1 col-form-label">포트폴리오 내용</label>
+    <label for="inputName" class="col-sm-1 col-form-label">내용</label>
     <%= port.getPort_desc() %><br>
   </div>
-  <div class="right-nav">
-  	<a href="/guguya/portfolio/portfolioUpload.jsp?id=<%=in_no%>"><button type="button" class="btn btn-light" style="background-color:#82C5E8">포트폴리오 수정하기</button></a>
-	<% System.out.println("in_no:"+port.getIn_no()); %>
-  </div>
+  
 </div>
+		<%@ include file="../footer.jsp"%>
+</body>

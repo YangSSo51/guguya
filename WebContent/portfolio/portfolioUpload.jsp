@@ -20,38 +20,41 @@
 	int in_no = upload.getInno(user_no); // 받아온 user_no으로 in_no 찾기
 	portfolioBean port = upload.getPortfolio(in_no); // in_no에 해당하는 portfolio 가져옴
 	
-	if(id == null){ // 로그인 확인
+	if(id == null){
 		msg = "로그인이 필요합니다.";
+		%>
+		<script> // alert 메세지
+		alert("<%=msg%>");
+		document.location.href="/guguya/user/login.jsp";
+		</script>
+	<% 
+	}	
+	else if(account.getAuth(id) == 2){ // 기업이면 접근 불가
+		msg = "권한이 필요합니다.";  %>
+		<script> // alert 메세지
+		alert("<%=msg%>");
+		document.location.href="/guguya/user/login.jsp";
+		</script>
+	<%	}
+
 %>
 
-<script> // alert 메세지
-alert("<%=msg%>");
-document.location.href="/guguya/user/login.jsp";
-</script>
-
-<% }	
-	if(account.getAuth(id) == 2){ // 기업이면 접근 불가
-		msg = "권한이 필요합니다.";  %>
-<script> // alert 메세지
-alert("<%=msg%>");
-document.location.href="/guguya/user/login.jsp";
-</script>
-<% } %>
 
 <div class="container">
 <form name="portfolioForm" method="POST" action="portProcess.jsp">
 	<h2 class="text-center">포트폴리오 정보 입력</h2>
 	<br>
   <div class="form-group row">
-      <div class="col-sm-3"></div>
-    <label for="inputDesc" class="col-sm-1 col-form-label">포트폴리오 내용</label>
+      <div class="col-sm-3"></div>      
+    <label for="inputDesc" class="col-sm-1 col-form-label"> 내용</label>
     <div class="col-sm-4">
      <% if(port.getWrite_time() != null) // 작성한 적 없으면
      { %> 
-     <input type="text" class="form-control" name="port_desc" placeholder="사용 가능한 언어 및 기술,진행한 프로젝트에 대한 설명을 적어주세요" value="<%=port.getPort_desc()%>">
+     <textarea class="form-control" name="port_desc" placeholder="사용 가능한 언어 및 기술,진행한 프로젝트에 대한 설명을 적어주세요" rows="15" value="<%=port.getPort_desc()%>"></textarea>
+     
      <%} 
      else{ %>
-     <input type="text" class="form-control" name="port_desc" placeholder="사용 가능한 언어 및 기술,진행한 프로젝트에 대한 설명을 적어주세요">
+     <textarea class="form-control" name="port_desc" placeholder="사용 가능한 언어 및 기술,진행한 프로젝트에 대한 설명을 적어주세요" rows="15" value="<%=port.getPort_desc()%>"></textarea>
     <% } %>
     </div>
   </div>
@@ -62,5 +65,6 @@ document.location.href="/guguya/user/login.jsp";
 	</div>
 </form>
 </div>
+		<%@ include file="../footer.jsp"%>
 </body>
 </html>

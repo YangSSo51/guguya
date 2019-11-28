@@ -32,5 +32,7 @@
 	alert("<%=msg%>");	
 	document.location.href="login.jsp"
 </script>
+		<%@ include file="../footer.jsp"%>
+
 </body>
 </html>

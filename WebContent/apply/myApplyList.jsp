@@ -17,6 +17,25 @@
 <div class="container">
 <table style="width:100%">
 <%@ include file="../navbar.jsp"%>
+	<% String msg=null;
+		if(id == null){
+		msg = "로그인이 필요합니다.";
+		%>
+		<script> // alert 메세지
+		alert("<%=msg%>");
+		document.location.href="/guguya/user/login.jsp";
+		</script>
+	<% 
+	}	
+	else if(account.getAuth(id) == 2){ // 기업이면 접근 불가
+		msg = "권한이 필요합니다.";  %>
+		<script> // alert 메세지
+		alert("<%=msg%>");
+		document.location.href="/guguya/user/login.jsp";
+		</script>
+	<%	}
+	else{
+		%>
 	<tr>
 		<th>프로젝트 명</th>
 		<th>지원 상태</th>
@@ -35,10 +54,12 @@
 		</tr>
 <%
 		}//for문
+	}//if문
 	
 %>
 </table>
 </div>
+		<%@ include file="../footer.jsp"%>
 
 </body>
 </html>

@@ -25,17 +25,47 @@
 <title>guguya</title>
 </head>
 <body>
-	<!-- 메뉴 출력 -->
-	<%@ include file="./menu.jsp"%>
+	<%@ include file="../navbar.jsp" %>
 	<%@ include file="./dbconn.jsp"%>
 
 	<%
 		int context_number = Integer.parseInt(request.getParameter("context_number"));
-		boardBean bean = new boardBean();
-		bean = upload.getOneContext(context_number);
+		boardBean bean2 = new boardBean();
+		bean2 = upload.getOneContext(context_number);
 	%>
+<div class=container>
+    <div class="form-group row">
+      <div class="col-sm-3"></div>
+    <label for="inputName" class="col-sm-1 col-form-label">제목</label>
+   <%=bean2.gettitle()%><br>
+  </div>
+    <div class="form-group row">
+      <div class="col-sm-3"></div>
+    <label for="inputName" class="col-sm-1 col-form-label">작성자</label>
+   <%=bean2.getuserid()%><br>
+  </div>
+    <div class="form-group row">
+      <div class="col-sm-3"></div>
+    <label for="inputName" class="col-sm-1 col-form-label">작성일</label>
+   <%=bean2.getWrite_time()%><br>
+   </div>
+    <div class="form-group row">
+      <div class="col-sm-3"></div>
+    <label for="inputName" class="col-sm-1 col-form-label">내용</label>
+   <%=bean2.getcontents()%><br>
+  </div>
+  <br>
+  <br>
+	<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
+	<a href="./board.jsp">
+	  <button type="button" class="btn btn-light" style="background-color:#82C5E8">목록</button></a>
+	<a href="./updateContext.jsp?context_number=<%=bean2.getcontext_number()%>">
+	  <button type="reset" class="btn btn-light" style="background-color:#A1A6A0">수정</button></a>
+	<a href="./deleteProcess.jsp?context_number=<%=bean2.getcontext_number()%>">
+	  <button type="reset" class="btn btn-light" style="background-color:#A1A6A0">삭제</button></a>
 
-
+	</div>
+</div>
 	<table>
 		<tr>
 			<td>
@@ -51,57 +81,7 @@
 					</tr>
 				</table>
 				<table width="413">
-					<tr>
-						<td width="0">&nbsp;</td>
-						<td align="center" width="76">글번호</td>
-						<td width="319"></td>
-						<td width="0">&nbsp;</td>
-					</tr>
-					<tr height="1" bgcolor="#dddddd">
-						<td colspan="4" width="407"><%=bean.getcontext_number()%></td>
-					</tr>
-					<tr>
-						<td width="0">&nbsp;</td>
-						<td align="center" width="76">작성자</td>
-						<td width="319"></td>
-						<td width="0">&nbsp;</td>
-					</tr>
-					<tr height="1" bgcolor="#dddddd">
-						<td colspan="4" width="407"><%=bean.getuserid()%></td>
-					</tr>
-					<tr>
-						<td width="0">&nbsp;</td>
-						<td align="center" width="76">작성일</td>
-						<td width="319"></td>
-						<td width="0">&nbsp;</td>
-					</tr>
-					<tr height="1" bgcolor="#dddddd">
-						<td colspan="4" width="407"><%=bean.getWrite_time()%></td>
-					</tr>
-					<tr>
-						<td width="0">&nbsp;</td>
-						<td align="center" width="76">제목</td>
-						<td width="319"></td>
-						<td width="0">&nbsp;</td>
-					</tr>
-					<tr height="1" bgcolor="#dddddd">
-						<td colspan="4" width="407"><%=bean.gettitle()%></td>
-					</tr>
-					<tr>
-						<td width="0">&nbsp;</td>
-						<td align="center" width="76">내용</td>
-						<td width="319"></td>
-						<td width="0">&nbsp;</td>
-					</tr>
-					<tr height="1" bgcolor="#dddddd">
-						<td colspan="4" width="407"><%=bean.getcontents()%></td>
-					</tr>
-					<tr height="2" bgcolor="#dddddd">
-						<td colspan="4" width="407"></td>
-					</tr>
-					<tr height="1" bgcolor="#82B5DF">
-						<td colspan="4" width="407"></td>
-					</tr>
+					
 
 					<tr align="center">
 						<td width="0">&nbsp;</td>
@@ -111,9 +91,9 @@
 							<button type="button" onclick="location.href='./board.jsp'">목록</button>
 
 							<!-- id 비교부분 넣어야 함  본인이면 수정, 글삭제가 보이게 --> <a type="button"
-							href="./updateContext.jsp?context_number=<%=bean.getcontext_number()%>"
+							href="./updateContext.jsp?context_number=<%=bean2.getcontext_number()%>"
 							class="btn">수정</a> <a type="button"
-							href="./deleteProcess.jsp?context_number=<%=bean.getcontext_number()%>"
+							href="./deleteProcess.jsp?context_number=<%=bean2.getcontext_number()%>"
 							class="btn">글삭제</a>
 						<td width="0">&nbsp;</td>
 					</tr>
@@ -132,7 +112,7 @@
 							for (int i = 0; i < list.size(); i++) {
 								commentBean one = list.get(i);
 								comment_number = one.getcontext_number();
-								if(comment_number == bean.getcontext_number()){
+								if(comment_number == bean2.getcontext_number()){
 						%>
 
 						<tr>
@@ -157,6 +137,7 @@
 		</tr>
 		
 	</table>
-	<%@ include file="./footer.jsp"%>
+			<%@ include file="../footer.jsp"%>
+	
 </body>
 </html>

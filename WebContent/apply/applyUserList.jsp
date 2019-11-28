@@ -17,15 +17,34 @@
 <div class="container">
 <table style="width:100%">
 <%@ include file="../navbar.jsp"%>
+
+	<% String msg=null;
+		if(id == null){
+		msg = "로그인이 필요합니다.";
+		%>
+		<script> // alert 메세지
+		alert("<%=msg%>");
+		document.location.href="/guguya/user/login.jsp";
+		</script>
+	<% 
+	}	
+	else if(account.getAuth(id) == 1){ // 개인이면 접근 불가
+		msg = "권한이 필요합니다.";  %>
+		<script> // alert 메세지
+		alert("<%=msg%>");
+		document.location.href="/guguya/user/login.jsp";
+		</script>
+	<%	}
+	else{
+		%>
 	<tr>
 		<th>프로젝트명</th>
 		<th>지원자 아이디</th>
 		<th>결과</th>
 	</tr>
-<%
+	<%
 	/* 기업이 자신의 프로젝트에 지원한 지원자 목록을 확인할 수 있는 페이지	*/
 	
-
 	applyMigrate mgr = new applyMigrate();
 	projectMigrate pro = new projectMigrate();
 	//프로젝트 번호 받아옴
@@ -51,10 +70,12 @@
 		</tr>
 		<%
 		}//for문
+	}//if문
 		%>
 </table>
 	
 </div>
+		<%@ include file="../footer.jsp"%>
 
 </body>
 </html>
