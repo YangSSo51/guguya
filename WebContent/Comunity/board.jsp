@@ -20,14 +20,16 @@
 </head>
 <body>
 
-	<!-- 글쓰기 등록 -->
-	<a href="uploadContext.jsp">
-	<button type="button" class="btn btn-light" style="background-color:#82C5E8">글쓰기</button>
-	</a>
 
 	<!-- 게시글 출력 부분 -->
 	<div class="container">
-		<table style="width: 100%">
+	<a href="uploadContext.jsp">
+	<button type="button" class="btn btn-light float-right" style="background-color:#82C5E8">글쓰기
+	</button>
+	</a>
+	<br>
+	<br>
+		<table class="table" style="width:100%">
 			<!-- 게시판 -->
 
 			<tr>
