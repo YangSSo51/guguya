@@ -1,9 +1,11 @@
 // user
-create table user(
-    id varchar(100) not null,
-    pw varchar(100) not null,
-    email varchar(100) not null,
-    auth int not null
+CREATE TABLE user (
+  user_no int NOT NULL auto_increment,
+  id VARCHAR(50) NOT NULL,
+  pw VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  auth int NOT NULL,
+  PRIMARY KEY (user_no) 
 )default character set utf8 collate utf8_general_ci;
 
 // 게시글 전체
