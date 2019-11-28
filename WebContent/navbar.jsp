@@ -15,10 +15,30 @@
 <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
 <style>
+	html, body {
 
+		height: 100%;
+
+	}
 	body{
 		font-family: 'Do Hyeon', sans-serif;
 	}
+	.container{
+		min-height: 100%;
+
+		height: auto !important;
+
+		height: 100%;
+
+		margin: 0 auto -4em;
+	}
+	.container2{
+		width: 100%;
+    	padding-right: 30px;
+    	padding-left: 30px;
+    	margin-right: auto; 
+   		margin-left: auto;
+    }
 	.collapse{
 		margin-top:35px;
 	}
@@ -28,7 +48,7 @@
 	.nav-link{
 		font-size:25px;
 	}
-	.logo{
+	.logo2{
 		width:150px;
 	}
 
@@ -40,10 +60,10 @@
 s</style>
 </head>
 <body>
-<div class="container">
+<div class="container2">
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:white!important; margin:20px;">
   <!-- 운영할때 경로 바꿔줘야함 -->
-  <a class="navbar-brand" href="/guguya/home.jsp"><img class="logo" src="/guguya/logo.png" width="150px"></a>
+  <a class="navbar-brand" href="/guguya/home.jsp"><img class="logo2" src="/guguya/logo.png" width="150px"></a>
 
   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,8 +122,9 @@ s</style>
 
   </div>
 </nav>
-</div>
 <hr>
+
+</div>
 <br>
 <br>
 </body>

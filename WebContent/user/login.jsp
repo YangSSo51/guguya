@@ -12,8 +12,10 @@
 	function encrypt(){ 
 	       var passphrase="1234";
 	       
-	       var encrypt = CryptoJS.AES.encrypt(pw.toString(),passphrase);
+	       var encrypt = CryptoJS.AES.encrypt(pw2.toString(),passphrase);
 	       
+    	   document.getElementById("id").value=document.getElementById("id2").value;
+
     	   document.getElementById("pw").value=encrypt;
 			
            documentloginForm.submit();
@@ -21,7 +23,7 @@
 	}
 </script>
 <style>
-	#hidden{
+	.hidden{
 		display:none;
 	}
 </style>
@@ -32,6 +34,8 @@
 	//로그인 한 경우(세션으로 확인)
 	if(id!=null){
 %>
+<div class="container">
+
 	<div class="text-center">
 		<h4><%=id %>님 환영합니다</h4>
 		<a href="logout.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">로그아웃</button>
@@ -63,34 +67,41 @@
 	else{
 %>
 
-<div class="container">
-<form name="loginForm" method="POST" action="loginProcess.jsp">
+<form method="POST">
 	<h2 class="text-center">로그인</h2>
 	<br>
   <div class="form-group row">
     <div class="col-sm-3"></div>
     <label for="inputId" class="col-sm-1 col-form-label">아이디</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="id" placeholder="ID">
+      <input type="text" class="form-control" id="id2" name="id2" placeholder="ID">
     </div>
   </div>
   <div class="form-group row">
       <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">비밀번호</label>
     <div class="col-sm-4">
-      <input type="password" class="form-control" id="pw" name="pw" placeholder="Password">
+      <input type="password" class="form-control" id="pw2" name="pw2" placeholder="Password">
     </div>
   </div>
   <br>
+</form>
+<form name="loginForm" method="POST" action="loginProcess.jsp">
+      <input class="hidden" type="text" class="form-control" id="id" name="id" placeholder="ID">
+      <input  class="hidden" type="password" class="form-control" id="pw" name="pw" placeholder="Password">
   	<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
   	<a href="signup.jsp">아직 회원이 아니신가요?</a>
   	<br>
-	  <button type="submit" class="btn btn-light" style="background-color:#82C5E8" onclick="encrypt()" >로그인</button>
+	  <button type="submit" class="btn btn-light" style="background-color:#82C5E8" onclick="encrypt()">로그인</button>
 	</div>
 </form>
-</div>
 <%
 	}
 %>
+</div>
+
+		<%@ include file="../footer.jsp"%>
+
 </body>
+
 </html>

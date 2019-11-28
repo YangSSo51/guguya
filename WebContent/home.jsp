@@ -8,7 +8,10 @@
 </head>
 <body>
 		<%@ include file="../navbar.jsp"%>
+	<div class="container">
 	
+	</div>
+		<%@ include file="../footer.jsp"%>
 
 </body>
 </html>

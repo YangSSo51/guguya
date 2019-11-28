@@ -16,11 +16,11 @@
        var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
        // 이메일이 적합한지 검사할 정규식
 
-       var id = document.getElementById("id");
-       var pw = document.getElementById("pw");
-       var pwCheck = document.getElementById("pwCheck");
+       var id = document.getElementById("id2");
+       var pw = document.getElementById("pw2");
+       var pwCheck = document.getElementById("pwCheck2");
 
-       var email = document.getElementById("email");
+       var email = document.getElementById("email2");
        
        /*암호화*/
        //var crypto=require('crypto');
@@ -66,6 +66,11 @@
        if(!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
            return;
        }
+       document.getElementById("id").value=id.value;
+       document.getElementById("pw").value=pw.value;
+       document.getElementById("email").value=email.value;
+       document.getElementById("auth").value=document.getElementById("auth2").value;
+
        document.signupForm.submit();
 
    }
@@ -85,7 +90,7 @@
 
 
 <style>
-	#hidden{
+	.hidden{
 		display:none;
 	}
 </style>
@@ -112,14 +117,14 @@
 	%>
 <%@ include file="../navbar.jsp" %>
 <div class="container">
-<form name="signupForm" method="POST" action="signupProcess.jsp">
+<form method="POST">
 	<h2 class="text-center">회원가입</h2>
 	<br>
   <div class="form-group row">
       <div class="col-sm-3"></div>
     <label for="inputId" class="col-sm-1 col-form-label">아이디</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" id="id" name="id" placeholder="ID">
+      <input type="text" class="form-control" id="id2" name="id2" placeholder="ID">
     </div>
     <div class="col-sm-4">
     	<button type="button" class="btn btn-light" style="background-color:#FFC000" id="idcheck" onClick="idCheck(this.form.id.value)">id중복 확인</button>
@@ -130,21 +135,21 @@
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">비밀번호</label>
     <div class="col-sm-4">
-      <input type="password" class="form-control" id="pw" name="pw" placeholder="Password">
+      <input type="password" class="form-control" id="pw2" name="pw2" placeholder="Password">
     </div>
   </div>
     <div class="form-group row">
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">비밀번호 확인</label>
     <div class="col-sm-4">
-      <input type="password" class="form-control" id="pwCheck" name="pwCheck" placeholder="Password">
+      <input type="password" class="form-control" id="pwCheck2" name="pwCheck2" placeholder="Password">
     </div>
   </div>
     <div class="form-group row">
        <div class="col-sm-3"></div>
     <label for="inputEmail" class="col-sm-1 col-form-label">이메일</label>
     <div class="col-sm-4">
-      <input type="email" class="form-control" id="email" name="email" placeholder="aaa@naver.com">
+      <input type="email" class="form-control" id="email2" name="email2" placeholder="aaa@naver.com">
     </div>
   </div>
   <div class="form-group row">
@@ -154,13 +159,13 @@
   </label>
   <div class="col-sm-6">
 	<div class="form-check">
-	  <input class="form-check-input" type="radio" name="auth" value="1" checked>
+	  <input class="form-check-input" type="radio" id="auth2" name="auth2" value="1" checked>
 	  <label class="form-check-label" for="exampleRadios1">
 	   개인
 	  </label>
 	</div>
 	<div class="form-check">
-	  <input class="form-check-input" type="radio" name="auth" value="2">
+	  <input class="form-check-input" type="radio" id="auth2" name="auth2" value="2">
 	  <label class="form-check-label" for="exampleRadios2">
 	  기업
 	  </label>
@@ -168,11 +173,27 @@
 	</div>
 	</div>
 	<br>
+</form>
+<form name="signupForm" method="POST" action="signupProcess.jsp">
+
+      <input type="text" class="hidden" id="id" name="id" placeholder="ID">
+      <label for="inputPassword" class="hidden">비밀번호</label>
+      <input type="password" class="hidden" id="pw" name="pw" placeholder="Password">
+      <input type="password" class="hidden" id="pwCheck" name="pwCheck" placeholder="Password">
+      <input type="email" class="hidden" id="email" name="email" placeholder="aaa@naver.com">
+
+	  <input class="hidden" type="radio" id="auth" name="auth" value="1" checked>
+	  <input class="hidden" type="radio" id="auth" name="auth" value="2">
 		<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
 	  <button type="reset" class="btn btn-light" style="background-color:#A1A6A0">초기화</button>
 	  <button type="button" class="btn btn-light" style="background-color:#82C5E8" onclick="validate();">회원가입</button>
+	  <br>
+	  <br>
+	  <br>
 	</div>
 </form>
 </div>
+		<%@ include file="../footer.jsp"%>
+
 </body>
 </html>
