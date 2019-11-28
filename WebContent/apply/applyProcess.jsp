@@ -16,7 +16,7 @@
 	<%
 	String id = (String)session.getAttribute("idKey"); // 현재 로그인한 회원의 id 가져오기
 	int user_no, in_no;
-	String msg = "으에";
+	String msg = "";
 		
 	if(id == null){
 		msg = "로그인이 필요합니다.";
@@ -26,7 +26,9 @@
 	document.location.href="/guguya/user/login.jsp";
 	</script>
 	<%}	
-		
+	
+	/* 해당 개인이 등록한 포트폴리오가 없으면 포트폴리오를 먼저 등록하라고 alert하고 등록 페이지로 넘어가야한다 */
+	
 	String getid = request.getParameter("id");
 	int proj_id = Integer.parseInt(getid); // proj_no 받아오기
 

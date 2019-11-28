@@ -41,7 +41,7 @@
 			<td><%=bean2.getResult() %></td>
 			
 		<td>
-		<a href="/guguya/portfolio/portfolio.jsp?id=<%=bean2.getIn_no()%>">
+		<a href="/guguya/portfolio/applyPortfolio.jsp?id=<%=bean2.getIn_no()%>">
 		<button type="button" class="btn btn-light" style="background-color:#82C5E8">포트폴리오 보러가기</button></a>
 		</td>
 		<td>
