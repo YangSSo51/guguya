@@ -2,6 +2,7 @@ package guguya;
 
 public class commentBean {
 	private int context_number;
+	private int comment_number;
 	private String userid;
 	private String comment;
 	private String write_time;
@@ -13,6 +14,12 @@ public class commentBean {
 	}
 	public int getcontext_number() {
 		return context_number;
+	}
+	public void setcomment_number(int comment_number) {
+		this.comment_number = comment_number;
+	}
+	public int getcomment_number() {
+		return comment_number;
 	}
 	public void setuserid(String userid) {
 		this.userid = userid;

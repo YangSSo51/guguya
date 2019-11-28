@@ -21,14 +21,12 @@ public class boardMigrate {
 			con = dbcon.getConnection();
 			sql = "insert board(context_number, userID, title, contents, write_time) values(?,?,?,?,?)";
 
-			Date date = new Date();
-
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bean.getcontext_number());
 			pstmt.setString(2, bean.getuserid());
 			pstmt.setString(3, bean.gettitle());
 			pstmt.setString(4, bean.getcontents());
-			pstmt.setString(5, date.toString());
+			pstmt.setString(5, bean.getWrite_time());
 			if (pstmt.executeUpdate() == 1)
 				flag = true;
 		} catch (Exception e) {
@@ -77,22 +75,26 @@ public class boardMigrate {
 	}
 	
 	//delete
-	public void deleteContext(int context_number) throws ClassNotFoundException, SQLException {
+	public boolean deleteContext(int context_number) throws ClassNotFoundException, SQLException {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		Connection con = null;
 		String sql = null;
+		boolean flag = false;
 		try {
 			con = dbcon.getConnection();
 			sql = "delete from board where context_number = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, context_number);
-			pstmt.executeUpdate();
+			if(pstmt.executeUpdate() == 1) {
+				flag = true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			con.close();
 		}
+		return flag;
 	}
 	
 	// update
@@ -142,16 +144,65 @@ public class boardMigrate {
 	}
 
 	// context 리스트 조회
-	public ArrayList<boardBean> contextList() throws ClassNotFoundException, SQLException {
+	public ArrayList<boardBean> contextList(int selected_option, int page_number, String name) throws ClassNotFoundException, SQLException {
 		ArrayList<boardBean> list = new ArrayList<boardBean>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
+		int count = 0;
 		try {
+			System.out.println("page_number = " + page_number + "\n");
 			con = dbcon.getConnection();
-			sql = "select * from board";
+			//selected option == 0 -> 작성자, == 1 -> 글제목
+			if(selected_option == 0)
+				sql = "select * from board where userID LIKE ?";
+			else if(selected_option == 1)
+				sql = "select * from board where title LIKE ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + name + "%");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				count += 1;
+				if((count - (page_number * 10)) > 0) {
+					boardBean bean = new boardBean();
+					bean.setcontext_number(rs.getInt("context_number"));
+					bean.setuserid(rs.getString("userid"));
+					bean.settitle(rs.getString("title"));
+					bean.setWrite_time(rs.getString("write_time"));
+					list.add(bean);
+					if((count - (page_number * 10) == 10)) {
+						return list;
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.close();
+		}
+		return list;
+	}
+
+
+	//context 리스트 count
+	public int listSize(int selected_option, int page_number, String name) throws ClassNotFoundException, SQLException {
+		ArrayList<boardBean> list = new ArrayList<boardBean>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		try {
+			System.out.println("page_number = " + page_number + "\n");
+			con = dbcon.getConnection();
+			//selected option == 0 -> 작성자, == 1 -> 글제목
+			if(selected_option == 0)
+				sql = "select * from board where userID LIKE ?";
+			else if(selected_option == 1)
+				sql = "select * from board where title LIKE ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + name + "%");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				boardBean bean = new boardBean();
@@ -160,12 +211,13 @@ public class boardMigrate {
 				bean.settitle(rs.getString("title"));
 				bean.setWrite_time(rs.getString("write_time"));
 				list.add(bean);
+				count += 1;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			con.close();
 		}
-		return list;
+		return count;
 	}
 }
