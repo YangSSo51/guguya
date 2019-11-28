@@ -8,7 +8,13 @@
 <meta charset="UTF-8">
 <title>guguya</title>
 </head>
+<style>
+	.label{
+		border : 1px solid black;
+	}
+</style>
 <body>
+
 <%@ include file="../navbar.jsp"%>
 
 <%
@@ -23,7 +29,7 @@
 <div class="container">
   <div class="form-group row">
       <div class="col-sm-3"></div>
-    <label for="inputName" class="col-sm-1 col-form-label">프로젝트 명</label>
+    <label for="inputName" class="col-sm-1 col-form-label">제목</label>
    <%= pro.getProj_name() %><br>
   </div>
   <div class="form-group row">
@@ -36,12 +42,11 @@
     <label for="inputDesc" class="col-sm-1 col-form-label">내용</label>
     <%= pro.getProj_desc() %><br>
   </div>
+  <a href="/guguya/apply/applyProcess.jsp?id=<%=proj_id%>"><button type="button" class="btn btn-light float-right" style="background-color:#82C5E8">지원하기</button></a>
+  
 </div>
 
 <% if(auth == 1){ // 개인일 때만 보이도록 %>
-<div class="right-nav">
-<a href="/guguya/apply/applyProcess.jsp?id=<%=proj_id%>"><button type="button" class="btn btn-light" style="background-color:#82C5E8">지원하기</button></a>
-</div>
 <% } %>
 
 </body>

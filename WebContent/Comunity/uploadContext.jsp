@@ -25,8 +25,8 @@
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">내용</label>
     <div class="col-sm-4">
-      <input type="password" class="form-control" name="contents" placeholder="게시글 내용">
-    </div>
+  <textarea class="form-control" name="contents" placeholder="게시글 내용" rows="15"></textarea>
+  </div>
   </div>
   	<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
 	  <button type="reset" class="btn btn-light" style="background-color:#A1A6A0">초기화</button>

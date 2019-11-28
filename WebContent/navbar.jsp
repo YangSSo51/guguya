@@ -56,8 +56,54 @@
 	a:visited{color:black;}
 	a:hover{color:#82C5E8;text-decoration:none;}
 	a:active{color:#82C5E8;}
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #ffffff;
+  color: black;
+  padding: 16px;
+  font-size: 25px;
+  border: none;
+  cursor: pointer;
+}
 
-s</style>
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 160px;
+  /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  /*background-color: #3e8e41;*/
+}
+
+</style>
 </head>
 <body>
 <div class="container2">
@@ -71,14 +117,26 @@ s</style>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="/guguya/project/projects.jsp">기업 </a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropbtn" href="/guguya/project/projects.jsp">기업 </a>
+     	 <div class="dropdown-content">
+    		<a href="/guguya/project/projects.jsp">프로젝트</a>
+    		<a href="/guguya/project/projectUpload.jsp">프로젝트 등록</a>
+    		<a href="/guguya/project/myProjectList.jsp">내 프로젝트</a>
+    		<a href="/guguya/apply/applyUserList.jsp">지원자 확인</a>
+  		</div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/guguya/portfolio/portfolio.jsp">개인</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropbtn" href="/guguya/portfolio/portfolio.jsp">개인 </a>
+     	 <div class="dropdown-content">
+    		<a href="/guguya/portfolio/portfolio.jsp">포트폴리오</a>
+    		<a href="/guguya/portfolio/portfolioUpload.jsp">포트폴리오 등록</a>
+    		<a href="/guguya/portfolio/portfolio.jsp">내 포트폴리오</a>
+    		<a href="/guguya/apply/myApplyList.jsp">지원목록 확인</a>
+  		</div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/guguya/Comunity/board.jsp">게시판</a>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropbtn" href="/guguya/Comunity/board.jsp">게시판 </a>
       </li>
     </ul>
   </div>

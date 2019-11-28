@@ -33,12 +33,11 @@
 		boardBean bean2 = new boardBean();
 		bean2 = upload.getOneContext(context_number);
 	%>
-
-    <div class="container">
-  <div class="form-group row">
+<div class=container>
+    <div class="form-group row">
       <div class="col-sm-3"></div>
-    <label for="inputName" class="col-sm-1 col-form-label">글번호</label>
-   <%=bean2.getcontext_number()%><br>
+    <label for="inputName" class="col-sm-1 col-form-label">제목</label>
+   <%=bean2.gettitle()%><br>
   </div>
     <div class="form-group row">
       <div class="col-sm-3"></div>
@@ -49,18 +48,14 @@
       <div class="col-sm-3"></div>
     <label for="inputName" class="col-sm-1 col-form-label">작성일</label>
    <%=bean2.getWrite_time()%><br>
-  </div>
-    <div class="form-group row">
-      <div class="col-sm-3"></div>
-    <label for="inputName" class="col-sm-1 col-form-label">제목</label>
-   <%=bean2.gettitle()%><br>
-  </div>
+   </div>
     <div class="form-group row">
       <div class="col-sm-3"></div>
     <label for="inputName" class="col-sm-1 col-form-label">내용</label>
    <%=bean2.getcontents()%><br>
   </div>
-</div>
+  <br>
+  <br>
 	<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
 	<a href="./board.jsp">
 	  <button type="button" class="btn btn-light" style="background-color:#82C5E8">목록</button></a>
@@ -70,7 +65,7 @@
 	  <button type="reset" class="btn btn-light" style="background-color:#A1A6A0">삭제</button></a>
 
 	</div>
-
+</div>
 	<table>
 		<tr>
 			<td>

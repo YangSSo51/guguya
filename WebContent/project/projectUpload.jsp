@@ -15,16 +15,16 @@
 	<br>
   <div class="form-group row">
       <div class="col-sm-3"></div>
-    <label for="inputName" class="col-sm-1 col-form-label">프로젝트 명</label>
+    <label for="inputName" class="col-sm-1 col-form-label">제목</label>
     <div class="col-sm-4">
       <input type="text" class="form-control" name="proj_name">
     </div>
   </div>
   <div class="form-group row">
       <div class="col-sm-3"></div>
-    <label for="inputDesc" class="col-sm-1 col-form-label">내용</label>
+    <label for="inputDesc" class="col-sm-1 col-form-label" >내용</label>
     <div class="col-sm-4">
-      <input type="textarea" class="form-control" name="proj_desc" placeholder="프로젝트에 대한 설명을 적어주세요">
+      <textarea class="form-control" name="proj_desc" placeholder="프로젝트에 대한 설명을 적어주세요" rows="15"></textarea>
     </div>
   </div>
 	<br>
