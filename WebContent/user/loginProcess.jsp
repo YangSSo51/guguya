@@ -13,8 +13,10 @@
 		//form에서 파라미터 가져와서 넘겨줌
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+
 		String msg = "로그인에 실패하였습니다.";
 		boolean result = account.login(id,pw);
+		
 		
 		//성공 여부에 따라 메세지 출력
 		if(result){

@@ -9,8 +9,43 @@
 <title>Signup</title>
 <script    src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 <script    src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+
 
 <script type="text/javascript">	
+var key = "abcdefghijklmnopqrstuvxyz0123456"; // 32byte
+
+//The initialization vector (must be 16 bytes)
+var iv = [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,35, 36 ];
+
+//Convert text to bytes (text must be a multiple of 16 bytes)
+var text = '1234';
+var textBytes = aesjs.utils.utf8.toBytes(text);
+var mod = textBytes.length % 16;
+if(mod % 16 != 0) {
+text += ''.padStart(16 - mod);
+textBytes = aesjs.utils.utf8.toBytes(text);
+}
+
+        
+var aesCbc = new aesjs.ModeOfOperation.cbc(aesjs.utils.utf8.toBytes(key), iv);
+var encryptedBytes = aesCbc.encrypt(textBytes);
+
+//To print or store the binary data, you may convert it to hex
+var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+var encryptedBytes = aesjs.utils.hex.toBytes(encryptedHex);
+
+alert(encryptedHex)
+alert(encryptedBytes);
+//The cipher-block chaining mode of operation maintains internal
+//state, so to decrypt a new instance must be instantiated.
+var aesCbc = new aesjs.ModeOfOperation.cbc(aesjs.utils.utf8.toBytes(key), iv);
+var decryptedBytes = aesCbc.decrypt(encryptedBytes);
+
+//Convert our bytes back into text
+var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
+
+
    function validate() {
        var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
        var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -19,6 +54,7 @@
        var id = document.getElementById("id2");
        var pw = document.getElementById("pw2");
        var pwCheck = document.getElementById("pwCheck2");
+       var auth = document.getElementById("auth2");
 
        var email = document.getElementById("email2");
        
@@ -67,9 +103,9 @@
            return;
        }
        document.getElementById("id").value=id.value;
-       document.getElementById("pw").value=pw.value;
+       document.getElementById("pw").value=encryptedHex;
        document.getElementById("email").value=email.value;
-       document.getElementById("auth").value=document.getElementById("auth2").value;
+       //document.getElementById("auth").value=1;
 
        document.signupForm.submit();
 
@@ -84,17 +120,6 @@
        //return false;
    }
 
-    
-</script>
-
-
-
-<style>
-	.hidden{
-		display:none;
-	}
-</style>
-<script type="text/javascript">
 	function idCheck(id){
 		if(id==""){
 			alert("아이디를 입력하세요");
@@ -106,8 +131,16 @@
 		url="idCheck.jsp?id="+id;
 		window.open(url,"idCheck","width=300,height=150,left="+x+",top="+y)
 	}
-	
 </script>
+
+
+
+<style>
+	.hidden{
+		display:none;
+	}
+</style>
+
 </head>
 <body>
 	<%
@@ -127,10 +160,9 @@
       <input type="text" class="form-control" id="id2" name="id2" placeholder="ID">
     </div>
     <div class="col-sm-4">
-    	<button type="button" class="btn btn-light" style="background-color:#FFC000" id="idcheck" onClick="idCheck(this.form.id.value)">id중복 확인</button>
+    	<button type="button" class="btn btn-light" style="background-color:#FFC000" onClick="idCheck(this.form.id2.value)">id중복 확인</button>
     </div>
   </div>
-  <h1 id="idCheck">아이디 중복확인 필요</h1>
   <div class="form-group row">
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">비밀번호</label>
@@ -183,7 +215,6 @@
       <input type="email" class="hidden" id="email" name="email" placeholder="aaa@naver.com">
 
 	  <input class="hidden" type="radio" id="auth" name="auth" value="1" checked>
-	  <input class="hidden" type="radio" id="auth" name="auth" value="2">
 		<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
 	  <button type="reset" class="btn btn-light" style="background-color:#A1A6A0">초기화</button>
 	  <button type="button" class="btn btn-light" style="background-color:#82C5E8" onclick="validate();">회원가입</button>

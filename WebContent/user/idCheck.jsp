@@ -26,10 +26,8 @@
 	<%
 		if(result){
 			out.println(id+"는 이미 존재하는 id입니다.");
-			session.setAttribute("idCheck","0");
 		}else{
 			out.println(id+"는 사용가능한 id입니다.");
-			session.setAttribute("idCheck","1");
 		}
 		
 	%>

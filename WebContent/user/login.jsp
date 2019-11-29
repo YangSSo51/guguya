@@ -12,12 +12,14 @@
 	function encrypt(){ 
 	       var passphrase="1234";
 	       
-	       var encrypt = CryptoJS.AES.encrypt(pw2.toString(),passphrase);
+	       //var encrypt = CryptoJS.AES.encrypt(pw2.toString(),passphrase);
 	       
     	   document.getElementById("id").value=document.getElementById("id2").value;
-
-    	   document.getElementById("pw").value=encrypt;
 			
+    	   var pw=document.getElementById("pw");
+    	   pw.value=document.getElementById("pw2").value;
+    	   alert(pw.value);
+
            documentloginForm.submit();
 
 	}
@@ -88,7 +90,7 @@
 </form>
 <form name="loginForm" method="POST" action="loginProcess.jsp">
       <input class="hidden" type="text" class="form-control" id="id" name="id" placeholder="ID">
-      <input  class="hidden" type="password" class="form-control" id="pw" name="pw" placeholder="Password">
+      <input  class="hidden" type="password" class="form-control" id="pw" name="pw" placeholder="Password" value="1234">
   	<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
   	<a href="signup.jsp">아직 회원이 아니신가요?</a>
   	<br>

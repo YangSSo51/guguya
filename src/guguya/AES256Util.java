@@ -14,13 +14,13 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
  
 public class AES256Util {
-    /*
+    
     public static void main(String[] args) throws UnsupportedEncodingException, GeneralSecurityException, DecoderException {        
-        String ciphertext = "U2FsdGVkX18+s94R2PY8hZ+HLrPiucqI33KNQHmkAvES41hGlh1HLgfTwGbwc9dkSid4RW5xj5yBn9hj0y7y0A==";
+        String ciphertext = "U2FsdGVkX18MF2JZTziUZiqftAX51UVTamAeJTpqLnDMRjynAMd/rJEenzB1JnMH";
         String password = "1234";
-        System.out.println ( decrypt(ciphertext, password) );
+        System.out.println ("복호화"+decrypt(ciphertext, password) );
        }
-    */
+    
     public static String decrypt(String ciphertext, String passphrase) {
         try {
             final int keySize = 256;
@@ -45,12 +45,17 @@ public class AES256Util {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
             byte[] recoveredPlaintextBytes = cipher.doFinal(ciphertextBytes);
- 
+            System.out.println(recoveredPlaintextBytes);
+            //String c=new String(recoveredPlaintextBytes);
+            String c=recoveredPlaintextBytes.toString();
+
+            System.out.println("암호문"+ciphertext+"\n"+passphrase);
+            System.out.println("복호화 내에서"+c);
             return new String(recoveredPlaintextBytes);
         } catch (Exception e) {
             e.printStackTrace();
         }
- 
+        System.out.println("실패");
         return null;
     }
     
