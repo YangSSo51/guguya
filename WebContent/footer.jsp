@@ -52,7 +52,7 @@ h4.title_m{font-weight: 500; font-size: 1.2em; margin-right: 0.5em; text-align: 
 
     .logo{
     	width:35px;
-    	margin-right:5px;
+    	margin-right:15px;
     }
 }
 @media (max-width: 1025px)  {

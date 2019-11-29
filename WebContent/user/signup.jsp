@@ -13,30 +13,11 @@
 
 
 <script type="text/javascript">	
-var key = "abcdefghijklmnopqrstuvxyz0123456"; // 32byte
-
-//The initialization vector (must be 16 bytes)
-var iv = [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,35, 36 ];
 
 //Convert text to bytes (text must be a multiple of 16 bytes)
-var text = '1234';
-var textBytes = aesjs.utils.utf8.toBytes(text);
-var mod = textBytes.length % 16;
-if(mod % 16 != 0) {
-text += ''.padStart(16 - mod);
-textBytes = aesjs.utils.utf8.toBytes(text);
-}
+var text = document.getElementById(pw2);
+alert(text);
 
-        
-var aesCbc = new aesjs.ModeOfOperation.cbc(aesjs.utils.utf8.toBytes(key), iv);
-var encryptedBytes = aesCbc.encrypt(textBytes);
-
-//To print or store the binary data, you may convert it to hex
-var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
-var encryptedBytes = aesjs.utils.hex.toBytes(encryptedHex);
-
-alert(encryptedHex)
-alert(encryptedBytes);
 //The cipher-block chaining mode of operation maintains internal
 //state, so to decrypt a new instance must be instantiated.
 var aesCbc = new aesjs.ModeOfOperation.cbc(aesjs.utils.utf8.toBytes(key), iv);
@@ -47,6 +28,11 @@ var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
 
 
    function validate() {
+	   var key = "abcdefghijklmnopqrstuvxyz0123456"; // 32byte
+
+		 //The initialization vector (must be 16 bytes)
+		 var iv = [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,35, 36 ];
+
        var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
        var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
        // 이메일이 적합한지 검사할 정규식
@@ -54,10 +40,28 @@ var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
        var id = document.getElementById("id2");
        var pw = document.getElementById("pw2");
        var pwCheck = document.getElementById("pwCheck2");
-       var auth = document.getElementById("auth2");
+       var auth1 = document.getElementById("auth11");
+       //var auth2 = document.getElementById("auth22");
 
        var email = document.getElementById("email2");
        
+       /*암호화*/
+       var text = document.getElementById("pw2").value;
+       var textBytes = aesjs.utils.utf8.toBytes(text);
+		var mod = textBytes.length % 16;
+		if(mod % 16 != 0) {
+		text += ''.padStart(16 - mod);
+		textBytes = aesjs.utils.utf8.toBytes(text);
+		}
+
+        
+		var aesCbc = new aesjs.ModeOfOperation.cbc(aesjs.utils.utf8.toBytes(key), iv);
+		var encryptedBytes = aesCbc.encrypt(textBytes);
+
+		//To print or store the binary data, you may convert it to hex
+		var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+		var encryptedBytes = aesjs.utils.hex.toBytes(encryptedHex);
+
        /*암호화*/
        //var crypto=require('crypto');
        
@@ -105,7 +109,11 @@ var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
        document.getElementById("id").value=id.value;
        document.getElementById("pw").value=encryptedHex;
        document.getElementById("email").value=email.value;
-       //document.getElementById("auth").value=1;
+       if(auth1.checked){
+           document.getElementById("auth1").checked=true;
+       }else{
+           document.getElementById("auth2").checked=true;
+       }
 
        document.signupForm.submit();
 
@@ -191,13 +199,13 @@ var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
   </label>
   <div class="col-sm-6">
 	<div class="form-check">
-	  <input class="form-check-input" type="radio" id="auth2" name="auth2" value="1" checked>
+	  <input class="form-check-input" type="radio" id="auth11" name="auth2" value="1" checked>
 	  <label class="form-check-label" for="exampleRadios1">
 	   개인
 	  </label>
 	</div>
 	<div class="form-check">
-	  <input class="form-check-input" type="radio" id="auth2" name="auth2" value="2">
+	  <input class="form-check-input" type="radio" id="auth22" name="auth2" value="2">
 	  <label class="form-check-label" for="exampleRadios2">
 	  기업
 	  </label>
@@ -214,7 +222,9 @@ var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
       <input type="password" class="hidden" id="pwCheck" name="pwCheck" placeholder="Password">
       <input type="email" class="hidden" id="email" name="email" placeholder="aaa@naver.com">
 
-	  <input class="hidden" type="radio" id="auth" name="auth" value="1" checked>
+	  <input class="hidden" type="radio" id="auth1" name="auth" value="1" checked>
+	  <input class="hidden" type="radio" id="auth2" name="auth" value="2" checked>
+	  
 		<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
 	  <button type="reset" class="btn btn-light" style="background-color:#A1A6A0">초기화</button>
 	  <button type="button" class="btn btn-light" style="background-color:#82C5E8" onclick="validate();">회원가입</button>
