@@ -139,8 +139,7 @@
   <div class="right-nav">
   <%
 	//로그인 한 경우(세션으로 확인)
-	if(id!=null){
-		
+	if(id!=null){		
    %>   
    		<h6><%=id %>님 환영합니다</h6>
    
