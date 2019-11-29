@@ -121,7 +121,7 @@ public class userMigrate {
 			System.out.println("암호문"+encrypt);
 
 	        String decrypt=AES256Test.decryptAES(encrypt, "abcdefghijklmnopqrstuvxyz0123456");
-			System.out.println("암호문"+decrypt);
+			System.out.println("복호화문"+decrypt);
 
 			if(id!=""&&pw.equals(decrypt)) {
 				flag=true;
