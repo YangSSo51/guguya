@@ -19,7 +19,7 @@ public class boardMigrate {
 		boolean flag = false;
 		try {
 			con = dbcon.getConnection();
-			sql = "insert board(context_number, userID, title, contents, write_time) values(?,?,?,?,?)";
+			sql = "insert board(context_number, userID, title, contents, write_time, file) values(?,?,?,?,?,?)";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bean.getcontext_number());
@@ -27,6 +27,7 @@ public class boardMigrate {
 			pstmt.setString(3, bean.gettitle());
 			pstmt.setString(4, bean.getcontents());
 			pstmt.setString(5, bean.getWrite_time());
+			pstmt.setString(6, bean.getfile());
 			if (pstmt.executeUpdate() == 1)
 				flag = true;
 		} catch (Exception e) {
@@ -106,11 +107,12 @@ public class boardMigrate {
 		boolean flag = false;
 		try {
 			con = dbcon.getConnection();
-			sql = "update board set title=?, contents=? where context_number = ?";
+			sql = "update board set title=?, contents=?, file=? where context_number = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.gettitle());
 			pstmt.setString(2, bean.getcontents());
-			pstmt.setInt(3, bean.getcontext_number());
+			pstmt.setString(3, bean.getfile());
+			pstmt.setInt(4, bean.getcontext_number());
 			if(pstmt.executeUpdate() ==1) {
 				flag = true;
 			}
@@ -136,10 +138,12 @@ public class boardMigrate {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				number = rs.getInt("context_number");
+				System.out.println("contextnumber = " + number);
 			}
 		} finally {
 			con.close();
 		}
+		System.out.println("last contextnumber in migrate= " + number);
 		return number;
 	}
 
@@ -219,5 +223,28 @@ public class boardMigrate {
 			con.close();
 		}
 		return count;
+	}
+	
+	// file upload
+	public boolean fileUpload(int context_number, String file) throws ClassNotFoundException, SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = dbcon.getConnection();
+			sql = "update board SET file= ? where context_number = ?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, file);
+			pstmt.setInt(2, context_number);
+			if (pstmt.executeUpdate() == 1)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.close();
+		}
+		return flag;
 	}
 }

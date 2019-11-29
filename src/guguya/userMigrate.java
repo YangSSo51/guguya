@@ -52,7 +52,7 @@ public class userMigrate {
 		}
 		return flag;
 	}
-	
+	/*
 	//id,pw입력받아서 로그인
 	//flag값으로 성공여부 전달
 	public boolean login(String id,String pw) throws ClassNotFoundException, SQLException {
@@ -63,19 +63,59 @@ public class userMigrate {
 		try {
 			con = dbcon.getConnection();
 			//아이디 비밀버호가 일치하는 아이디를 찾음
-			sql = "select id from user where id=? and pw=?";
+			sql = "select pw from user where id=? and pw=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
 			rs = pstmt.executeQuery();
 			flag=rs.next();	//존재한다면 true리턴
+			System.out.println(pw);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			con.close();
 		}
 		return flag;
+	}*/
+	
+	public userBean getIdPw(String id) throws ClassNotFoundException, SQLException {
+		userBean bean = new userBean();
+	
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+			try {
+				con = dbcon.getConnection();
+				sql = "select * from user where id=?";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					bean.setId(rs.getString("id"));
+					bean.setEmail(rs.getString("pw"));
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				
+			}
+		return bean;
 	}
+	
+	public boolean login(String id,String pw) throws ClassNotFoundException, SQLException {
+		userBean bean=new userBean();
+		boolean flag=false;
+
+		bean=getIdPw(id);
+		
+		String encrypt = bean.getPw();
+        String password = "1234";
+        String decrypt=AES256Util.decrypt(encrypt, password);
+		if(id!=""&&pw.equals(pw)) {
+			flag=true;
+		}
+		return flag;
+	}
+	
 	//회원 id로 user_no가져오기
 	public int getUserNo(String id) throws SQLException {
 		PreparedStatement pstmt = null;
@@ -135,6 +175,7 @@ public class userMigrate {
 		}
 		return flag;
 	}
+	
 	//기존 회원정보 조회
 	public ArrayList<individualBean> individualList(int user_no) throws ClassNotFoundException, SQLException {
 		ArrayList<individualBean> list = new ArrayList<individualBean>();
@@ -203,6 +244,28 @@ public class userMigrate {
 			
 		}
 		return flag;
+	}
+	/*in_no로 개인 아이디 가져오기*/
+	public String getInno(int in_no) throws ClassNotFoundException, SQLException {	
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String id = null;
+			try {
+				con = dbcon.getConnection();
+				sql = "select * from individual,user where in_no=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, in_no);
+				rs = pstmt.executeQuery();
+				while(rs.next()){
+					id=rs.getString("id");
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				
+			}
+		return id;
 	}
 	
 /* enterpise에 대한 코드
