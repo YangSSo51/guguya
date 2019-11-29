@@ -253,7 +253,7 @@ public class userMigrate {
 		String id = null;
 			try {
 				con = dbcon.getConnection();
-				sql = "select * from individual,user where in_no=?";
+				sql = "select * from individual, user where in_no=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, in_no);
 				rs = pstmt.executeQuery();

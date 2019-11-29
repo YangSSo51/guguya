@@ -144,7 +144,8 @@
   <%
 	//로그인 한 경우(세션으로 확인)
 	if(id!=null){
-   %>   
+   %>
+   	<p><%=id %>   
 	<a href="/guguya/user/logout.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">로그아웃</button></a>
 	
 		<%

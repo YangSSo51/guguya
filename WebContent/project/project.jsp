@@ -42,12 +42,13 @@
     <label for="inputDesc" class="col-sm-1 col-form-label">내용</label>
     <%= pro.getProj_desc() %><br>
   </div>
+ <% if(auth == 1){ // 개인일 때만 보이도록 %>
   <a href="/guguya/apply/applyProcess.jsp?id=<%=proj_id%>"><button type="button" class="btn btn-light float-right" style="background-color:#82C5E8">지원하기</button></a>
-  
+ <% } %>
 </div>
 
-<% if(auth == 1){ // 개인일 때만 보이도록 %>
-<% } %>
+
+
 
 </body>
 		<%@ include file="../footer.jsp"%>
