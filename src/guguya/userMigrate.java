@@ -217,7 +217,10 @@ public class userMigrate {
 				pstmt.setInt(1,user_no);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					bean.setPw(rs.getString("pw"));
+					String pw=rs.getString("pw");
+			        String decrypt=AES256Test.decryptAES(pw, "abcdefghijklmnopqrstuvxyz0123456");
+					bean.setPw(decrypt);
+
 					list.add(bean);
 				}
 			}catch(Exception e) {
@@ -328,7 +331,10 @@ public class userMigrate {
 				pstmt.setInt(1,user_no);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					bean.setPw(rs.getString("pw"));
+					String pw=rs.getString("pw");
+			        String decrypt=AES256Test.decryptAES(pw, "abcdefghijklmnopqrstuvxyz0123456");
+					bean.setPw(decrypt);
+
 					list.add(bean);
 				}
 			}catch(Exception e) {

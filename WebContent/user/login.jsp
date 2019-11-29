@@ -18,7 +18,6 @@
 			
     	   var pw=document.getElementById("pw");
     	   pw.value=document.getElementById("pw2").value;
-    	   alert(pw.value);
 
            documentloginForm.submit();
 
@@ -32,15 +31,16 @@
 </head>
 <body>
 	<%@ include file="../navbar.jsp"%>
+<div class="container">
+
 <%
 	//로그인 한 경우(세션으로 확인)
 	if(id!=null){
 %>
-<div class="container">
 
 	<div class="text-center">
-		<h4><%=id %>님 환영합니다</h4>
-		<a href="logout.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">로그아웃</button>
+		<h3>마이페이지</h3>
+		<h5><%=id %>님 환영합니다</h5>
 		</a>
 		<%
 			int auth = account.getAuth(id);
@@ -52,12 +52,16 @@
 			<a href="userList.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">사용자정보 열람하기</button></a>	
 			<%
 				}
-				else if(auth==1){
+				else if(auth==1){	//개인
 			%>
+			<a href="/guguya/apply/myApplyList.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">지원목록확인</button></a>
+		
 			<a href="individual.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">정보 수정하기</button></a>
 			<%
 				}else{
 			%>
+			<a href="/guguya/project/myProjectList.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">내 프로젝트</button></a>
+		
 			<a href="enterprise.jsp"><button type="button" class="btn btn-light" style="background-color:#82C5E8">정보 수정하기</button></a>
 		<%
 				}

@@ -7,10 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Individual</title>
+<script type="text/javascript">
+	
+</script>
 <style>
 	#hidden{
 		display:none;
 	}
+	
 </style>
 </head>
 <body>
@@ -31,9 +35,9 @@
 	<input id="hidden" type="text" class="form-control" name="user" value="<%=account.getUserNo(id)%>">
   <div class="form-group row">
         <div class="col-sm-3"></div>
-    <label for="inputPassword" class="col-sm-1 col-form-label">이름</label>
+    <label for="inputPassword" class="col-sm-1 col-form-label">비밀번호</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="pw" value="<%=ibean.getPw()%>">
+      <input type="password" class="form-control" name="pw" value="<%=ibean.getPw()%>">
     </div>
   </div>
   <div class="form-group row">

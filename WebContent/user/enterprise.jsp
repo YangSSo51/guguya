@@ -7,6 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Individual</title>
+<script type="text/javascript">
+	var name = document.getElementById("name");
+	var address = document.getElementById("address");
+	var business_no = document.getElementById("business_no");
+	
+	function isEmpty(object){
+		if(object.value==null||object.value.length===0){
+			alert("null");
+			return object.value="";
+		}else{
+			alert("value");
+			return;
+		}
+	}
+
+</script>
 <style>
 	#hidden{
 		display:none;
@@ -33,28 +49,28 @@
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">비밀번호</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="pw" value="<%=ebean.getPw()%>">
+    	<input type="password" class="form-control" id="pw" name="pw" value="<%= ebean.getPw() %>">
     </div>
   </div>
   <div class="form-group row">
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">이름</label>
-    <div class="col-sm-4">
-      <input type="text" class="form-control" name="name" value="<%=ebean.getName()%>">
+    <div class="col-sm-4">    
+      <input type="text" class="form-control" id="name" name="name" value="<%= ebean.getName()%>">
     </div>
   </div>
     <div class="form-group row">
        <div class="col-sm-3"></div>
     <label for="text" class="col-sm-1 col-form-label">주소</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="address" value="<%=ebean.getAddress()%>">
+      <input type="text" class="form-control" id="address" name="address" value="<%=ebean.getAddress()%>">
     </div>
   </div>
    <div class="form-group row">
        <div class="col-sm-3"></div>
     <label for="text" class="col-sm-1 col-form-label">사업자번호</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="business_no" value="<%=ebean.getBusiness_no()%>">
+      <input type="text" class="form-control" id="business_no" name="business_no" value="<%=ebean.getBusiness_no()%>">
     </div>
   </div>
 	<br>

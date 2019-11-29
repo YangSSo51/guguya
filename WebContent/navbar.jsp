@@ -122,8 +122,6 @@
      	 <div class="dropdown-content">
     		<a href="/guguya/project/projects.jsp">프로젝트</a>
     		<a href="/guguya/project/projectUpload.jsp">프로젝트 등록</a>
-    		<a href="/guguya/project/myProjectList.jsp">내 프로젝트</a>
-    		<a href="/guguya/apply/applyUserList.jsp">지원자 확인</a>
   		</div>
       </li>
       <li class="nav-item dropdown">
@@ -131,8 +129,6 @@
      	 <div class="dropdown-content">
     		<a href="/guguya/portfolio/portfolio.jsp">포트폴리오</a>
     		<a href="/guguya/portfolio/portfolioUpload.jsp">포트폴리오 등록</a>
-    		<a href="/guguya/portfolio/portfolio.jsp">내 포트폴리오</a>
-    		<a href="/guguya/apply/myApplyList.jsp">지원목록 확인</a>
   		</div>
       </li>
        <li class="nav-item dropdown">
@@ -143,9 +139,10 @@
   <div class="right-nav">
   <%
 	//로그인 한 경우(세션으로 확인)
-	if(id!=null){
-   %>
-   	<p><%=id %>   
+	if(id!=null){		
+   %>   
+   		<h6><%=id %>님 환영합니다</h6>
+   
 	<a href="/guguya/user/logout.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">로그아웃</button></a>
 	
 		<%
@@ -160,11 +157,11 @@
 				}
 				else if(auth==1){
 			%>
-			<a href="/guguya/user/individual.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">정보 수정하기</button></a>
+			<a href="/guguya/user/login.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">마이페이지</button></a>
 			<%
 				}else{
 			%>
-			<a href="/guguya/user/enterprise.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">정보 수정하기</button></a>
+			<a href="/guguya/user/login.jsp"><button type="button" class="btn btn-light" style="background-color:#FFC000">마이페이지</button></a>
 		<%
 				}
 		%>
