@@ -1,7 +1,7 @@
 ##  구인구직 웹사이트 구구야(guguya)
 __박현욱,금기륜,이상현,양소영__
 
-<img src="/images/logo.png" width="300" height"300">
+![logo](https://user-images.githubusercontent.com/48993188/69897496-398d4780-1390-11ea-9499-9b8ecde86267.png)
 
 ### 0. 개요
 ------------------------------
