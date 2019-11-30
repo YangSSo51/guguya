@@ -12,7 +12,17 @@
 	.label{
 		border : 1px solid black;
 	}
+	.container1 {
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 30px;
+    padding: 20px;
+}
 </style>
+
 <body>
 
 <%@ include file="../navbar.jsp"%>
@@ -27,21 +37,23 @@
 	projectBean pro = upload.getProject(proj_id); // 선택한 프로젝트 가져오기		
 %>
 <div class="container">
-  <div class="form-group row">
-      <div class="col-sm-3"></div>
-    <label for="inputName" class="col-sm-1 col-form-label">제목</label>
-   <%= pro.getProj_name() %><br>
-  </div>
-  <div class="form-group row">
-      <div class="col-sm-3"></div>
-    <label for="inputDesc" class="col-sm-1 col-form-label">작성날짜</label>
-    <%= pro.getWrite_time() %><br>
-  </div>
-  <div class="form-group row">
-      <div class="col-sm-3"></div>
-    <label for="inputDesc" class="col-sm-1 col-form-label">내용</label>
-    <%= pro.getProj_desc() %><br>
-  </div>
+ <div class="container1">
+ 
+  <table class="table" style="width:100%;">
+  <tr>
+  	<th scope="row">제목</th>
+  	<td>  <%= pro.getProj_name() %><br> </td>
+  </tr>
+  <tr>
+  	<th scope="row">작성날짜</th>
+  	<td>  <%= pro.getWrite_time() %><br> </td>
+  </tr>
+  <tr>
+  	<th scope="row">내용</th>
+  	<td>  <%= pro.getProj_desc() %><br> </td>
+  </tr>
+  </table>
+</div>
 
 <% if(auth == 1){ // 개인일 때만 보이도록 %>
   <a href="/guguya/apply/applyProcess.jsp?id=<%=proj_id%>"><button type="button" class="btn btn-light float-right" style="background-color:#82C5E8">지원하기</button></a>

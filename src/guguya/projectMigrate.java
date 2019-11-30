@@ -83,7 +83,7 @@ public class projectMigrate {
 		return name;	
 	}
 		
-	
+
 	//프로젝트 리스트 조회
 	public ArrayList<projectBean> projectList() throws ClassNotFoundException, SQLException {
 		ArrayList<projectBean> list = new ArrayList<projectBean>();
@@ -127,6 +127,7 @@ public class projectMigrate {
 			while(rs.next()) {
 				bean.setProj_name(rs.getString("proj_name"));
 				bean.setProj_desc(rs.getString("proj_desc"));
+				bean.setEn_no(rs.getInt("en_no"));
 				bean.setWrite_time(rs.getString("write_time"));
 			}
 		}finally {
