@@ -16,15 +16,24 @@
 <%@ include file="../navbar.jsp"%>
 
 <div class="container">
-<a href="projectUpload.jsp">
-<button type="button" class="btn btn-light float-right" style="background-color:#82C5E8">프로젝트 등록하기
-</button>
-</a>
-<br>
-<br>
 <table class="table" style="width:100%">
 
 
+
+<%
+	// 기업의 프로젝트 리스트는 로그인한 사용자만 볼 수 있음
+	String msg = "에에";
+	if(id != null){
+	int auth = account.getAuth(id);	
+
+  	if(auth == 2){ // 기업일 때만 보이도록 %>
+		<a href="/guguya/project/projectUpload.jsp">
+		<button type="button" class="btn btn-light float-right" style="background-color:#82C5E8">프로젝트 등록하기
+		</button>
+		</a>
+		<br><br>
+<% 	} 
+}%>
 
 	<tr>
 		<th scope="col">no</th>

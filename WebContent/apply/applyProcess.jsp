@@ -18,6 +18,7 @@
 	<%
 	String id = (String)session.getAttribute("idKey"); // 현재 로그인한 회원의 id 가져오기
 	int user_no, in_no;
+
 	String msg = "으에";
 	int user_no2 = account.getUserNo(id); // 현재 로그인한 회원의 id로 user_no 받아옴
 	int in_no2 = upload2.getInno(user_no2); // user_no으로 in_no 가져옴
