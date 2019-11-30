@@ -28,7 +28,7 @@
 		</script>
 	<%	}
 %>
->>>>>>> master
+
 <div class="container">
 <form name="projectForm" method="POST" action="/guguya/project/uploadProcess.jsp">
 	<h2 class="text-center">프로젝트 정보 입력</h2>
