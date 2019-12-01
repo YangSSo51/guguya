@@ -6,9 +6,9 @@ public class dbCon {
 	public static Connection getConnection() {
 		Connection con = null; // db connection
 		try {	
-			String url="jdbc:mysql://localhost:3306/guguya?useSSL=false&useUnicode=true&characterEncoding=utf-8";	
+			String url="jdbc:mysql://192.168.5.136/guguya?useSSL=false&useUnicode=true&characterEncoding=utf-8";	
 			String user="root";		//사용자 이름
-			String password = "0501";	//사용자 비밀번호
+			String password = "5289";	//사용자 비밀번호
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(url,user,password);
