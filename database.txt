@@ -2,7 +2,7 @@
 CREATE TABLE user (
   user_no int NOT NULL auto_increment,
   id VARCHAR(50) NOT NULL,
-  pw VARCHAR(50) NOT NULL,
+  pw VARCHAR(250) NOT NULL,
   email VARCHAR(50) NOT NULL,
   auth int NOT NULL,
   PRIMARY KEY (user_no) 
@@ -12,18 +12,19 @@ CREATE TABLE user (
 CREATE TABLE individual(
    in_no int NOT NULL auto_increment,
     user_no int NOT NULL,
-    name VARCHAR(50) NOT NULL,
-    age int NOT NULL,
+    name VARCHAR(50),
+    age int,
     PRIMARY KEY(in_no),
     foreign key(user_no) references user(user_no) on delete cascade
 )default character set utf8 collate utf8_general_ci;
+
 //기업
 CREATE TABLE enterprise(
    en_no int NOT NULL auto_increment,
    user_no int NOT NULL,
-    name VARCHAR(50) NOT NULL,
-    address VARCHAR(150) NOT NULL,
-    business_no VARCHAR(150) NOT NULL,
+    name VARCHAR(50),
+    address VARCHAR(150),
+    business_no VARCHAR(150),
     PRIMARY KEY(en_no),
    foreign key(user_no) references user(user_no) on delete cascade
 )default character set utf8 collate utf8_general_ci;
