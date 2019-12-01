@@ -30,9 +30,9 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	int auth = account.getAuth(id); // 현재 로그인한 회원의 auth
-	
+	int user_no = account.getUserNo(id); // user_no
 	String getid = request.getParameter("id");
-	int proj_id = Integer.parseInt(getid);
+	int proj_id = Integer.parseInt(getid); // proj_no
 
 	projectBean pro = upload.getProject(proj_id); // 선택한 프로젝트 가져오기		
 %>
@@ -43,6 +43,10 @@
   <tr>
   	<th scope="row">제목</th>
   	<td>  <%= pro.getProj_name() %><br> </td>
+  </tr>
+  <tr>
+  	<th scop="row">작성자</th>
+  	<td><%= upload.getEnterpiseName(pro.getEn_no())%></td>
   </tr>
   <tr>
   	<th scope="row">작성날짜</th>
@@ -57,8 +61,14 @@
 
 <% if(auth == 1){ // 개인일 때만 보이도록 %>
   <a href="/guguya/apply/applyProcess.jsp?id=<%=proj_id%>"><button type="button" class="btn btn-light float-right" style="background-color:#82C5E8">지원하기</button></a>
-
-<% } %>  
+<% }else if(auth == 2){ // 기업일 때는
+	if(pro.getEn_no() == upload.getEnno(user_no)){
+		%>
+		<a href="/guguya/project/projectUpdate.jsp?id=<%=proj_id%>"><button type="button" class="btn btn-light float-right" style="background-color:#82C5E8">수정</button></a>
+		<a href="/guguya/project/projectDelete.jsp?id=<%=proj_id%>"><button type="button" class="btn btn-light float-right" style="background-color:#82C5E8">삭제</button></a>
+		<%
+	}
+} %>  
 </div>
 
 </body>

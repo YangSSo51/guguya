@@ -54,7 +54,7 @@
      
      <%} 
      else{ %>
-     <textarea class="form-control" name="port_desc" placeholder="사용 가능한 언어 및 기술,진행한 프로젝트에 대한 설명을 적어주세요" rows="15"><%=port.getPort_desc() %></textarea>
+     <textarea class="form-control" name="port_desc" placeholder="사용 가능한 언어 및 기술,진행한 프로젝트에 대한 설명을 적어주세요" rows="15"></textarea>
 	<%} %>
     </div>
   </div>

@@ -121,7 +121,7 @@ public class userMigrate {
 			System.out.println("암호문"+encrypt);
 
 	        String decrypt=AES256Test.decryptAES(encrypt, "abcdefghijklmnopqrstuvxyz0123456");
-			System.out.println("암호문"+decrypt);
+			System.out.println("복호화문"+decrypt);
 
 			if(id!=""&&pw.equals(decrypt)) {
 				flag=true;
@@ -266,27 +266,38 @@ public class userMigrate {
 		}
 		return flag;
 	}
-	/*in_no로 개인 아이디 가져오기*/
-	public String getInno(int in_no) throws ClassNotFoundException, SQLException {	
+	
+	/*in_no로 개인 아이디 가져오기 (상현이가 고치기) */ 
+	public String get_userId(int in_no) throws ClassNotFoundException, SQLException {	
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		String id = null;
+		int user_no = -1;
+		String user_id = null;
 			try {
 				con = dbcon.getConnection();
-				sql = "select * from individual, user where in_no=?";
+				sql = "select * from individual where in_no=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, in_no);
 				rs = pstmt.executeQuery();
 				while(rs.next()){
-					id=rs.getString("id");
+					user_no = rs.getInt("user_no");
+				}
+				System.out.println(user_no);
+				
+				sql = "select * from user where user_no=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, user_no);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					user_id = rs.getString("id");
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {
 				
 			}
-		return id;
+		return user_id;
 	}
 	
 /* enterpise에 대한 코드

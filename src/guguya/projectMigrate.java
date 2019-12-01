@@ -164,4 +164,48 @@ public class projectMigrate {
 			}
 			return list;
 		}	
+		
+	// 프로젝트 삭제
+	public boolean deleteProject(int id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = dbcon.getConnection();
+			sql = "delete from project where proj_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,id);
+			if(pstmt.executeUpdate()==1) flag=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return flag;
+	}
+	// 프로젝트 수정
+	public boolean updateProject(projectBean bean) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date = new Date();
+			String time = fm.format(date);
+				
+			con = dbcon.getConnection();
+			sql = "update project set proj_name=?, proj_desc=?, write_time=? where proj_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getProj_name());
+			pstmt.setString(2, bean.getProj_desc());
+			pstmt.setString(3, time);
+			pstmt.setInt(4, bean.getProj_no());
+			if(pstmt.executeUpdate()==1) flag=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return flag;
+	}
 }

@@ -82,8 +82,8 @@ public class AES256Test {
       throws InvalidKeyException, UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException,
       IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
     String encrypted = encrypt("1234", "abcdefghijklmnopqrstuvxyz0123456");
-    System.out.println(encrypted);
-    System.out.println(decryptAES(encrypted, "abcdefghijklmnopqrstuvxyz0123456"));
+    //System.out.println(encrypted);
+    //System.out.println(decryptAES(encrypted, "abcdefghijklmnopqrstuvxyz0123456"));
   }
 }
 

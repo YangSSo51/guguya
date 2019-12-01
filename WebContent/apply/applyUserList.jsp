@@ -59,7 +59,7 @@
 	%>
 		<tr>
 			<td><%=proj.getProj_name() %></td>
-			<td><%=account.getInno(bean2.getIn_no()) %></td><!-- 개인번호로 아이디 가져옴 -->
+			<td><%=account.get_userId(bean2.getIn_no()) %></td><!-- in_no으로 user_no가져와서 아이디 가져옴 -->
 			<td><%=bean2.getResult() %></td>
 			
 		<td>
@@ -67,8 +67,9 @@
 		<button type="button" class="btn btn-light" style="background-color:#82C5E8">포트폴리오 보러가기</button></a>
 		</td>
 		<td>
-		<!--updateResult(int in_no)  --> 
-		<button type="button" class="btn btn-light" onclick="<%=mgr.updateResult(bean2.getIn_no())%>"style="background-color:#82C5E8">합격</button>
+		<a href="/guguya/portfolio/applyProcess.jsp?id=<%=bean2.getIn_no()%>&proj_no=<%=bean2.getProj_no()%>">
+		<button type="button" class="btn btn-light" style="background-color:#82C5E8">합격</button>
+		</a>
 		</td>
 		</tr>
 		<%
