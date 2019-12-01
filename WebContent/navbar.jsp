@@ -118,21 +118,33 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropbtn" href="/guguya/project/projects.jsp">기업 </a>
      	 <div class="dropdown-content">
-    		<a href="/guguya/project/projects.jsp">프로젝트</a>
+    		<a href="/guguya/project/projects.jsp">전체 프로젝트</a>
     		<a href="/guguya/project/projectUpload.jsp">프로젝트 등록</a>
+    		<% //로그인 한 경우(세션으로 확인)
+			if(id!=null){
+			int auth = account.getAuth(id);
+		%>
+    		  <%
+			if(auth==2){ // 기업일 때만
+			%>
+    		<a href="/guguya/project/myProjectList.jsp">내 프로젝트 </a>
+    		<%
+				}
+			}
+    	%>
   		</div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropbtn" href="/guguya/portfolio/portfolio.jsp">개인 </a>
      	 <div class="dropdown-content">
-    		<a href="/guguya/portfolio/portfolio.jsp">포트폴리오</a>
+    		<a href="/guguya/portfolio/portfolio.jsp">내 포트폴리오</a>
     		<a href="/guguya/portfolio/portfolioUpload.jsp">포트폴리오 등록</a>
     	<% //로그인 한 경우(세션으로 확인)
 			if(id!=null){
 			int auth = account.getAuth(id);
 		%>
     		  <%
-			if(auth==1){
+			if(auth==1){ // 개인일 때만
 			%>
     		<a href="/guguya/apply/myApplyList.jsp">지원목록 확인</a>
     		<%

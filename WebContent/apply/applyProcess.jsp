@@ -62,14 +62,16 @@
 		msg="이미 지원한 프로젝트 입니다.";
 	}
 	else{ // 없으면 지원 등록
-		apply.setResult("지원 중"); // result 설정
-		boolean result = upload.applyProject(apply); // applyProject 함수를 실행했을 때의 결과값을 확인	
+		if(port2.getWrite_time() != null){
+			apply.setResult("지원 중"); // result 설정
+			boolean result = upload.applyProject(apply); // applyProject 함수를 실행했을 때의 결과값을 확인	
 		
 		//성공 여부에 따라 메세지 출력
 		if(result)
 			msg="지원했습니다.";	
 		else
 			msg="지원에 실패하였습니다.";
+		}
 	}
 	%>
 <script>

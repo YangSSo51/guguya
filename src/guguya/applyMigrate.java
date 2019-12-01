@@ -102,6 +102,7 @@ public class applyMigrate {
 			sql = "select * from apply where in_no=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, in_no);
+			
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				applyBean bean = new applyBean();
@@ -120,16 +121,18 @@ public class applyMigrate {
 	}	
 	
 	/*지원결과 업데이트*/
-	public boolean updateResult(int in_no) { //individual table
+	public boolean updateResult(int in_no,int proj_no) { //individual table
 		PreparedStatement pstmt = null;
 		String sql = null;
 		boolean flag = false;
 		try {
 			con = dbcon.getConnection();
-			sql = "update apply set result=? where in_no=?";
+			sql = "update apply set result=? where in_no=? and proj_no=?";
+			System.out.println(in_no + " and " + proj_no);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "합격");
 			pstmt.setInt(2,in_no);
+			pstmt.setInt(3,proj_no);
 			if(pstmt.executeUpdate()==1) flag=true;
 		} catch (Exception e) {
 			e.printStackTrace();
