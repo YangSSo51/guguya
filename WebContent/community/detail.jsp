@@ -21,7 +21,6 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 뷰포트 -->
-<meta name="viewport" content="width=device-width" initial-scale="1">
 <meta charset="UTF-8">
 <title>guguya</title>
 </head>
@@ -81,7 +80,6 @@
   <br>
 </div>
 <hr>
-	<% if(id!=null){ %>
 <!-- 댓글 출력 부분 -->
  					<div class="row justify-content-center">
 
@@ -97,7 +95,7 @@
           					<div class="row">
           					 <div class="col-lg-3"></div>
             				  <strong><%=one.getuserid()%> | </strong>
-             					 <span class="detail-text"><%=one.getWrite_time()%></span>
+             					 <span class="detail-text">  <%=one.getWrite_time()%></span>
            					 </div>
            			</div>
        					 <div class="col-lg-10">
@@ -125,7 +123,8 @@
 							
           			</div>
     <br>
-	<table>
+    	<% if(id!=null){ %>
+    
 		<!-- 댓글 입력 부분 -->
 			<form name="comment" method="POST" action="uploadCommentProcess.jsp">
 				<div class="form-group row">
@@ -141,13 +140,8 @@
 						<button type="submit" class="btn btn-light"
 							style="background-color: #82C5E8">등록하기</button>
 					</div>
+				</div>
 			</form>
-		</tr>
-
-		</td>
-		</tr>
-
-	</table>
 	<br>
 	<br>
 		<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
@@ -163,8 +157,8 @@
 	  <button type="reset" class="btn btn-light" style="background-color:#A1A6A0">삭제</button></a>
 	<%} %>
 	</div>
-	</div>
 	<%} %>
+	</div>
 	
 	<%@ include file="../footer.jsp"%>
 </body>
