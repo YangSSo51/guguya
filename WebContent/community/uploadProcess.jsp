@@ -32,7 +32,7 @@
 			String write_time = fm.format(date);
 			
 			// 경로 수정하기
-			String saveDir = "C://Users/mayso/upload";//수정
+			String saveDir = "C://upload/";// 경로 수정
 			int maxSize = 1024*1024*100;
 			String encType = "UTF-8";
 

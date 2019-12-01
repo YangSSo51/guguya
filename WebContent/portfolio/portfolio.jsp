@@ -56,14 +56,30 @@
 <br>
 <br>
   <div class="form-group row">
-      <div class="col-sm-3"></div>
+      <div class="col-sm-2"></div>
     <label for="inputDesc" class="col-sm-1 col-form-label">작성날짜</label>
-    <%=port.getWrite_time() %><br>
+    <div class="col-sm-6"><%=port.getWrite_time() %></div>
+    <div class="col-sm-2"></div>
   </div>
   <div class="form-group row">
-      <div class="col-sm-3"></div>
+      <div class="col-sm-2"></div>
     <label for="inputName" class="col-sm-1 col-form-label">내용</label>
-    <%= port.getPort_desc() %><br>
+    <div class="col-sm-6"><%= port.getPort_desc() %></div>
+     <div class="col-sm-2"></div>
+  </div>
+  <div class="form-group row">
+      <div class="col-sm-2"></div>
+       <label for="inputName" class="col-sm-1 col-form-label">파일</label>
+       <div class="col-sm-6">
+   		<% 
+		if(port.getFile() != null){
+		%>
+		<label><a href="javascript:return false;" onclick="location.href='/guguya/community/fileDownload.jsp?filename=<%=port.getFile()%>'" download><%=port.getFile() %></a></label>
+		<% }else{ %>
+		<label for="inputName" class="col-sm-12 col-form-label">파일을 업로드하지 않았습니다</label>
+		<% } %>
+		</div>
+		<div class="col-sm-2"></div>
   </div>
   
 </div>

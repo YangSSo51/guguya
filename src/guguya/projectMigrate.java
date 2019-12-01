@@ -21,7 +21,7 @@ public class projectMigrate {
 		boolean flag = false;
 		try {
 			con = dbcon.getConnection();
-			sql = "insert project(proj_name, proj_desc, en_no, write_time) values(?,?,?,?)";
+			sql = "insert project(proj_name, proj_desc, en_no, write_time, proj_file) values(?,?,?,?,?)";
 			
 			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date date = new Date();
@@ -32,6 +32,7 @@ public class projectMigrate {
 			pstmt.setString(2, bean.getProj_desc());
 			pstmt.setInt(3, bean.getEn_no());
 			pstmt.setString(4, time);
+			pstmt.setString(5, bean.getFile());
 			if(pstmt.executeUpdate()==1) flag=true;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -129,6 +130,7 @@ public class projectMigrate {
 				bean.setProj_desc(rs.getString("proj_desc"));
 				bean.setEn_no(rs.getInt("en_no"));
 				bean.setWrite_time(rs.getString("write_time"));
+				bean.setFile(rs.getString("proj_file"));
 			}
 		}finally {
 			con.close();
@@ -195,12 +197,13 @@ public class projectMigrate {
 			String time = fm.format(date);
 				
 			con = dbcon.getConnection();
-			sql = "update project set proj_name=?, proj_desc=?, write_time=? where proj_no=?";
+			sql = "update project set proj_name=?, proj_desc=?, write_time=?, proj_file=? where proj_no=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getProj_name());
 			pstmt.setString(2, bean.getProj_desc());
 			pstmt.setString(3, time);
-			pstmt.setInt(4, bean.getProj_no());
+			pstmt.setString(4, bean.getFile());
+			pstmt.setInt(5, bean.getProj_no());
 			if(pstmt.executeUpdate()==1) flag=true;
 		} catch (Exception e) {
 			e.printStackTrace();
