@@ -250,20 +250,6 @@ public class userMigrate {
 			e.printStackTrace();
 		} finally {
 		}
-		try {
-			con = dbcon.getConnection();
-			sql = "update user set pw=? where user_no=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, bean.getPw());
-			pstmt.setInt(2,bean.getUser());
-
-			if(pstmt.executeUpdate()==1) flag=true;
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		finally {
-			
-		}
 		return flag;
 	}
 	
@@ -375,20 +361,6 @@ public class userMigrate {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-		}
-		try {
-			con = dbcon.getConnection();
-			sql = "update user set pw=? where user_no=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, bean.getPw());
-			pstmt.setInt(2,bean.getUser());
-
-			if(pstmt.executeUpdate()==1) flag=true;
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		finally {
-			
 		}
 		return flag;
 	}

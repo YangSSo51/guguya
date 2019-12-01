@@ -12,20 +12,6 @@
 	var address = document.getElementById("address");
 	var business_no = document.getElementById("business_no");
 	
-	function isEmpty(object){
-		if(object.value=="null"){
-			alert("null");
-			return object.value="";
-		}else{
-			alert("value");
-			return;
-		}
-	}
-	function allCheck(){
-	isEmpty(name);
-	isEmpty(address);
-	isEmpty(business_no);
-	}
 </script>
 <style>
 	#hidden{
@@ -49,13 +35,6 @@
 	<h2 class="text-center">개인정보 수정하기</h2>
 	<br>
 	<input id="hidden" type="text" class="form-control" name="user" value="<%=account.getUserNo(id)%>">
-  <div class="form-group row">
-        <div class="col-sm-3"></div>
-    <label for="inputPassword" class="col-sm-1 col-form-label">비밀번호</label>
-    <div class="col-sm-4">
-    	<input type="password" class="form-control" id="pw" name="pw" value="<%= ebean.getPw() %>">
-    </div>
-  </div>
   <div class="form-group row">
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">이름</label>

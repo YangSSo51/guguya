@@ -113,10 +113,8 @@ var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
        document.getElementById("email").value=email.value;
        if(auth1.checked){
            document.getElementById("auth1").checked=true;
-       }else if(auth2.checked){
+       }else{
            document.getElementById("auth2").checked=true;
-       }else{	//이부분은 admin 계정생성
-           document.getElementById("auth0").checked=true;
        }
 
        document.signupForm.submit();
@@ -214,7 +212,7 @@ var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
 	  기업
 	  </label>
 	</div>
-	<div class="form-check">
+	<div class="form-check" style="display:none;">
 	  <input class="form-check-input" type="radio" id="auth00" name="auth2" value="0">
 	  <label class="form-check-label" for="exampleRadios2">
 	  관리자

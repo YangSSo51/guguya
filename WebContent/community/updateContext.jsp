@@ -26,7 +26,7 @@
 			<br>
 			<div class = "form-group row">
 				<div class = "col-sm-3"></div>
-				<label for="inputName" class="col-sm-1 col-form-label">게시글 번호</label>
+				<label for="inputName" class="col-sm-2 col-form-label">게시글 번호</label>
 				<div class="col-sm-4">
 					<label><%=boardbean.getcontext_number()%></label>
 					<input type = "hidden" name="context_number" value="<%=boardbean.getcontext_number() %>">
@@ -34,26 +34,28 @@
 			</div>
 			<div class = "form-group row">
 				<div class = "col-sm-3"></div>
-				<label for="inputName" class="col-sm-1 col-form-label">작성자</label>
+				<label for="inputName" class="col-sm-2 col-form-label">작성자</label>
 				<div class="col-sm-4">
 					<label><%= boardbean.getuserid() %></label>
 				</div>
 			</div>
 			<div class = "form-group row">
 				<div class = "col-sm-3"></div>
-				<label for="inputName" class="col-sm-1 col-form-label">게시글 제목</label>
+				<label for="inputName" class="col-sm-2 col-form-label">게시글 제목</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" name="title" value="<%=boardbean.gettitle()%>">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputDesc" class="col-sm-1 col-form-label">내용</label>
+			<div class = "col-sm-3"></div>
+				<label for="inputDesc" class="col-sm-2 col-form-label">내용</label>
 				<div class="col-sm-4">
 					<input type="textarea" class="form-control" name="contents" value="<%=boardbean.getcontents()%>">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputDesc" class="col-sm-1 col-form-label">파일업로드</label>
+				<div class = "col-sm-3"></div>
+				<label for="inputDesc" class="col-sm-2 col-form-label">파일업로드</label>
 				<% if(boardbean.getfile() == null){ %>
 				<div class="col-sm-4">
 					<input type="file" class="form-control" name="file">

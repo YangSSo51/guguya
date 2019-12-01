@@ -26,11 +26,11 @@
 		String write_time = fm.format(date);
 	%>
 	<jsp:setProperty name="bean" property="context_number" />
-	<jsp:setProperty name="bean" property="idKey" />
 	<jsp:setProperty name="bean" property="comment" />
 	<%
 		bean.setcomment_number(upload.getLastCommentNumber(bean.getcontext_number()) + 1);
 		bean.setWrite_time(write_time);
+		bean.setuserid(userid);
 		boolean result = upload.commentUpload(bean);
 
 		if (result) {

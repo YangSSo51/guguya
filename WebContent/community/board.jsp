@@ -27,7 +27,6 @@
 <body>
 	<!-- 메뉴 출력 -->
 	<%@ include file="../navbar.jsp"%>
-	<%@ include file="./dbconn.jsp"%>
 <div class="container">
 
 	<!-- 관리자 페이지 구별 부분 -->
@@ -58,21 +57,12 @@
 	%>
 	<div class="right-container">
 	<!-- 검색 -->
-		<form action="./board.jsp" name="searchForm" method="post">
-			<input type="text" name="searchText" placeholder="검색 내용"
-				class="textField" value="<%=search%>" /> <select name="selectBox"
-				id="selectBox">
-				<option value="0">작성자</option>
-				<option value="1">글제목</option>
-			</select> <input type="submit" value="검색" class="btn" />
-
-		</form>
 		<!-- 글쓰기 등록 -->
 		<%
 			if (session.getAttribute("idKey") != null) {
 		%>
 		<form action="./uploadContext.jsp" name="uploadForm" method="post">
-			<input type="submit" value="글쓰기" class="btn" />
+			<input class="btn btn-light" style="background-color:#82C5E8" type="submit" value="글쓰기" style="float:right" />
 		</form>
 
 		<%
@@ -83,14 +73,14 @@
 
 
 	<!-- 게시글 출력 부분 -->
-		<table style="width: 100%">
+		<table class="table"style="width: 100%">
 			<!-- 게시판 -->
 
 			<tr>
-				<th>게시글 번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성날짜</th>
+				<th scope="col">게시글 번호</th>
+				<th scope="col">제목</th>
+				<th scope="col">작성자</th>
+				<th scope="col">작성날짜</th>
 			</tr>
 
 			<%
@@ -117,7 +107,21 @@
 				}
 			%>
 		</table>
+		<br>
+		<br>
 		<div class="button-group text-center" style="margin-left: auto; margin-right: auto;">
+		<form action="./board.jsp" name="searchForm" method="post">
+			<input type="text" name="searchText" placeholder="검색 내용"
+				class="textField" value="<%=search%>" /> <select name="selectBox"
+				id="selectBox">
+				<option value="0">작성자</option>
+				<option value="1">글제목</option>
+			</select>
+			<input type="submit" value="검색" class="btn btn-light" style="background-color:#82C5E8"/>
+
+		</form>
+		<br>
+		<br>
 		<%
 			for (int i = 0; i < (totalsize / 10) + 1; i++) {
 				if(totalsize%10 == 0 && totalsize/10 != (i+1)){
