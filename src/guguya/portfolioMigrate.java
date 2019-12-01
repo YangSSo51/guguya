@@ -19,7 +19,7 @@ public class portfolioMigrate {
 		boolean flag = false;
 		try {
 			con = dbcon.getConnection();
-			sql = "insert portfolio(port_desc, in_no, write_time) values(?,?,?)";
+			sql = "insert portfolio(port_desc, in_no, write_time, port_file) values(?,?,?,?)";
 			
 			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date date = new Date();
@@ -29,6 +29,7 @@ public class portfolioMigrate {
 			pstmt.setString(1, bean.getPort_desc());
 			pstmt.setInt(2, bean.getIn_no());
 			pstmt.setString(3, time);
+			pstmt.setString(4, bean.getFile());
 			
 			if(pstmt.executeUpdate()==1) flag=true;
 		}catch(Exception e) {
@@ -77,7 +78,7 @@ public class portfolioMigrate {
 				bean.setPort_desc(rs.getString("port_desc"));
 				bean.setWrite_time(rs.getString("write_time"));
 				bean.setIn_no(rs.getInt("in_no"));
-				bean.setPort_file(rs.getString("port_file"));
+				bean.setFile(rs.getString("port_file"));
 			}
 		}finally {
 			con.close();
@@ -93,11 +94,12 @@ public class portfolioMigrate {
 		boolean flag = false;
 		try {
 			con = dbcon.getConnection();
-			sql = "update portfolio set port_desc=? where in_no=?"; // 나중에 file도 넣어야함!
+			sql = "update portfolio set port_desc=?, port_file=? where in_no=?"; // 나중에 file도 넣어야함!
 			pstmt = con.prepareStatement(sql);
 			//현재 user_no를 받아와서 넣어줘야함
 			pstmt.setString(1, bean.getPort_desc());
-			pstmt.setInt(2,bean.getIn_no());
+			pstmt.setString(2, bean.getFile());
+			pstmt.setInt(3,bean.getIn_no());
 			if(pstmt.executeUpdate()==1) flag=true;
 		} catch (Exception e) {
 			e.printStackTrace();

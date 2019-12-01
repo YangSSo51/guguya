@@ -56,6 +56,17 @@
   	<th scope="row">내용</th>
   	<td>  <%= pro.getProj_desc() %><br> </td>
   </tr>
+  <tr>
+  	<th scope="row">파일</th>
+	<% 
+		if(pro.getFile() != null){
+	%>
+	<td><label><a href="javascript:return false;" onclick="location.href='/guguya/community/fileDownload.jsp?filename=<%=pro.getFile()%>'" download><%=pro.getFile() %></a></label></td>
+	<% }else{ %>
+	<td><label for="inputName" class="col-sm-12 col-form-label">파일을 업로드하지 않았습니다</label></td>
+	<% } %>
+	</th>
+  </tr>
   </table>
 </div>
 

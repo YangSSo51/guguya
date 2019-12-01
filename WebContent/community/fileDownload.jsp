@@ -16,7 +16,9 @@
 
 		// ② 경로 가져오기
 		//String saveDir = this.getServletContext().getRealPath("/file/");
-		String saveDir = "C:/Users/mayso/upload/";
+
+		
+		String saveDir = "C://upload/"; // 경로 수정
 		System.out.println("파일경로 : " + saveDir);
 		File file = new File(saveDir + fileName);
 		System.out.println("파일명 : " + fileName);

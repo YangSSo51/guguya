@@ -2,7 +2,7 @@
 CREATE TABLE user (
   user_no int NOT NULL auto_increment,
   id VARCHAR(50) NOT NULL,
-  pw VARCHAR(50) NOT NULL,
+  pw VARCHAR(250) NOT NULL,
   email VARCHAR(50) NOT NULL,
   auth int NOT NULL,
   PRIMARY KEY (user_no) 
@@ -12,29 +12,40 @@ CREATE TABLE user (
 CREATE TABLE individual(
    in_no int NOT NULL auto_increment,
     user_no int NOT NULL,
-    name VARCHAR(50) NOT NULL,
-    age int NOT NULL,
+    name VARCHAR(50),
+    age int,
     PRIMARY KEY(in_no),
     foreign key(user_no) references user(user_no) on delete cascade
 )default character set utf8 collate utf8_general_ci;
+
 //기업
 CREATE TABLE enterprise(
    en_no int NOT NULL auto_increment,
    user_no int NOT NULL,
-    name VARCHAR(50) NOT NULL,
-    address VARCHAR(150) NOT NULL,
-    business_no VARCHAR(150) NOT NULL,
+    name VARCHAR(50),
+    address VARCHAR(150),
+    business_no VARCHAR(150),
     PRIMARY KEY(en_no),
    foreign key(user_no) references user(user_no) on delete cascade
 )default character set utf8 collate utf8_general_ci;
 
-// 게시글 전체
+CREATE TABLE apply (
+  app_no int NOT NULL auto_increment,
+  proj_no int NOT NULL,
+  in_no int NOT NULL,
+  result VARCHAR(150),
+  PRIMARY KEY (app_no), 
+  foreign key(proj_no) references project(proj_no) on delete cascade,
+  foreign key(in_no) references individual(in_no) on delete cascade
+)default character set utf8 collate utf8_general_ci;
+
 create table board(
-    context_number int not null auto_increment,
+	context_number int not null auto_increment,
     userID varchar(100) not null,
     title varchar(500) not null,
     write_time varchar(50),
-    contents varchar(1000),
+    contents varchar(2000),
+	file VARCHAR(150),
     primary key(context_number)
 )default character set utf8 collate utf8_general_ci;
 
@@ -50,10 +61,10 @@ create table comment(
 
 CREATE TABLE project(
     proj_no int NOT NULL auto_increment,
-    proj_name VARCHAR(150) NOT NULL,
+    proj_name VARCHAR(500) NOT NULL,
     en_no int NOT NULL,
-    proj_desc VARCHAR(500) NOT NULL,
-    proj_file VARCHAR(150) unique,
+    proj_desc VARCHAR(2000) NOT NULL,
+    proj_file VARCHAR(150),
     write_time VARCHAR(150),
     PRIMARY KEY(proj_no),
     foreign key(en_no) references enterprise(en_no) on delete cascade
@@ -62,8 +73,8 @@ CREATE TABLE project(
 CREATE TABLE portfolio(
     port_no int NOT NULL auto_increment,
     in_no int NOT NULL,
-    port_desc VARCHAR(500) NOT NULL,
-    port_file VARCHAR(150) unique,
+    port_desc VARCHAR(2000) NOT NULL,
+    port_file VARCHAR(150),
     write_time VARCHAR(150),
     PRIMARY KEY(port_no),
     foreign key(in_no) references individual(in_no) on delete cascade

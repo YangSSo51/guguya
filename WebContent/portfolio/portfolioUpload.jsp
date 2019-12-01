@@ -39,9 +39,8 @@
 
 %>
 
-
 <div class="container">
-<form name="portfolioForm" method="POST" action="portProcess.jsp">
+<form name="portfolioForm" method="POST" enctype="multipart/form-data" action="portProcess.jsp">
 	<h2 class="text-center">포트폴리오 정보 입력</h2>
 	<br>
   <div class="form-group row">
@@ -58,6 +57,18 @@
 	<%} %>
     </div>
   </div>
+  <div class="form-group row">
+	<div class = "col-sm-3"></div>
+		<label for="inputDesc" class="col-sm-1 col-form-label">파일업로드</label>
+		<div class="col-sm-4">
+		<% if(port.getFile() == null){ %>
+			<input type="file" class="form-control" name="file">
+		<% }else{ %>
+			<p>업로드 된 파일 : <%=port.getFile() %></p>
+			<input type="file" class="form-control" name="file">
+		<% } %>
+		</div>
+	</div>
 	<br>
 	<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
 	  <button type="reset" class="btn btn-light" style="background-color:#A1A6A0">초기화</button>
