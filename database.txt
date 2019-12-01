@@ -29,6 +29,16 @@ CREATE TABLE enterprise(
    foreign key(user_no) references user(user_no) on delete cascade
 )default character set utf8 collate utf8_general_ci;
 
+CREATE TABLE apply (
+  app_no int NOT NULL auto_increment,
+  proj_no int NOT NULL,
+  in_no int NOT NULL,
+  result VARCHAR(150),
+  PRIMARY KEY (app_no), 
+  foreign key(proj_no) references project(proj_no) on delete cascade,
+  foreign key(in_no) references individual(in_no) on delete cascade
+)default character set utf8 collate utf8_general_ci;
+
 create table board(
 	context_number int not null auto_increment,
     userID varchar(100) not null,
