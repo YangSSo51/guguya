@@ -31,11 +31,12 @@ CREATE TABLE enterprise(
 
 // 게시글 전체
 create table board(
-    context_number int not null auto_increment,
+   context_number int not null auto_increment,
     userID varchar(100) not null,
     title varchar(500) not null,
     write_time varchar(50),
     contents varchar(1000),
+   file VARCHAR(150) unique,
     primary key(context_number)
 )default character set utf8 collate utf8_general_ci;
 
