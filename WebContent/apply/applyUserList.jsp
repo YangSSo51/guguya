@@ -14,9 +14,10 @@
 <title>UserList</title>
 </head>
 <body>
-<div class="container">
-<table style="width:100%">
 <%@ include file="../navbar.jsp"%>
+
+<div class="container">
+<table class="table" style="width:100%">
 
 	<% String msg=null;
 		if(id == null){
@@ -38,9 +39,11 @@
 	else{
 		%>
 	<tr>
-		<th>프로젝트명</th>
-		<th>지원자 아이디</th>
-		<th>결과</th>
+		<th scope="col">프로젝트 명</th>
+		<th scope="col">지원자</th>
+		<th scope="col">결과</th>
+		<th></th>
+		<th></th>
 	</tr>
 	<%
 	/* 기업이 자신의 프로젝트에 지원한 지원자 목록을 확인할 수 있는 페이지	*/

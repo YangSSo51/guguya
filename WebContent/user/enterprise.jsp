@@ -13,7 +13,7 @@
 	var business_no = document.getElementById("business_no");
 	
 	function isEmpty(object){
-		if(object.value==null||object.value.length===0){
+		if(object.value=="null"){
 			alert("null");
 			return object.value="";
 		}else{
@@ -21,7 +21,11 @@
 			return;
 		}
 	}
-
+	function allCheck(){
+	isEmpty(name);
+	isEmpty(address);
+	isEmpty(business_no);
+	}
 </script>
 <style>
 	#hidden{
@@ -56,21 +60,21 @@
         <div class="col-sm-3"></div>
     <label for="inputPassword" class="col-sm-1 col-form-label">이름</label>
     <div class="col-sm-4">    
-      <input type="text" class="form-control" id="name" name="name" value="<%= ebean.getName()%>">
+      <input type="text" class="form-control" id="name" name="name"  value="<%=ebean.getName()%>">
     </div>
   </div>
     <div class="form-group row">
        <div class="col-sm-3"></div>
     <label for="text" class="col-sm-1 col-form-label">주소</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="address" name="address" value="<%=ebean.getAddress()%>">
+      <input type="text" class="form-control" id="address" name="address" onload="isEmpty(this.form.address)" value="<%=ebean.getAddress()%>">
     </div>
   </div>
    <div class="form-group row">
        <div class="col-sm-3"></div>
     <label for="text" class="col-sm-1 col-form-label">사업자번호</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="business_no" name="business_no" value="<%=ebean.getBusiness_no()%>">
+      <input type="text" class="form-control" id="business_no" name="business_no"  value="<%=ebean.getBusiness_no()%>" onfocusout="isEmpty(this.form.business_no)">
     </div>
   </div>
 	<br>

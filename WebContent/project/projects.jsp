@@ -18,17 +18,12 @@
 <div class="container">
 <table class="table" style="width:100%">
 
+
+
 <%
 	// 기업의 프로젝트 리스트는 로그인한 사용자만 볼 수 있음
 	String msg = "에에";
-	if(id == null){
-		msg = "로그인이 필요합니다.";
-%>
-<script> // alert 메세지
-	alert("<%=msg%>");
-	document.location.href="/guguya/user/login.jsp";
-</script>
-<% }	
+	if(id != null){
 	int auth = account.getAuth(id);	
 
   	if(auth == 2){ // 기업일 때만 보이도록 %>
@@ -37,7 +32,9 @@
 		</button>
 		</a>
 		<br><br>
-<% 	} %>
+<% 	} 
+}%>
+
 	<tr>
 		<th scope="col">no</th>
 		<th scope="col">프로젝트 명</th>
@@ -61,9 +58,10 @@
 		<td><%= pro.getWrite_time()%></td>
 	</tr>
 	
-<%	j++; 
-} %>
+<%	j++; }
+%>
 </table>
+
 </div>
 		<%@ include file="../footer.jsp"%>
 </body>

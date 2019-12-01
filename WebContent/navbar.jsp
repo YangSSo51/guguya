@@ -110,8 +110,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:white!important; margin:20px;">
   <!-- 운영할때 경로 바꿔줘야함 -->
   <a class="navbar-brand" href="/guguya/home.jsp"><img class="logo2" src="/guguya/logo.png" width="150px"></a>
-
-  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -129,10 +127,22 @@
      	 <div class="dropdown-content">
     		<a href="/guguya/portfolio/portfolio.jsp">포트폴리오</a>
     		<a href="/guguya/portfolio/portfolioUpload.jsp">포트폴리오 등록</a>
+    	<% //로그인 한 경우(세션으로 확인)
+			if(id!=null){
+			int auth = account.getAuth(id);
+		%>
+    		  <%
+			if(auth==1){
+			%>
+    		<a href="/guguya/apply/myApplyList.jsp">지원목록 확인</a>
+    		<%
+				}
+			}
+    	%>
   		</div>
       </li>
        <li class="nav-item dropdown">
-        <a class="nav-link dropbtn" href="/guguya/Comunity/board.jsp">게시판 </a>
+        <a class="nav-link dropbtn" href="/guguya/community/board.jsp">게시판 </a>
       </li>
     </ul>
   </div>
