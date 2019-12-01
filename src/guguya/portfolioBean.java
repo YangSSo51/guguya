@@ -30,10 +30,10 @@ public class portfolioBean implements java.io.Serializable {
 	public String getPort_desc() {
 		return port_desc;
 	}
-	public void setPort_file(String port_file) {
+	public void setFile(String port_file) {
 		this.port_file  = port_file;
 	}
-	public String getPort_file() {
+	public String getFile() {
 		return port_file;
 	}
 	public void setWrite_time(String write_time) {

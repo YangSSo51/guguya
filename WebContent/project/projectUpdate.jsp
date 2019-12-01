@@ -43,7 +43,7 @@
 %>
 
 <div class="container">
-<form name="projectForm" method="POST" action="/guguya/project/updateProcess.jsp">
+<form name="projectForm" method="POST" enctype="multipart/form-data" action="/guguya/project/updateProcess.jsp">
 	<h2 class="text-center">프로젝트 정보 입력</h2>
 	<br>
   <div class="form-group row">
@@ -60,7 +60,22 @@
       <textarea class="form-control" name="proj_desc" placeholder="프로젝트에 대한 설명을 적어주세요" rows="15" ><%= proj.getProj_desc()%></textarea>
     </div>
   </div>
-        <input type="text" class="form-control" name="proj_no" value="<%= proj_no%>" style="display:none;">
+  <div class="form-group row">
+	<div class = "col-sm-3"></div>
+	<label for="inputDesc" class="col-sm-1 col-form-label">파일업로드</label>
+	<% if(proj.getFile() == null){ %>
+		<div class="col-sm-4">
+			<input type="file" class="form-control" name="file">
+		</div>
+	<% }else{ %>
+		<div class="col-sm-4">
+			<p>업로드 된 파일 : <%=proj.getFile() %></p>
+			<input type="file" class="form-control" name="file">
+			</div>	
+	<% } %>
+	</div>
+ 
+    <input type="text" class="form-control" name="proj_no" value="<%= proj_no%>" style="display:none;">
   
 	<br>
 	<div class="button-group text-center" style="margin-left: auto; margin-right: auto;" >
