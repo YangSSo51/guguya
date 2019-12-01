@@ -20,15 +20,16 @@
 		<th>권한</th>
 	</tr>
 <%
-	String str = "root";
-	//root일때만 수행-이 부분은 권한으로 변경해야함
-	if(id.equals("root")){
+	String msg=null;
+    if(account.getAuth(id) == 0){ // admin만 접근가능
+
 	userMigrate mgr = new userMigrate();
 	
 	//userBean의 리스트형태로 회원정보를 가져옴
 	ArrayList<userBean> list = mgr.accountList();
 		for(userBean bean2:list){	//for문
-	%>
+		if(Integer.parseInt(bean2.getAuth())!=0){
+		%>
 		<tr>
 			<td><%=bean2.getId() %></td>
 			<td><%=bean2.getEmail() %></td>
@@ -55,6 +56,7 @@
 		</tr>
 		<%
 		}//for문
+		}
 		%>
 </table>
 	

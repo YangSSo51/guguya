@@ -41,6 +41,8 @@ var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
        var pw = document.getElementById("pw2");
        var pwCheck = document.getElementById("pwCheck2");
        var auth1 = document.getElementById("auth11");
+       var auth2 = document.getElementById("auth22");
+
        //var auth2 = document.getElementById("auth22");
 
        var email = document.getElementById("email2");
@@ -111,8 +113,10 @@ var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
        document.getElementById("email").value=email.value;
        if(auth1.checked){
            document.getElementById("auth1").checked=true;
-       }else{
+       }else if(auth2.checked){
            document.getElementById("auth2").checked=true;
+       }else{	//이부분은 admin 계정생성
+           document.getElementById("auth0").checked=true;
        }
 
        document.signupForm.submit();
@@ -210,6 +214,12 @@ var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
 	  기업
 	  </label>
 	</div>
+	<div class="form-check">
+	  <input class="form-check-input" type="radio" id="auth00" name="auth2" value="0">
+	  <label class="form-check-label" for="exampleRadios2">
+	  관리자
+	  </label>
+	</div>
 	</div>
 	</div>
 	<br>
@@ -222,6 +232,7 @@ var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes).trim();
       <input type="password" class="hidden" id="pwCheck" name="pwCheck" placeholder="Password">
       <input type="email" class="hidden" id="email" name="email" placeholder="aaa@naver.com">
 
+	  <input class="hidden" type="radio" id="auth0" name="auth" value="0" checked>
 	  <input class="hidden" type="radio" id="auth1" name="auth" value="1" checked>
 	  <input class="hidden" type="radio" id="auth2" name="auth" value="2" checked>
 	  

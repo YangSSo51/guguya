@@ -9,6 +9,7 @@ public class boardBean implements java.io.Serializable{
 	private String title;
 	private String write_time;
 	private String contents;
+	private String file;
 	
 	public boardBean() {}
 
@@ -41,6 +42,12 @@ public class boardBean implements java.io.Serializable{
 	}
 	public String getcontents() {
 		return contents;
+	}
+	public void setfile(String file) {
+		this.file = file;
+	}
+	public String getfile() {
+		return file;
 	}
 }
 

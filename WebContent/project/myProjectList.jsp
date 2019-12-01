@@ -14,9 +14,9 @@
 <title>UserList</title>
 </head>
 <body>
+<%@ include file="../navbar.jsp"%>
 <div class="container">
 <table style="width:100%">
-<%@ include file="../navbar.jsp"%>
 	<% String msg=null;
 		if(id == null){
 		msg = "로그인이 필요합니다.";
