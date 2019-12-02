@@ -23,6 +23,7 @@
 <!-- 뷰포트 -->
 <meta charset="UTF-8">
 <title>guguya</title>
+<link rel="shortcut icon" type="image/x-icon" href="/guguya/logo_mini.png" />
 </head>
 <body>
 	<!-- 메뉴 출력 -->
@@ -64,7 +65,7 @@
 		if(boardbean.getfile() != null){%>
 		<label><a href="javascript:return false;" onclick="location.href='./fileDownload.jsp?filename=<%=boardbean.getfile()%>'" download><%=boardbean.getfile() %></a></label>
 		<% }else{ %>
-		<label for="inputName" class="col-sm-8 col-form-label">파일을 업로드하지 않았습니다</label>
+		<label for="inputName" class="col-sm-8 col-form-label"></label>
 	<% } %></span>
        </div>
   </div>
@@ -94,7 +95,7 @@
  					<div class="col-lg-10">
           					<div class="row">
           					 <div class="col-lg-3"></div>
-            				  <strong><%=one.getuserid()%> | </strong>
+            				  <strong><%=one.getuserid()%></strong>
              					 <span class="detail-text">  <%=one.getWrite_time()%></span>
            					 </div>
            			</div>

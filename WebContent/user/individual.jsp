@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Individual</title>
+<title>guguya</title>
+<link rel="shortcut icon" type="image/x-icon" href="/guguya/logo_mini.png" />
 <script type="text/javascript">
 	
 </script>

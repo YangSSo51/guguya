@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SignupProcess</title>
+<title>guguya</title>
+<link rel="shortcut icon" type="image/x-icon" href="/guguya/logo_mini.png" />
 </head>
 <body>
 	<jsp:setProperty property="*" name="bean"/>
